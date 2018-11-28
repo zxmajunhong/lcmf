@@ -10,7 +10,7 @@
 	"miniprogramRoot": "dist/wx/",
 	"compileType": "miniprogram",
 	"appid": "wx04188e61076cc80f",
-	"projectname": "lcmf",
+	"projectname": "flzt",
 	"condition": {
 		"search": {
 			"current": -1,

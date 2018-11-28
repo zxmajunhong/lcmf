@@ -18,8 +18,8 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 200rpx 0;
   box-sizing: border-box;
+  background-color: #f6f6fa;
 }
 /* this rule will be remove */
 * {

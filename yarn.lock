@@ -3605,6 +3605,10 @@ no-case@^2.2.0:
   dependencies:
     lower-case "^1.1.1"
 
+node-less@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/node-less/download/node-less-1.0.0.tgz#4843df149c510e85d8c15f4434ed803b736b8029"
+
 node-libs-browser@^2.0.0:
   version "2.1.0"
   resolved "http://registry.npm.taobao.org/node-libs-browser/download/node-libs-browser-2.1.0.tgz#5f94263d404f6e44767d726901fff05478d600df"

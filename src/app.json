@@ -5,7 +5,26 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarTitleText": "复来智投",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f6f6fa"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#4768f3",
+    "backgroundColor": "#f6f6fa",
+    "list": [{
+      "pagePath": "pages/index/main",
+      "text": "首页"
+    },{
+      "pagePath": "pages/index/main",
+      "text": "智能组合"
+    },{
+      "pagePath": "pages/index/main",
+      "text": "发现"
+    },{
+      "pagePath": "pages/index/main",
+      "text": "我的"
+    }]
   }
 }

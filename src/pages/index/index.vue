@@ -9,22 +9,22 @@
         </swiper>
       </div>
       <div class="explain-area">
-        <navigator :url="'/pages/index/main'" :hover-class="'none'" class="item">
+        <navigator url="/pages/description/main" :hover-class="'none'" class="item">
           <i class="icon icon1"></i>
           <span class="txt">产品介绍</span>
         </navigator>
-        <navigator :url="'/pages/index/main'" :hover-class="'none'" class="item">
+        <navigator url="/pages/feature/main" :hover-class="'none'" class="item">
           <i class="icon icon2"></i>
           <span class="txt">产品特点</span>
         </navigator>
-        <navigator :url="'/pages/index/main'" :hover-class="'none'" class="item">
+        <div class="item" @click="redirectFind(2)">
           <i class="icon icon3"></i>
           <span class="txt">新手指引</span>
-        </navigator>
-        <navigator :url="'/pages/index/main'" :hover-class="'none'" class="item">
+        </div>
+        <div class="item"  @click="redirectFind(3)">
           <i class="icon icon4"></i>
           <span class="txt">常见问题</span>
-        </navigator>
+        </div>
       </div>
     </div>
     <div class="chosen-list">
@@ -34,7 +34,7 @@
           查看更多组合>
         </navigator>
       </div>
-      <div class="box">
+      <box :class-name="'product'">
         <div class="box-title">
           <span class="title">我的组合</span>
         </div>
@@ -67,8 +67,42 @@
           <div class="tag">回撤控制</div>
           <div class="tag">智能调仓</div>
         </div>
-      </div>
-      <div class="box">
+      </box>
+      <box :class-name="'product'">
+        <div class="box-title">
+          <span class="title">我的组合</span>
+        </div>
+        <div class="box-body">
+          <div class="item">
+            <p class="value">+10.0%</p>
+            <p class="key">预期年化收益</p>
+            <p class="other">
+              亏损厌恶度:<span class="icon middle">中</span>
+            </p>
+          </div>
+          <div class="item">
+            <p class="value">5.0%</p>
+            <p class="key">最大可能亏损</p>
+            <p class="other">
+              收益偏好:<span class="icon middle">中</span>
+            </p>
+          </div>
+          <div class="item">
+            <p class="value">2.00</p>
+            <p class="key">预期年化收益</p>
+            <p class="other">
+              收益频率:<span class="icon hight">高</span>
+            </p>
+          </div>
+        </div>
+        <div class="box-bottom">
+          <div class="tag">量身定制</div>
+          <div class="tag">组合分散</div>
+          <div class="tag">回撤控制</div>
+          <div class="tag">智能调仓</div>
+        </div>
+      </box>
+      <box :class-name="'product'">
         <div class="box-title">
           <span class="title">智能增长 Ⅰ 型</span>
         </div>
@@ -101,21 +135,37 @@
           <div class="tag">回撤控制</div>
           <div class="tag">智能调仓</div>
         </div>
-      </div>
+      </box>
     </div>
     <div class="bottom-float">
       <navigator :url="'/pages/index/main'" :hover-class="'none'" class="check">查看我的投资</navigator>
+    </div>
+    <div class="bg-cover" v-if="login || review">
+      <div class="login-box" v-show="login">
+        <a class="close" @click="login=false"></a>
+        <a class="cancel" @click="login=false"></a>
+        <a class="sure" @click="loginPost"></a>
+      </div>
+      <div class="review-box" v-show="review">
+        <a class="close" @click="review=false"></a>
+        <a class="cancel" @click="review=false"></a>
+        <a class="sure" @click="reviewPost"></a>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import Box from "@/components/box";
 
 export default {
+  components: { Box },
   data () {
     return {
       userInfo: {},
       bannerList: ['/static/img/banner.png','/static/img/banner.png','/static/img/banner.png'],
+      login: false, // 显示登录弹窗
+      review: false, // 显示风险测评弹窗
     }
   },
 
@@ -138,6 +188,19 @@ export default {
     },
     clickHandle (msg, ev) {
       console.log('clickHandle:', msg, ev)
+    },
+    loginPost() {
+      console.log('登录方法');
+    },
+    reviewPost() {
+      console.log('风险测评方法');
+    },
+    // 跳转到发现中
+    redirectFind(i) {
+      this.globalData.findTabIndex = i;
+      wx.switchTab({
+        url: '/pages/find/main'
+      });
     }
   },
 
@@ -231,86 +294,7 @@ export default {
       color: #4768f3;
     }
   }
-  .box {
-    width: 690rpx;
-    height: 363rpx;
-    background-color: #fff;
-    border-radius: 8rpx;
-    margin-bottom: 20rpx;
-    .box-title {
-      height: 89rpx;
-      line-height: 89rpx;
-      border-bottom: 1rpx solid #e5e5e5;
-      .title {
-        line-height: 30rpx;
-        font-size: 30rpx;
-        color: #333333;
-        border-left: 7rpx solid #4768f3;
-        padding-left: 13rpx;
-      }
-    }
-    .box-body {
-      height: 186rpx;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1rpx solid #e5e5e5;
-      .item {
-        width: 190rpx;
-        margin: 0 20rpx;
-        text-align: center;
-        .value {
-          font-size: 40rpx;
-          color: #e74612;
-          margin-bottom: 10rpx;
-        }
-        .key {
-          font-size: 26rpx;
-          color: #666666;
-          margin-bottom: 10rpx;
-        }
-        .other {
-          line-height: 36rpx;
-          font-size: 24rpx;
-          color: #000000;
-          .icon {
-            display: inline-block;
-            width: 36rpx;
-            height: 36rpx;
-            line-height: 36rpx;
-            text-align: center;
-            border-radius: 50%;
-            font-size: 24rpx;
-            color: #fff;
-            margin-left: 8rpx;
-            &.low {
-              background-color: #4dba2d;
-            }
-            &.middle {
-              background-color: #ff9500;
-            }
-            &.hight {
-              background-color: #ff6a59;
-            }
-          }
-        }
-      }
-    }
-    .box-bottom {
-      height: 86rpx;
-      display: flex;
-      align-items: center;
-      .tag {
-        line-height: 44rpx;
-        padding: 0 14rpx;
-        font-size: 24rpx;
-        color: #4768f3;
-        border: 1rpx solid #6487ff;
-        margin-left: 20rpx;
-        border-radius: 8rpx;
-      }
-    }
-  }
+
 }
 
 .bottom-float {
@@ -331,6 +315,90 @@ export default {
     position: absolute;
     top: 17rpx;
     right: 30rpx;
+  }
+}
+
+.bg-cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  filter:progid:DXImageTransform.Microsoft.gradient(enabled="true", startColorstr="#CC999999", endColorstr="#CC999999");
+  background-color:rgba(153,153,153,0.8);
+}
+
+:root .bg-cover {
+  filter: none;
+}
+
+.login-box {
+  width: 502rpx;
+  height: 575rpx;
+  background: url(./img/login_bg.png) no-repeat 0 0;
+  background-size: cover;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: -288rpx 0 0 -251rpx;
+  .close {
+    display: block;
+    width: 37rpx;
+    height: 37rpx;
+    position: absolute;
+    top: 57rpx;
+    right: 0;
+  }
+  .cancel {
+    display: block;
+    width: 180rpx;
+    height: 60rpx;
+    position: absolute;
+    top: 484rpx;
+    left: 40rpx;
+  }
+  .sure {
+    display: block;
+    width: 180rpx;
+    height: 60rpx;
+    position: absolute;
+    top: 484rpx;
+    left: 280rpx;
+  }
+}
+
+.review-box {
+  width: 502rpx;
+  height: 561rpx;
+  background: url(./img/review_bg.png) no-repeat 0 0;
+  background-size: cover;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: -280rpx 0 0 -251rpx;
+  .close {
+    display: block;
+    width: 37rpx;
+    height: 37rpx;
+    position: absolute;
+    top: 57rpx;
+    right: 0;
+  }
+  .cancel {
+    display: block;
+    width: 180rpx;
+    height: 60rpx;
+    position: absolute;
+    top: 470rpx;
+    left: 40rpx;
+  }
+  .sure {
+    display: block;
+    width: 180rpx;
+    height: 60rpx;
+    position: absolute;
+    top: 470rpx;
+    left: 280rpx;
   }
 }
 </style>

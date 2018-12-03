@@ -1,7 +1,10 @@
 {
   "pages": [
     "pages/index/main",
-    "pages/logs/main"  ],
+    "pages/description/main",
+    "pages/feature/main",
+    "pages/find/main"
+  ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -24,7 +27,7 @@
       "iconPath": "./static/img/tabbar/compose.png",
       "selectedIconPath": "./static/img/tabbar/compose_hover.png"
     },{
-      "pagePath": "pages/index/main",
+      "pagePath": "pages/find/main",
       "text": "发现",
       "iconPath": "./static/img/tabbar/find.png",
       "selectedIconPath": "./static/img/tabbar/find_hover.png"

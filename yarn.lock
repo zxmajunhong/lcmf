@@ -1940,6 +1940,13 @@ ecc-jsbn@~0.1.1:
     jsbn "~0.1.0"
     safer-buffer "^2.1.0"
 
+echarts@^4.2.0-rc.2:
+  version "4.2.0-rc.2"
+  resolved "http://registry.npm.taobao.org/echarts/download/echarts-4.2.0-rc.2.tgz#6a98397aafa81b65cbf0bc15d9afdbfb244df91e"
+  integrity sha1-apg5eq+oG2XL8LwV2a/b+yRN+R4=
+  dependencies:
+    zrender "4.0.5"
+
 editorconfig@^0.15.0:
   version "0.15.2"
   resolved "http://registry.npm.taobao.org/editorconfig/download/editorconfig-0.15.2.tgz#047be983abb9ab3c2eefe5199cb2b7c5689f0702"
@@ -3663,6 +3670,11 @@ move-concurrently@^1.0.1:
     mkdirp "^0.5.1"
     rimraf "^2.5.4"
     run-queue "^1.0.3"
+
+mpvue-echarts@^0.2.7:
+  version "0.2.7"
+  resolved "http://registry.npm.taobao.org/mpvue-echarts/download/mpvue-echarts-0.2.7.tgz#04ba362369fd8341fe8d3ff44abb83bc789b6c20"
+  integrity sha1-BLo2I2n9g0H+jT/0SruDvHibbCA=
 
 mpvue-loader@^1.1.2:
   version "1.1.4"
@@ -5932,3 +5944,8 @@ yargs@~3.10.0:
     cliui "^2.1.0"
     decamelize "^1.0.0"
     window-size "0.1.0"
+
+zrender@4.0.5:
+  version "4.0.5"
+  resolved "http://registry.npm.taobao.org/zrender/download/zrender-4.0.5.tgz#6e8f738971ce2cd624aac82b2156729b1c0e5a82"
+  integrity sha1-bo9ziXHOLNYkqsgrIVZymxwOWoI=

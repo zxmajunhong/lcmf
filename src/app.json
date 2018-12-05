@@ -4,7 +4,8 @@
     "pages/description/main",
     "pages/feature/main",
     "pages/find/main",
-    "pages/compose-list/main"
+    "pages/compose-list/main",
+    "pages/compose-detail/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

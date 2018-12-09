@@ -24,7 +24,7 @@
       "iconPath": "./static/img/tabbar/home.png",
       "selectedIconPath": "./static/img/tabbar/home_hover.png"
     },{
-      "pagePath": "pages/compose-list/main",
+      "pagePath": "pages/compose-detail/main",
       "text": "智能组合",
       "iconPath": "./static/img/tabbar/compose.png",
       "selectedIconPath": "./static/img/tabbar/compose_hover.png"

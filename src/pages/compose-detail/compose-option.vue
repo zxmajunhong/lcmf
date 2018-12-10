@@ -2,7 +2,7 @@
 <template>
   <div class="content">
     <div class="chart-wrap">
-      <mpvue-echarts :echarts="echarts" :onInit="initChart" />
+      <mpvue-echarts :echarts="echarts" :onInit="initChart" :canvasId="'firstCanvas'" />
     </div>
     <div class="opts-detail">
       <div class="detail-title">
@@ -220,8 +220,8 @@ export default {
       const chart = echarts.init(canvas, null, {
         width: width,
         height: height
-      })
-      canvas.setChart(chart)
+      });
+      canvas.setChart(chart);
       var option = {
         legend: {
           orient: 'vertical',
@@ -258,7 +258,7 @@ export default {
             ];
         chart.setOption(option);
         return chart;
-      }, 1000);
+      }, 0);
     }
   }
 }

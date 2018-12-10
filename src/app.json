@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/compose-detail/main",
     "pages/index/main",
     "pages/description/main",
     "pages/feature/main",
     "pages/find/main",
-    "pages/compose-list/main",
-    "pages/compose-detail/main"
+    "pages/compose-list/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

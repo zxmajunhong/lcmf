@@ -47,12 +47,14 @@
         <div class="tab" :class="{'cur': tabIndex == 2}" @click="tabIndex = 2">风险控制</div>
         <div class="tab"  :class="{'cur': tabIndex == 3}" @click="tabIndex = 3">智能调仓</div>
       </div>
-      <div class="each-content" v-show="tabIndex == 0">
+      <div class="each-content" v-if="tabIndex == 0">
         <compose-option />
       </div>
-      <div class="each-content" v-show="tabIndex == 1"></div>
-      <div class="each-content" v-show="tabIndex == 2"></div>
-      <div class="each-content" v-show="tabIndex == 3"></div>
+      <div class="each-content" v-if="tabIndex == 1">
+        <compose-perfor />
+      </div>
+      <div class="each-content" v-if="tabIndex == 2"></div>
+      <div class="each-content" v-if="tabIndex == 3"></div>
     </div>
     <div class="bottom-float">
       <navigator :url="'/pages/compose-detail/main'" :hover-class="'none'" class="start">开始投资</navigator>
@@ -63,14 +65,16 @@
 <script>
 
 import ComposeOption from './compose-option';
+import ComposePerfor from './compose-perfor';
 
 export default {
   components: {
     ComposeOption,
+    ComposePerfor
   },
   data() {
     return {
-      tabIndex: 0,
+      tabIndex: 1,
     }
   }
 }

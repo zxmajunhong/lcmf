@@ -53,8 +53,12 @@
       <div class="each-content" v-if="tabIndex == 1">
         <compose-perfor />
       </div>
-      <div class="each-content" v-if="tabIndex == 2"></div>
-      <div class="each-content" v-if="tabIndex == 3"></div>
+      <div class="each-content" v-if="tabIndex == 2">
+        <compose-risk />
+      </div>
+      <div class="each-content" v-if="tabIndex == 3">
+        <compose-adjust />
+      </div>
     </div>
     <div class="bottom-float">
       <navigator :url="'/pages/compose-detail/main'" :hover-class="'none'" class="start">开始投资</navigator>
@@ -66,15 +70,19 @@
 
 import ComposeOption from './compose-option';
 import ComposePerfor from './compose-perfor';
+import ComposeRisk from './compose-risk';
+import ComposeAdjust from './compose-adjust';
 
 export default {
   components: {
     ComposeOption,
-    ComposePerfor
+    ComposePerfor,
+    ComposeRisk,
+    ComposeAdjust
   },
   data() {
     return {
-      tabIndex: 1,
+      tabIndex: 2,
     }
   }
 }

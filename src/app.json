@@ -1,11 +1,13 @@
 {
   "pages": [
+    "pages/risk-assessment/main",
     "pages/compose-detail/main",
     "pages/index/main",
     "pages/description/main",
     "pages/feature/main",
     "pages/find/main",
-    "pages/compose-list/main"
+    "pages/compose-list/main",
+    "pages/my/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -34,7 +36,7 @@
       "iconPath": "./static/img/tabbar/find.png",
       "selectedIconPath": "./static/img/tabbar/find_hover.png"
     },{
-      "pagePath": "pages/index/main",
+      "pagePath": "pages/my/main",
       "text": "我的",
       "iconPath": "./static/img/tabbar/my.png",
       "selectedIconPath": "./static/img/tabbar/my_hover.png"

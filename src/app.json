@@ -1,13 +1,13 @@
 {
   "pages": [
-    "pages/risk-assessment/main",
+    "pages/my/main",
     "pages/compose-detail/main",
     "pages/index/main",
     "pages/description/main",
     "pages/feature/main",
     "pages/find/main",
     "pages/compose-list/main",
-    "pages/my/main"
+    "pages/risk-assessment/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

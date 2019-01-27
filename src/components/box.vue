@@ -73,6 +73,19 @@ export default {
                 background-color: #ff6a59;
               }
             }
+            .txt {
+              font-size: 24rpx;
+              margin-left: 4rpx;
+              &.low {
+                color: #4dba2d;
+              }
+              &.middle {
+                color: #ff9500;
+              }
+              &.hight {
+                color: #ff6a59;
+              }
+            }
           }
         }
       }

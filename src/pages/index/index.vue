@@ -158,6 +158,12 @@
 <script>
 import Box from "@/components/box";
 
+import model from '@/utils/model';
+
+model.getHomeData().then((res) => {
+  console.log('res', res);
+})
+
 export default {
   components: { Box },
   data () {

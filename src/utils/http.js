@@ -7,7 +7,7 @@ const fly = new Fly();
 
 const loginFly = new Fly(); // 登录使用的请求实例
 
-const ajaxServer = 'https://www.baidu.com';
+const ajaxServer = 'http://flzt.czstep.com';
 
 // 配置请求基地址
 fly.config.baseURL = ajaxServer;

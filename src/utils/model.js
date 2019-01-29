@@ -3,12 +3,19 @@
  */
 
 import http from './http';
-const fun = {};
 
-fun.getHomeData = () => {
-  return http.get('/index/game');
-};
+export function getHomeData () {
+  return http.get('/index/game').then(res => res.data);
+}
 
-console.log(fun);
+export function getComposeList() {
+  return http.get('/index/games').then(res => res.data);
+}
 
-export default fun;
+export function getComposeDetail(id) {
+  return http.get(`/index/games/${id}`).then(res => res.data);
+}
+
+export function getUserInfo() {
+  return http.get('/user/info').then(res => res.data);
+}

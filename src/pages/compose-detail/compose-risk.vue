@@ -25,14 +25,16 @@ export default {
     mpvueEcharts,
   },
   props: {
-    id: {
-      type: Number,
-      default: 1,
+    data: {
+      type: Object,
     }
   },
   data() {
     return {
       echarts,
+      xAxisData: [],
+      series0Data: [],
+      series1Data: [],
     }
   },
   methods: {
@@ -57,7 +59,7 @@ export default {
         xAxis: {
           type: 'category',
           boundaryGap: false,
-          data: ['2014','2015','2016','2017','2018']
+          data: vthis.xAxisData,
         },
         yAxis: {
           type: 'value',
@@ -70,18 +72,27 @@ export default {
           {
             name: '组合',
             type: 'line',
-            data:[0, -4, -8.9, -26.3, -35.1]
+            data: vthis.series0Data,
           },
           {
             name: '比较基准',
             type: 'line',
-            data:[0, -8, -15.2, -33.5, -42.1]
+            data: vthis.series1Data,
           }
         ]
       };
       chart.setOption(option);
       return chart;
     }
+  },
+  onLoad() {
+    const srcData = this.data;
+    console.log(srcData);
+    this.xAxisData = srcData.timeArr;
+    srcData.valueArr.forEach(it => {
+      this.series0Data.push(it.data || 0);
+      this.series1Data.push(it.compareData || 0);
+    });
   }
 }
 </script>

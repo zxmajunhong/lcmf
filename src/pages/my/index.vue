@@ -3,57 +3,57 @@
     <div class="my-money-box">
       <div class="bottom-bg"></div>
       <div class="my-money">
-        <span class="money">150000.00</span>
+        <span class="money">{{userInfo.userF}}</span>
         <span class="txt">投资金额 (￥)</span>
       </div>
       <div class="my-earnigns">
         <div class="each">
           <span class="key">累计收益(￥)</span>
-          <span class="value">11000.00</span>
+          <span class="value">{{userInfo.addUpIncome}}</span>
         </div>
         <div class="each">
           <span class="key">最新收益(￥)</span>
-          <span class="value">11000.00</span>
+          <span class="value">{{userInfo.newIncome}}</span>
         </div>
         <div class="each">
           <span class="key">最新净值(￥)</span>
-          <span class="value blue">1.0791</span>
+          <span class="value blue">{{userInfo.newValue}}</span>
         </div>
         <div class="each">
           <span class="key">最新回撤(￥)</span>
-          <span class="value blue">-2.02%</span>
+          <span class="value blue">{{userInfo.newBack}}</span>
         </div>
       </div>
     </div>
-    <box :class-name="'my-compose product'">
+    <div class="my-compose product box" >
       <div class="box-title">
         <span class="title">我的组合</span>
-        <a class="button">用户测评</a>
+        <navigator :url="'/pages/risk-assessment/main'" :hover-class="none" class="button">用户测评</navigator>
       </div>
       <div class="box-body">
         <div class="item">
-          <p class="value">+14.0%</p>
+          <p class="value">{{userInfo.annualIncome}}</p>
           <p class="key">预期年化收益</p>
           <p class="other">
             亏损厌恶度:<span class="txt low">一般</span>
           </p>
         </div>
         <div class="item">
-          <p class="value">5.0%</p>
+          <p class="value">{{userInfo.maxLost}}</p>
           <p class="key">最大可能亏损</p>
           <p class="other">
             最大亏损:<span class="txt middle">3%</span>
           </p>
         </div>
         <div class="item">
-          <p class="value">2.00</p>
-          <p class="key">预期年化收益</p>
+          <p class="value">{{userInfo.riskReturnRatio}}</p>
+          <p class="key">收益风险比</p>
           <p class="other">
             收益频率:<span class="txt hight">高</span>
           </p>
         </div>
       </div>
-    </box>
+    </div>
     <div class="pod-box">
       <div class="pod-info">
         <p class="txt">最新调仓：2019-01-17</p>
@@ -64,11 +64,11 @@
     <div class="fb-box">
       <div class="fb-info">
         <div class="balance">
-          F币余额：<span class="value">20.0</span>
+          F币余额：<span class="value">{{userInfo.user_f}}</span>
         </div>
         <a href="" class="recharge">充值</a>
       </div>
-      <p class="tips">我的组合每天需消耗1个F币当前余额可用至<span class="date">2019-02-07</span></p>
+      <p class="tips">我的组合每天需消耗1个F币当前余额可用至<span class="date">{{userInfo.lastDate}}</span></p>
     </div>
     <div class="other-fun">
       <div class="each">
@@ -88,9 +88,18 @@
 </template>
 
 <script>
-import Box from "@/components/box";
+import {getUserInfo} from '@/utils/model';
 export default {
-  components: { Box },
+  data() {
+    return {
+      userInfo: {},
+    }
+  },
+  onLoad() {
+    getUserInfo().then(res => {
+      this.userInfo = res;
+    })
+  }
 }
 </script>
 

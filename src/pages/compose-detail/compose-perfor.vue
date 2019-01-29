@@ -2,9 +2,9 @@
 <template>
   <div class="content">
     <div class="year-select">
-      <div class="item cur" @click="change">过去1年</div>
-      <div class="item">过去3年</div>
-      <div class="item">过去5年</div>
+      <div class="item" @click="change(0)" :class="{'cur': sTab == 0}">过去1年</div>
+      <div class="item" @click="change(1)" :class="{'cur': sTab == 1}">过去3年</div>
+      <div class="item" @click="change(2)" :class="{'cur': sTab == 2}">过去5年</div>
     </div>
     <div class="tab-content">
       <div class="chart-area">
@@ -63,6 +63,9 @@ export default {
     id: {
       type: Number,
       default: 1,
+    },
+    data: {
+      type: Object,
     }
   },
   data() {
@@ -128,10 +131,6 @@ export default {
       {name: '夏普比率', compose: -6.8, compare: -34.41},
       {name: '最大撤回', compose: -17.3, compare: 38}
     ]];
-    this.chartData = [];
-
-
-
   },
   methods: {
     // 初始化表格
@@ -146,44 +145,41 @@ export default {
       chart.setOption(vthis.option);
       return chart;
     },
-    change() {
-      const option = {
-        grid: {
-          show: true,
-          top: '10%',
-        },
-        legend: {
-          show: true,
-          top: 'bottom',
-          data: ['组合', '比较基准']
-        },
-        xAxis: {
-          type: 'category',
-        boundaryGap: false,
-          data: ['2018-02','2018-04','2018-06','2018-08','2018-10']
-        },
-        yAxis: {
-          type: 'value',
-          axisLabel: {
-            show: true,
-            formatter: '{value}%'
-          }
-        },
-        series: [
-          {
-            name: '组合',
-            type: 'line',
-            data:[10, -10, 26, 32, 55.0]
-          },
-          {
-            name: '比较基准',
-            type: 'line',
-            data:[48, 32, 30, 11.7, 10]
-          }
-        ]
-      };
-      chart.setOption(option);
+    change(i) {
+      const nowData = this.chartData[i];
+      this.option.xAxis.data = nowData.timeArr;
+      this.option.series[0].data = nowData.data;
+      this.option.series[1].data = nowData.compareData;
+      chart.setOption(this.option);
+      this.sTab = i;
     }
+  },
+  onLoad() {
+    // 获取到的数据
+    const srcData = this.data;
+    // 组织成表格所需要的数据
+    const chartData = srcData.map(it => {
+      const data = [];
+      const compareData = [];
+      it.valueArr.forEach(v => {
+        data.push(v.data || 0);
+        compareData.push(v.compareData || 0);
+      })
+      const obj = {
+        timeArr: it.timeArr,
+        data,
+        compareData,
+      }
+      return obj;
+    });
+    console.log('chartData', chartData);
+    this.chartData = chartData;
+    const nowData = this.chartData[0];
+    console.log('init', nowData);
+    this.option.xAxis.data = ['1月', '2月', '3月', '4月', '5月', '6月','7月', '8月', '9月','10月', '11月', '12月'];
+    this.option.series[0].data = nowData.data;
+    this.option.series[1].data = nowData.compareData;
+    console.log('options', this.option);
   }
 }
 </script>

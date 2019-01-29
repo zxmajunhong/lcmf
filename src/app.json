@@ -2,12 +2,12 @@
   "pages": [
     "pages/index/main",
     "pages/my/main",
+    "pages/risk-assessment/main",
     "pages/compose-detail/main",
     "pages/description/main",
     "pages/feature/main",
     "pages/find/main",
-    "pages/compose-list/main",
-    "pages/risk-assessment/main"
+    "pages/compose-list/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,7 +26,7 @@
       "iconPath": "./static/img/tabbar/home.png",
       "selectedIconPath": "./static/img/tabbar/home_hover.png"
     },{
-      "pagePath": "pages/compose-detail/main",
+      "pagePath": "pages/compose-list/main",
       "text": "智能组合",
       "iconPath": "./static/img/tabbar/compose.png",
       "selectedIconPath": "./static/img/tabbar/compose_hover.png"

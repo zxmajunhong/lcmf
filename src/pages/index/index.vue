@@ -30,112 +30,46 @@
     <div class="chosen-list">
       <div class="title-area">
         <span class="title">精选组合</span>
-        <navigator :url="'/pages/index/main'" :hover-class="'none'" class="more">
+        <div class="more" @click="redirectComposeList">
           查看更多组合>
-        </navigator>
+        </div>
       </div>
-      <box :class-name="'product'">
-        <div class="box-title">
-          <span class="title">我的组合</span>
-        </div>
-        <div class="box-body">
-          <div class="item">
-            <p class="value">+10.0%</p>
-            <p class="key">预期年化收益</p>
-            <p class="other">
-              亏损厌恶度:<span class="icon middle">中</span>
-            </p>
+      <navigator :url="'/pages/compose-detail/main?id=' + item.id" hover-class="none" v-for="item in investList" :key="item.id">
+        <div class="common-box product">
+          <div class="box-title">
+            <span class="title">{{item.name}}</span>
           </div>
-          <div class="item">
-            <p class="value">5.0%</p>
-            <p class="key">最大可能亏损</p>
-            <p class="other">
-              收益偏好:<span class="icon middle">中</span>
-            </p>
+          <div class="box-body">
+            <div class="item">
+              <p class="value">{{item.annual_income}}</p>
+              <p class="key">预期年化收益</p>
+              <p class="other">
+                亏损厌恶度:<span class="icon middle">中</span>
+              </p>
+            </div>
+            <div class="item">
+              <p class="value">{{item.max_lost}}</p>
+              <p class="key">最大可能亏损</p>
+              <p class="other">
+                收益偏好:<span class="icon middle">中</span>
+              </p>
+            </div>
+            <div class="item">
+              <p class="value">{{item.risk_return_ratio}}</p>
+              <p class="key">收益风险比</p>
+              <p class="other">
+                收益频率:<span class="icon hight">高</span>
+              </p>
+            </div>
           </div>
-          <div class="item">
-            <p class="value">2.00</p>
-            <p class="key">预期年化收益</p>
-            <p class="other">
-              收益频率:<span class="icon hight">高</span>
-            </p>
-          </div>
-        </div>
-        <div class="box-bottom">
-          <div class="tag">量身定制</div>
-          <div class="tag">组合分散</div>
-          <div class="tag">回撤控制</div>
-          <div class="tag">智能调仓</div>
-        </div>
-      </box>
-      <box :class-name="'product'">
-        <div class="box-title">
-          <span class="title">我的组合</span>
-        </div>
-        <div class="box-body">
-          <div class="item">
-            <p class="value">+10.0%</p>
-            <p class="key">预期年化收益</p>
-            <p class="other">
-              亏损厌恶度:<span class="icon middle">中</span>
-            </p>
-          </div>
-          <div class="item">
-            <p class="value">5.0%</p>
-            <p class="key">最大可能亏损</p>
-            <p class="other">
-              收益偏好:<span class="icon middle">中</span>
-            </p>
-          </div>
-          <div class="item">
-            <p class="value">2.00</p>
-            <p class="key">预期年化收益</p>
-            <p class="other">
-              收益频率:<span class="icon hight">高</span>
-            </p>
+          <div class="box-bottom">
+            <div class="tag">量身定制</div>
+            <div class="tag">组合分散</div>
+            <div class="tag">回撤控制</div>
+            <div class="tag">智能调仓</div>
           </div>
         </div>
-        <div class="box-bottom">
-          <div class="tag">量身定制</div>
-          <div class="tag">组合分散</div>
-          <div class="tag">回撤控制</div>
-          <div class="tag">智能调仓</div>
-        </div>
-      </box>
-      <box :class-name="'product'">
-        <div class="box-title">
-          <span class="title">智能增长 Ⅰ 型</span>
-        </div>
-        <div class="box-body">
-          <div class="item">
-            <p class="value">+14.0%</p>
-            <p class="key">预期年化收益</p>
-            <p class="other">
-              亏损厌恶度:<span class="icon low">低</span>
-            </p>
-          </div>
-          <div class="item">
-            <p class="value">8.0%</p>
-            <p class="key">最大可能亏损</p>
-            <p class="other">
-              收益偏好:<span class="icon middle">中</span>
-            </p>
-          </div>
-          <div class="item">
-            <p class="value">1.75</p>
-            <p class="key">预期年化收益</p>
-            <p class="other">
-              收益频率:<span class="icon hight">高</span>
-            </p>
-          </div>
-        </div>
-        <div class="box-bottom">
-          <div class="tag">高风险收益比</div>
-          <div class="tag">组合分散</div>
-          <div class="tag">回撤控制</div>
-          <div class="tag">智能调仓</div>
-        </div>
-      </box>
+      </navigator>
     </div>
     <div class="bottom-float">
       <navigator :url="'/pages/index/main'" :hover-class="'none'" class="check">查看我的投资</navigator>
@@ -156,20 +90,14 @@
 </template>
 
 <script>
-import Box from "@/components/box";
-
-import model from '@/utils/model';
-
-model.getHomeData().then((res) => {
-  console.log('res', res);
-})
+import {getHomeData} from '@/utils/model';
 
 export default {
-  components: { Box },
   data () {
     return {
       userInfo: {},
       bannerList: ['/static/img/banner.png','/static/img/banner.png','/static/img/banner.png'],
+      investList: [],
       login: false, // 显示登录弹窗
       review: false, // 显示风险测评弹窗
     }
@@ -207,12 +135,20 @@ export default {
       wx.switchTab({
         url: '/pages/find/main'
       });
+    },
+    redirectComposeList() {
+      wx.switchTab({
+        url: '/pages/compose-list/main'
+      })
     }
   },
-
-  created () {
-    // 调用应用实例的方法获取全局数据
-    this.getUserInfo()
+  onLoad() {
+    getHomeData().then(res => {
+      if (res.bannerList.length > 0) {
+        this.bannerList = res.bannerList;
+      }
+      this.investList = res.investList;
+    })
   }
 }
 </script>

@@ -3,15 +3,15 @@
     <div class="top-area">
       <div class="attr-box">
         <div class="item">
-          <p class="value">+14.0%</p>
+          <p class="value">{{composeInfo.annual_income}}</p>
           <p class="key">预期年化收益</p>
         </div>
         <div class="item">
-          <p class="value">8.0%</p>
+          <p class="value">{{composeInfo.max_lost}}</p>
           <p class="key">最大可能亏损</p>
         </div>
         <div class="item">
-          <p class="value">1.75</p>
+          <p class="value">{{composeInfo.risk_return_ratio}}</p>
           <p class="key">收益风险比</p>
         </div>
       </div>
@@ -48,13 +48,13 @@
         <div class="tab"  :class="{'cur': tabIndex == 3}" @click="tabIndex = 3">智能调仓</div>
       </div>
       <div class="each-content" v-if="tabIndex == 0">
-        <compose-option />
+        <compose-option :data="composeOptions" />
       </div>
       <div class="each-content" v-if="tabIndex == 1">
-        <compose-perfor />
+        <compose-perfor :data="composePerfor" />
       </div>
       <div class="each-content" v-if="tabIndex == 2">
-        <compose-risk />
+        <compose-risk :data="composeRisk" />
       </div>
       <div class="each-content" v-if="tabIndex == 3">
         <compose-adjust />
@@ -72,6 +72,7 @@ import ComposeOption from './compose-option';
 import ComposePerfor from './compose-perfor';
 import ComposeRisk from './compose-risk';
 import ComposeAdjust from './compose-adjust';
+import {getComposeDetail} from '@/utils/model';
 
 export default {
   components: {
@@ -82,8 +83,24 @@ export default {
   },
   data() {
     return {
-      tabIndex: 2,
+      tabIndex: -1,
+      composeInfo: {}, // 组合信息
+      composeOptions: {}, // 组合配置信息
+      composePerfor: {}, // 业绩表现数据
+      composeRisk: {}, // 风险控制数据
     }
+  },
+  onLoad(o) {
+    const id = o.id;
+    // 获取详情页数据
+    getComposeDetail(id).then(res => {
+      this.composeInfo = res.info;
+      this.composeOptions = res.list;
+      this.composePerfor= [res.oneYearData,res.threeYearData,res.fiveYearData];
+      this.composeRisk = res.listData;
+      console.log(res);
+      this.tabIndex = 0;
+    });
   }
 }
 </script>

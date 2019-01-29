@@ -9,183 +9,23 @@
         <span class="txt">假设投资金额为: <span class="money">100000</span>元,配置如下:</span>
         <div class="modify-money">修改金额</div>
       </div>
-      <div class="each-item">
+      <div class="each-item" v-for="(item, i1) in tblData" :key="i1">
         <div class="line thead">
-          <span class="td">A股</span>
+          <span class="td">{{item.name}}</span>
           <span class="td">50000元</span>
           <span class="td">50.0%</span>
         </div>
-        <div class="line tr">
+        <div class="line tr" v-for="line in item.list" :key="line">
           <span class="td">
-            <span class="name">华夏上证50ETF</span>
-            <span class="nums">510050.SH</span>
+            <span class="name">{{line.bond_name}}</span>
+            <span class="nums">{{line.bond_code}}</span>
           </span>
-          <span class="td">20000元</span>
-          <span class="td">20.0%</span>
-          <span class="arrow"></span>
-        </div>
-        <div class="line tr">
-          <span class="td">
-            <span class="name">华夏上证50ETF</span>
-            <span class="nums">510050.SH</span>
-          </span>
-          <span class="td">20000元</span>
-          <span class="td">20.0%</span>
+          <span class="td">{{line.money}}元</span>
+          <span class="td">{{line.ratio}}</span>
           <span class="arrow"></span>
         </div>
       </div>
-      <div class="each-item">
-        <div class="line thead">
-          <span class="td">A股</span>
-          <span class="td">50000元</span>
-          <span class="td">50.0%</span>
-        </div>
-        <div class="line tr">
-          <span class="td">
-            <span class="name">华夏上证50ETF</span>
-            <span class="nums">510050.SH</span>
-          </span>
-          <span class="td">20000元</span>
-          <span class="td">20.0%</span>
-          <span class="arrow"></span>
-        </div>
-        <div class="line tr">
-          <span class="td">
-            <span class="name">华夏上证50ETF</span>
-            <span class="nums">510050.SH</span>
-          </span>
-          <span class="td">20000元</span>
-          <span class="td">20.0%</span>
-          <span class="arrow"></span>
-        </div>
-      </div>
-      <div class="each-item">
-        <div class="line thead">
-          <span class="td">A股</span>
-          <span class="td">50000元</span>
-          <span class="td">50.0%</span>
-        </div>
-        <div class="line tr">
-          <span class="td">
-            <span class="name">华夏上证50ETF</span>
-            <span class="nums">510050.SH</span>
-          </span>
-          <span class="td">20000元</span>
-          <span class="td">20.0%</span>
-          <span class="arrow"></span>
-        </div>
-        <div class="line tr">
-          <span class="td">
-            <span class="name">华夏上证50ETF</span>
-            <span class="nums">510050.SH</span>
-          </span>
-          <span class="td">20000元</span>
-          <span class="td">20.0%</span>
-          <span class="arrow"></span>
-        </div>
-      </div>
-      <div class="each-item">
-        <div class="line thead">
-          <span class="td">A股</span>
-          <span class="td">50000元</span>
-          <span class="td">50.0%</span>
-        </div>
-        <div class="line tr">
-          <span class="td">
-            <span class="name">华夏上证50ETF</span>
-            <span class="nums">510050.SH</span>
-          </span>
-          <span class="td">20000元</span>
-          <span class="td">20.0%</span>
-          <span class="arrow"></span>
-        </div>
-        <div class="line tr">
-          <span class="td">
-            <span class="name">华夏上证50ETF</span>
-            <span class="nums">510050.SH</span>
-          </span>
-          <span class="td">20000元</span>
-          <span class="td">20.0%</span>
-          <span class="arrow"></span>
-        </div>
-      </div>
-      <div class="each-item">
-        <div class="line thead">
-          <span class="td">A股</span>
-          <span class="td">50000元</span>
-          <span class="td">50.0%</span>
-        </div>
-        <div class="line tr">
-          <span class="td">
-            <span class="name">华夏上证50ETF</span>
-            <span class="nums">510050.SH</span>
-          </span>
-          <span class="td">20000元</span>
-          <span class="td">20.0%</span>
-          <span class="arrow"></span>
-        </div>
-        <div class="line tr">
-          <span class="td">
-            <span class="name">华夏上证50ETF</span>
-            <span class="nums">510050.SH</span>
-          </span>
-          <span class="td">20000元</span>
-          <span class="td">20.0%</span>
-          <span class="arrow"></span>
-        </div>
-        <div class="line tr">
-          <span class="td">
-            <span class="name">华夏上证50ETF</span>
-            <span class="nums">510050.SH</span>
-          </span>
-          <span class="td">20000元</span>
-          <span class="td">20.0%</span>
-          <span class="arrow"></span>
-        </div>
-      </div>
-      <div class="each-item">
-        <div class="line thead">
-          <span class="td">A股</span>
-          <span class="td">50000元</span>
-          <span class="td">50.0%</span>
-        </div>
-        <div class="line tr">
-          <span class="td">
-            <span class="name">华夏上证50ETF</span>
-            <span class="nums">510050.SH</span>
-          </span>
-          <span class="td">20000元</span>
-          <span class="td">20.0%</span>
-          <span class="arrow"></span>
-        </div>
-        <div class="line tr">
-          <span class="td">
-            <span class="name">华夏上证50ETF</span>
-            <span class="nums">510050.SH</span>
-          </span>
-          <span class="td">20000元</span>
-          <span class="td">20.0%</span>
-          <span class="arrow"></span>
-        </div>
-        <div class="line tr">
-          <span class="td">
-            <span class="name">国泰上证5年期国债ETF</span>
-            <span class="nums">510050.SH</span>
-          </span>
-          <span class="td">20000元</span>
-          <span class="td">20.0%</span>
-          <span class="arrow"></span>
-        </div>
-        <div class="line tr">
-          <span class="td">
-            <span class="name">华夏上证50ETF</span>
-            <span class="nums">510050.SH</span>
-          </span>
-          <span class="td">20000元</span>
-          <span class="td">20.0%</span>
-          <span class="arrow"></span>
-        </div>
-      </div>
+
     </div>
   </div>
 </template>
@@ -201,14 +41,17 @@ export default {
     mpvueEcharts
   },
   props: {
-    id: {
-      type: Number,
-      default: 1,
+    data: {
+      type: Object,
     }
   },
   data() {
     return {
       echarts,
+      pieColor: ['#345d9a', '#e65f43', '#6ba35b', '#7a61a4', '#399b9f', '#9f8c39'],
+      legendData: [],
+      seriesData: [],
+      tblData: [],
     }
   },
   methods: {
@@ -216,7 +59,6 @@ export default {
     initChart(canvas, width, height) {
       const vthis = this;
       // 图形颜色
-      const pieColor = ['#345d9a', '#e65f43', '#6ba35b', '#7a61a4', '#399b9f', '#9f8c39'];
       const chart = echarts.init(canvas, null, {
         width: width,
         height: height
@@ -247,19 +89,37 @@ export default {
       }
       // TODO 请求获取数据
       setTimeout(() => {
-        console.log(vthis.id);
-        option.legend.data = ['A股  50%','港股  5.0%','境外股票  5.0%','债券  30.0%','货币  10.0%'];
-        option.series[0].data = [
-              {value:335, name:'A股  50%', itemStyle: {color: '#345d9a'}},
-              {value:310, name:'港股  5.0%', itemStyle: {color: pieColor[1]}},
-              {value:234, name:'境外股票  5.0%', itemStyle: {color: pieColor[2]}},
-              {value:135, name:'债券  30.0%', itemStyle: {color: pieColor[3]}},
-              {value:1548, name:'货币  10.0%', itemStyle: {color: pieColor[4]}}
-            ];
+        option.legend.data = vthis.legendData;
+        option.series[0].data = vthis.seriesData;
         chart.setOption(option);
         return chart;
       }, 0);
     }
+  },
+  onLoad() {
+    // 组织图表所需要的数据
+    const srcData = this.data;
+    console.log('srcData', srcData);
+    const keys = Object.keys(srcData);
+    const legendData = [];
+    const seriesData = [];
+    const tblData = [];
+    keys.forEach((it, idx) => {
+      legendData.push(`${it} ${srcData[it].ratio}`);
+      seriesData.push({
+        value: srcData[it].ratio,
+        name: `${it} ${srcData[it].ratio}`,
+        itemStyle: {color: this.pieColor[idx]},
+      });
+      tblData.push({
+        name: it,
+        list: srcData[it].list,
+      });
+    });
+    this.legendData = legendData;
+    this.seriesData = seriesData;
+    this.tblData = tblData;
+    console.log('配置数据', this.data);
   }
 }
 </script>

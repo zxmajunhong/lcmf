@@ -2,10 +2,10 @@
   <div class="container">
     <div class="my-money-box">
       <div class="bottom-bg"></div>
-      <div class="my-money">
+      <navigator :url="'/pages/invest-record/main'" :hover-class="none" class="my-money">
         <span class="money">{{userInfo.userF}}</span>
         <span class="txt">投资金额 (￥)</span>
-      </div>
+      </navigator>
       <div class="my-earnigns">
         <div class="each">
           <span class="key">累计收益(￥)</span>
@@ -64,17 +64,17 @@
     <div class="fb-box">
       <div class="fb-info">
         <div class="balance">
-          F币余额：<span class="value">{{userInfo.user_f}}</span>
+          F币余额：<span class="value">{{userInfo.userF}}</span>
         </div>
         <a href="" class="recharge">充值</a>
       </div>
       <p class="tips">我的组合每天需消耗1个F币当前余额可用至<span class="date">{{userInfo.lastDate}}</span></p>
     </div>
     <div class="other-fun">
-      <div class="each">
+      <navigator :url="'/pages/f-bag/main'" :hover-class="none" class="each">
         <i class="icon fb"></i>
         <span class="txt">F币钱包</span>
-      </div>
+      </navigator>
       <div class="each middle">
         <i class="icon remind"></i>
         <span class="txt">定投提醒</span>

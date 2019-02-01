@@ -18,14 +18,14 @@
             <p class="value">{{item.max_lost}}</p>
             <p class="key">最大可能亏损</p>
             <p class="other">
-              收益偏好:<span class="icon middle">中</span>
+              最大亏损:<span class="icon middle">中</span>
             </p>
           </div>
           <div class="item">
             <p class="value">{{item.risk_return_ratio}}</p>
             <p class="key">预期年化收益</p>
             <p class="other">
-              收益频率:<span class="icon hight">高</span>
+              交易频率:<span class="icon hight">高</span>
             </p>
           </div>
         </div>

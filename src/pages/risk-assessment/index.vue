@@ -86,6 +86,7 @@
 
 <script>
 import Box from "@/components/box";
+import {postRisk} from '@/utils/model';
 export default {
   components: { Box },
   data() {
@@ -111,6 +112,14 @@ export default {
     },
     submit() {
       console.log(this.q1_value, this.q2_value, this.q3_value);
+      postRisk(this.q1_value, this.q2_value, this.q3_value).then(res => {
+        if (res.code == 0) {
+          wx.showToast({
+            title: '提交成功',
+            icon: 'success',
+          });
+        }
+      })
     }
   }
 }

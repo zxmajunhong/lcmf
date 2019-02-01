@@ -89,10 +89,10 @@
       </div>
       <!-- 新手引导 -->
       <div class="new-guide" v-show="tabIndex == 2">
-        <box>
+        <div class="common-box product">
           <div class="box-title"><span class="title">新手指引</span></div>
           <div class="new-guide-txt">新手指引内容</div>
-        </box>
+        </div>
       </div>
       <!-- 常见问题 -->
       <div class="question-list" v-show="tabIndex == 3">
@@ -118,9 +118,12 @@ export default {
       tabIndex: 0, // 第几个选项卡
     }
   },
+  methods: {
+  },
   onShow() {
     const tabIndex = this.globalData.findTabIndex || 0;
     this.tabIndex = tabIndex;
+    // 请求咨询数据
   },
   onHide() {
     this.globalData.findTabIndex = 0;

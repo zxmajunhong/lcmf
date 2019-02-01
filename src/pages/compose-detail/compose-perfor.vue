@@ -10,7 +10,7 @@
       <div class="chart-area">
         <mpvue-echarts :echarts="echarts" :onInit="initChart" :canvasId="'secondCanvas'" />
       </div>
-      <div class="table-area">
+      <div class="table-area" style="display: none">
         <div class="table">
           <div class="tr title">
             <div class="td">组合</div>

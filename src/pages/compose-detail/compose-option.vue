@@ -12,8 +12,8 @@
       <div class="each-item" v-for="(item, i1) in tblData" :key="i1">
         <div class="line thead">
           <span class="td">{{item.name}}</span>
-          <span class="td">50000元</span>
-          <span class="td">50.0%</span>
+          <span class="td">{{item.money}}元</span>
+          <span class="td">{{item.ratio}}%</span>
         </div>
         <div class="line tr" v-for="line in item.list" :key="line">
           <span class="td">
@@ -113,6 +113,8 @@ export default {
       });
       tblData.push({
         name: it,
+        money: srcData[it].money,
+        ratio: srcData[it].ratio,
         list: srcData[it].list,
       });
     });

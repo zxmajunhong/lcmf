@@ -2,6 +2,8 @@
   "pages": [
     "pages/index/main",
     "pages/my/main",
+    "pages/invest-record/main",
+    "pages/f-bag/main",
     "pages/risk-assessment/main",
     "pages/compose-detail/main",
     "pages/description/main",

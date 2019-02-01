@@ -51,14 +51,14 @@
               <p class="value">{{item.max_lost}}</p>
               <p class="key">最大可能亏损</p>
               <p class="other">
-                收益偏好:<span class="icon middle">中</span>
+                最大亏损:<span class="icon middle">中</span>
               </p>
             </div>
             <div class="item">
               <p class="value">{{item.risk_return_ratio}}</p>
               <p class="key">收益风险比</p>
               <p class="other">
-                收益频率:<span class="icon hight">高</span>
+                交易频率:<span class="icon hight">高</span>
               </p>
             </div>
           </div>
@@ -72,13 +72,13 @@
       </navigator>
     </div>
     <div class="bottom-float">
-      <navigator :url="'/pages/index/main'" :hover-class="'none'" class="check">查看我的投资</navigator>
+      <div class="check" @click="redirectPersonal">查看我的投资</div>
     </div>
     <div class="bg-cover" v-if="login || review">
       <div class="login-box" v-show="login">
         <a class="close" @click="login=false"></a>
         <a class="cancel" @click="login=false"></a>
-        <a class="sure" @click="loginPost"></a>
+        <button class="sure" open-type="getUserInfo" @getuserinfo="updateUserinfo" hover-class="none"></button>
       </div>
       <div class="review-box" v-show="review">
         <a class="close" @click="review=false"></a>
@@ -90,7 +90,7 @@
 </template>
 
 <script>
-import {getHomeData} from '@/utils/model';
+import {getHomeData, postLogin} from '@/utils/model';
 
 export default {
   data () {
@@ -123,8 +123,29 @@ export default {
     clickHandle (msg, ev) {
       console.log('clickHandle:', msg, ev)
     },
-    loginPost() {
-      console.log('登录方法');
+    loginPost(userInfo, signature, rawData, iv, encryptedData) {
+      const vthis = this;
+      wx.login({
+        success(res) {
+          if (res.code) {
+            // 发起网络请求
+            postLogin(res.code, userInfo, signature, rawData, iv, encryptedData)
+            .then((res) => {
+              console.log('登陆成功', res);
+              vthis.login = false;
+            })
+            .catch(err => {
+              vthis.login = false;
+              console.log('登陆失败', err);
+            });
+          } else {
+            console.log('登录失败！' + res.errMsg)
+          }
+        },
+        fail() {
+          console.log('接口调用失败');
+        }
+      })
     },
     reviewPost() {
       console.log('风险测评方法');
@@ -140,7 +161,23 @@ export default {
       wx.switchTab({
         url: '/pages/compose-list/main'
       })
-    }
+    },
+    // 跳转到个人中心
+    redirectPersonal() {
+      console.log('跳转');
+      wx.switchTab({
+        url: '/pages/my/main'
+      });
+    },
+    updateUserinfo(e) {
+      console.log('获取用户信息', e);
+      const getUserinfo = e.mp.detail;
+      if (getUserinfo) {
+        this.loginPost(getUserinfo.userInfo, getUserinfo.signature, getUserinfo.rawData, getUserinfo.iv, getUserinfo.encryptedData);
+      } else {
+        console.log('获取用户信息失败');
+      }
+    },
   },
   onLoad() {
     getHomeData().then(res => {
@@ -148,7 +185,31 @@ export default {
         this.bannerList = res.bannerList;
       }
       this.investList = res.investList;
-    })
+    });
+
+    // 判断用户是否授权，没有授权弹出登陆提示框，授权直接请求登陆
+    const vthis = this;
+    wx.getSetting({
+      success(res) {
+        console.log('检查授权', res);
+        if (res.authSetting['scope.userInfo']) {
+          // 调用登陆方法
+          console.log('已经授权');
+          wx.getUserInfo({
+            withCredentials: true,
+            success: function (res) {
+              console.log('获取用户信息', res);
+              vthis.loginPost(res.userInfo, res.signature, res.rawData, res.iv, res.encryptedData);
+            },
+            fail: function (err) {
+              console.log('获取用户信息失败', err);
+            }
+          })
+        } else {
+          vthis.login = true;
+        }
+      }
+    });
   }
 }
 </script>
@@ -306,6 +367,11 @@ export default {
     position: absolute;
     top: 484rpx;
     left: 280rpx;
+    background-color: transparent;
+    border: none;
+  }
+  .sure::after {
+    border: none;
   }
 }
 

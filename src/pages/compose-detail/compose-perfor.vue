@@ -2,8 +2,8 @@
 <template>
   <div class="content">
     <div class="year-select">
-      <div class="item" @click="change(0)" :class="{'cur': sTab == 0}">过去1年</div>
-      <div class="item" @click="change(1)" :class="{'cur': sTab == 1}">过去3年</div>
+      <!-- <div class="item" @click="change(0)" :class="{'cur': sTab == 0}">过去1年</div>
+      <div class="item" @click="change(1)" :class="{'cur': sTab == 1}">过去3年</div> -->
       <div class="item" @click="change(2)" :class="{'cur': sTab == 2}">过去5年</div>
     </div>
     <div class="tab-content">

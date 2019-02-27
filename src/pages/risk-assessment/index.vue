@@ -16,10 +16,14 @@
         </div>
         <div class="content">
           <div class="slider-area">
-            <slider min="1" max="3" step="1" activeColor="#4768f3" block-color="#ff6a59" :value="q1_value" @change="q1Change"/>
+            <slider min="1" max="7" step="1" activeColor="#4768f3" block-color="#ff6a59" :value="q1_value" @change="q1Change"/>
             <div class="value-line">
               <span class="v">4%</span>
+              <span class="v">5%</span>
+              <span class="v">6%</span>
               <span class="v">7%</span>
+              <span class="v">8%</span>
+              <span class="v">9%</span>
               <span class="v">10%</span>
             </div>
           </div>
@@ -52,10 +56,10 @@
         <div class="content">
           <radio-group class="radio-group" @change="q3Change">
             <label class="radio">
-              <radio value="1" color="#4768f3" :checked="q3_value == 1" />高
+              <radio value="1" color="#4768f3" :checked="q3_value == 1" />不太高
             </label>
             <label class="radio">
-              <radio value="2" color="#4768f3" :checked="q3_value == 2" />差不多
+              <radio value="2" color="#4768f3" :checked="q3_value == 2" />一般高
             </label>
             <label class="radio">
               <radio value="3" color="#4768f3" :checked="q3_value == 3" />比较高

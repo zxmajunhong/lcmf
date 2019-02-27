@@ -2,33 +2,18 @@
   <div class="container">
     <div class="balance-box">
       <div class="balance">
-        F币余额：<span class="value">20.0</span>
+        F币余额：<span class="value">{{userF}}</span>
       </div>
       <div class="echarge">充值</div>
     </div>
     <div class="title-area">
       <span class="title">F币交易记录：</span>
     </div>
-    <div class="record-box">
+    <div class="record-box" v-for="item in recordList" :key="item">
       <div class="line">
-        <div class="date">2018-11-12 12:00:00</div>
-        <div class="desc">充值</div>
-        <div class="value">+50.0</div>
-      </div>
-      <div class="line">
-        <div class="date">2018-11-12 12:00:00</div>
-        <div class="desc">充值</div>
-        <div class="value">+50.0</div>
-      </div>
-      <div class="line">
-        <div class="date">2018-11-12 12:00:00</div>
-        <div class="desc">充值</div>
-        <div class="value">+50.0</div>
-      </div>
-      <div class="line">
-        <div class="date">2018-11-12 12:00:00</div>
-        <div class="desc">充值</div>
-        <div class="value">+50.0</div>
+        <div class="date">{{item.add_time}}</div>
+        <div class="desc">{{item.type_name}}</div>
+        <div class="value"><span v-if="item.user_f < 0">-</span>{{item.user_f}}</div>
       </div>
     </div>
   </div>
@@ -39,11 +24,14 @@ export default {
   data() {
     return {
       recordList: [],
+      userF: 0
     }
   },
   onLoad() {
     getFbRecord().then(res => {
-      console.log(res);
+      //console.log(res);
+      this.recordList = res.list;
+      this.userF = res.userF;
     })
   }
 }

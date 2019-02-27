@@ -44,29 +44,23 @@
               <p class="value">{{item.annual_income}}</p>
               <p class="key">预期年化收益</p>
               <p class="other">
-                亏损厌恶度:<span class="icon middle">中</span>
-              </p>
+                亏损厌恶度:<span class="icon middle">{{item.detest}}</span>
+              </p> 
             </div>
             <div class="item">
               <p class="value">{{item.max_lost}}</p>
               <p class="key">最大可能亏损</p>
               <p class="other">
-                最大亏损:<span class="icon middle">中</span>
+                最大亏损:<span class="icon middle">{{item.max_lose}}</span>
               </p>
             </div>
             <div class="item">
               <p class="value">{{item.risk_return_ratio}}</p>
               <p class="key">收益风险比</p>
               <p class="other">
-                交易频率:<span class="icon hight">高</span>
+                交易频率:<span class="icon hight">{{item.deal_rate}}</span>
               </p>
             </div>
-          </div>
-          <div class="box-bottom">
-            <div class="tag">量身定制</div>
-            <div class="tag">组合分散</div>
-            <div class="tag">回撤控制</div>
-            <div class="tag">智能调仓</div>
           </div>
         </div>
       </navigator>

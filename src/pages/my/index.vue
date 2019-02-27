@@ -3,7 +3,7 @@
     <div class="my-money-box">
       <div class="bottom-bg"></div>
       <navigator :url="'/pages/invest-record/main'" :hover-class="none" class="my-money">
-        <span class="money">{{userInfo.userF}}</span>
+        <span class="money">{{userInfo.totalMoney}}</span>
         <span class="txt">投资金额 (￥)</span>
       </navigator>
       <div class="my-earnigns">
@@ -35,29 +35,29 @@
           <p class="value">{{userInfo.annualIncome}}</p>
           <p class="key">预期年化收益</p>
           <p class="other">
-            亏损厌恶度:<span class="txt low">一般</span>
+            亏损厌恶度:<span class="txt low">{{userInfo.detest}}</span>
           </p>
         </div>
         <div class="item">
           <p class="value">{{userInfo.maxLost}}</p>
-          <p class="key">最大可能亏损</p>
+          <p class="key">最大回撤</p>
           <p class="other">
-            最大亏损:<span class="txt middle">3%</span>
+            最大亏损:<span class="txt middle">{{userInfo.userMaxLost}}</span>
           </p>
         </div>
         <div class="item">
           <p class="value">{{userInfo.riskReturnRatio}}</p>
           <p class="key">收益风险比</p>
           <p class="other">
-            收益频率:<span class="txt hight">高</span>
+            交易频率:<span class="txt hight">{{userInfo.dealRate}}</span>
           </p>
         </div>
       </div>
     </div>
     <div class="pod-box">
       <div class="pod-info">
-        <p class="txt">最新调仓：2019-01-17</p>
-        <p class="tips">您当期的调仓还未完成，点击去完成</p>
+        <p class="txt">最新调仓：<span v-if="userInfo.newChange != 0">{{userInfo.newChange}}></span><span v-else>暂无</span></p>
+        <p class="tips"  v-if="userInfo.newChange != 0">您当期的调仓还未完成，点击去完成</p>
       </div>
       <span class="arrow">></span>
     </div>

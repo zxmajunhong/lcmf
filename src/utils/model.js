@@ -45,3 +45,18 @@ export function getInvestRecord(page=1) {
   return http.post('/user/invest/log', {page})
     .then(res => res.data);
 }
+
+export function getUserInvestMoney(){
+  return http.post('/user/game/info')
+  .then(res.data);
+}
+
+export function checkUserInvest(groupId){
+  return http.post('/user/game/check', {groupId})
+  .then(res.data);
+}
+
+export function PostUserInvest(groupId, money){
+  return http.post('/user/game/do', {groupId, money})
+  .then(res => res.data);
+}

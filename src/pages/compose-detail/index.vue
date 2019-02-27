@@ -61,7 +61,7 @@
       </div>
     </div>
     <div class="bottom-float">
-      <navigator :url="'/pages/compose-detail/main'" :hover-class="'none'" class="start">开始投资</navigator>
+      <navigator :url="'/pages/invest-add/main?groupId='+ composeInfo.id" :hover-class="'none'" class="start">开始投资</navigator>
     </div>
   </div>
 </template>

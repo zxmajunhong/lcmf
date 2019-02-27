@@ -1,24 +1,10 @@
 <template>
   <div class="invest-record">
-    <div class="line">
-      <div class="date">2018-11-12</div>
-      <div class="value in">+200.00</div>
-    </div>
-    <div class="line">
-      <div class="date">2018-11-12</div>
-      <div class="value in">+200.00</div>
-    </div>
-    <div class="line">
-      <div class="date">2018-11-12</div>
-      <div class="value in">+200.00</div>
-    </div>
-    <div class="line">
-      <div class="date">2018-11-12</div>
-      <div class="value in">+200.00</div>
-    </div>
-    <div class="line">
-      <div class="date">2018-11-12</div>
-      <div class="value out">-200.00</div>
+    <div v-for="item in investRecord" :key="item">
+      <div class="line">
+        <div class="date">{{item.add_time}}</div>
+        <div class="value in"><span v-if="item.money >= 0">+</span><span v-else>-</span>{{item.money}}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -33,6 +19,7 @@ export default {
   onLoad() {
     getInvestRecord().then(res => {
       console.log('获取投资记录', res);
+      this.investRecord = res.list;
     })
   }
 }

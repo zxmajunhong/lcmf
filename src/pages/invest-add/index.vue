@@ -19,10 +19,10 @@ export default {
     }
   },
   onLoad() {
-    getFbRecord().then(res => {
-      //console.log(res);
-      this.money = res.money;
-    })
+    // getFbRecord().then(res => {
+    //   //console.log(res);
+    //   this.money = res.money;
+    // })
   }
 }
 </script>

@@ -29,125 +29,14 @@
             </p>
           </div>
         </div>
-        <div class="box-bottom">
+        <!-- <div class="box-bottom">
           <div class="tag">量身定制</div>
           <div class="tag">组合分散</div>
           <div class="tag">回撤控制</div>
           <div class="tag">智能调仓</div>
-        </div>
+        </div> -->
       </div>
     </navigator>
-    <!-- <navigator :url="'/pages/compose-detail/main?id=1'" hover-class="none">
-      <box :class-name="'product'">
-        <div class="box-title">
-          <span class="title">智能增长 Ⅰ 型</span>
-          <span class="tag">推荐</span>
-        </div>
-        <div class="box-body">
-          <div class="item">
-            <p class="value">+10.0%</p>
-            <p class="key">预期年化收益</p>
-            <p class="other">
-              亏损厌恶度:<span class="icon middle">中</span>
-            </p>
-          </div>
-          <div class="item">
-            <p class="value">5.0%</p>
-            <p class="key">最大可能亏损</p>
-            <p class="other">
-              收益偏好:<span class="icon middle">中</span>
-            </p>
-          </div>
-          <div class="item">
-            <p class="value">2.00</p>
-            <p class="key">预期年化收益</p>
-            <p class="other">
-              收益频率:<span class="icon hight">高</span>
-            </p>
-          </div>
-        </div>
-        <div class="box-bottom">
-          <div class="tag">量身定制</div>
-          <div class="tag">组合分散</div>
-          <div class="tag">回撤控制</div>
-          <div class="tag">智能调仓</div>
-        </div>
-      </box>
-    </navigator>
-    <navigator :url="'/pages/compose-detail/main?id=1'" hover-class="none">
-      <box :class-name="'product'">
-        <div class="box-title">
-          <span class="title">智能增长 Ⅰ 型</span>
-          <span class="tag">推荐</span>
-        </div>
-        <div class="box-body">
-          <div class="item">
-            <p class="value">+10.0%</p>
-            <p class="key">预期年化收益</p>
-            <p class="other">
-              亏损厌恶度:<span class="icon middle">中</span>
-            </p>
-          </div>
-          <div class="item">
-            <p class="value">5.0%</p>
-            <p class="key">最大可能亏损</p>
-            <p class="other">
-              收益偏好:<span class="icon middle">中</span>
-            </p>
-          </div>
-          <div class="item">
-            <p class="value">2.00</p>
-            <p class="key">预期年化收益</p>
-            <p class="other">
-              收益频率:<span class="icon hight">高</span>
-            </p>
-          </div>
-        </div>
-        <div class="box-bottom">
-          <div class="tag">量身定制</div>
-          <div class="tag">组合分散</div>
-          <div class="tag">回撤控制</div>
-          <div class="tag">智能调仓</div>
-        </div>
-      </box>
-    </navigator>
-    <navigator :url="'/pages/compose-detail/main?id=1'" hover-class="none">
-      <box :class-name="'product'">
-        <div class="box-title">
-          <span class="title">智能增长 Ⅰ 型</span>
-          <span class="tag">推荐</span>
-        </div>
-        <div class="box-body">
-          <div class="item">
-            <p class="value">+10.0%</p>
-            <p class="key">预期年化收益</p>
-            <p class="other">
-              亏损厌恶度:<span class="icon middle">中</span>
-            </p>
-          </div>
-          <div class="item">
-            <p class="value">5.0%</p>
-            <p class="key">最大可能亏损</p>
-            <p class="other">
-              收益偏好:<span class="icon middle">中</span>
-            </p>
-          </div>
-          <div class="item">
-            <p class="value">2.00</p>
-            <p class="key">预期年化收益</p>
-            <p class="other">
-              收益频率:<span class="icon hight">高</span>
-            </p>
-          </div>
-        </div>
-        <div class="box-bottom">
-          <div class="tag">量身定制</div>
-          <div class="tag">组合分散</div>
-          <div class="tag">回撤控制</div>
-          <div class="tag">智能调仓</div>
-        </div>
-      </box>
-    </navigator> -->
   </div>
 </template>
 <script>

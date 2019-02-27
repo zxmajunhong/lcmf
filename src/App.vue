@@ -53,7 +53,6 @@ export default {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1rpx solid #e5e5e5;
       .item {
         width: 190rpx;
         margin: 0 20rpx;
@@ -73,37 +72,38 @@ export default {
           font-size: 24rpx;
           color: #000000;
           .icon {
-            display: inline-block;
-            width: 36rpx;
-            height: 36rpx;
+            // display: inline-block;
+            // width: 36rpx;
+            // height: 36rpx;
             line-height: 36rpx;
             text-align: center;
             border-radius: 50%;
             font-size: 24rpx;
-            color: #fff;
+            color: #e74612;
             margin-left: 8rpx;
-            &.low {
-              background-color: #4dba2d;
-            }
-            &.middle {
-              background-color: #ff9500;
-            }
-            &.hight {
-              background-color: #ff6a59;
-            }
+            // &.low {
+            //   background-color: #4dba2d;
+            // }
+            // &.middle {
+            //   background-color: #ff9500;
+            // }
+            // &.hight {
+            //   background-color: #ff6a59;
+            // }
           }
           .txt {
             font-size: 24rpx;
             margin-left: 4rpx;
-            &.low {
-              color: #4dba2d;
-            }
-            &.middle {
-              color: #ff9500;
-            }
-            &.hight {
-              color: #ff6a59;
-            }
+            color: #e74612;
+            // &.low {
+            //   color: #4dba2d;
+            // }
+            // &.middle {
+            //   color: #ff9500;
+            // }
+            // &.hight {
+            //   color: #ff6a59;
+            // }
           }
         }
       }
@@ -112,6 +112,7 @@ export default {
       height: 86rpx;
       display: flex;
       align-items: center;
+      border-top: 1rpx solid #e5e5e5;
       .tag {
         line-height: 44rpx;
         padding: 0 14rpx;

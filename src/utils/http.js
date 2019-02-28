@@ -7,8 +7,8 @@ const fly = new Fly();
 
 const loginFly = new Fly(); // 登录使用的请求实例
 
-// const ajaxServer = 'http://flzt.czstep.com';
-const ajaxServer = 'http://192.168.11.155:92/index.php';
+const ajaxServer = 'http://flzt.czstep.com';
+// const ajaxServer = 'http://192.168.11.155:92/index.php';
 
 
 // 配置请求基地址

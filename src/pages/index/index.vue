@@ -45,7 +45,7 @@
               <p class="key">预期年化收益</p>
               <p class="other">
                 亏损厌恶度:<span class="icon middle">{{item.detest}}</span>
-              </p> 
+              </p>
             </div>
             <div class="item">
               <p class="value">{{item.max_lost}}</p>
@@ -98,10 +98,6 @@ export default {
   },
 
   methods: {
-    bindViewTap () {
-      const url = '../logs/main'
-      wx.navigateTo({ url })
-    },
     getUserInfo () {
       // 调用登录接口
       wx.login({
@@ -151,6 +147,7 @@ export default {
         url: '/pages/find/main'
       });
     },
+    // 跳转到组合列表
     redirectComposeList() {
       wx.switchTab({
         url: '/pages/compose-list/main'
@@ -163,6 +160,7 @@ export default {
         url: '/pages/my/main'
       });
     },
+    // 更新用户信息
     updateUserinfo(e) {
       console.log('获取用户信息', e);
       const getUserinfo = e.mp.detail;
@@ -174,12 +172,6 @@ export default {
     },
   },
   onLoad() {
-    getHomeData().then(res => {
-      if (res.bannerList.length > 0) {
-        this.bannerList = res.bannerList;
-      }
-      this.investList = res.investList;
-    });
 
     // 判断用户是否授权，没有授权弹出登陆提示框，授权直接请求登陆
     const vthis = this;
@@ -203,6 +195,13 @@ export default {
           vthis.login = true;
         }
       }
+    });
+
+    getHomeData().then(res => {
+      if (res.bannerList.length > 0) {
+        this.bannerList = res.bannerList;
+      }
+      this.investList = res.investList;
     });
   }
 }

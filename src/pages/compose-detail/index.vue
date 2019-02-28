@@ -27,15 +27,15 @@
           </div>
           <div class="item">
             <span class="key">亏损厌恶度:</span>
-            <span class="value icon low">低</span>
+            <span class="value">低</span>
           </div>
           <div class="item">
             <span class="key">收益偏好:</span>
-            <span class="value icon middle">中</span>
+            <span class="value">中</span>
           </div>
           <div class="item">
             <span class="key">收益频率:</span>
-            <span class="value icon hight">高</span>
+            <span class="value">高</span>
           </div>
         </div>
       </div>

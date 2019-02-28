@@ -105,10 +105,10 @@ export default {
     const seriesData = [];
     const tblData = [];
     keys.forEach((it, idx) => {
-      legendData.push(`${it} ${srcData[it].ratio}`);
+      legendData.push(`${it} ${srcData[it].ratio}%`);
       seriesData.push({
         value: srcData[it].ratio,
-        name: `${it} ${srcData[it].ratio}`,
+        name: `${it} ${srcData[it].ratio}%`,
         itemStyle: {color: this.pieColor[idx]},
       });
       tblData.push({

@@ -72,38 +72,17 @@ export default {
           font-size: 24rpx;
           color: #000000;
           .icon {
-            // display: inline-block;
-            // width: 36rpx;
-            // height: 36rpx;
             line-height: 36rpx;
             text-align: center;
             border-radius: 50%;
             font-size: 24rpx;
             color: #e74612;
             margin-left: 8rpx;
-            // &.low {
-            //   background-color: #4dba2d;
-            // }
-            // &.middle {
-            //   background-color: #ff9500;
-            // }
-            // &.hight {
-            //   background-color: #ff6a59;
-            // }
           }
           .txt {
             font-size: 24rpx;
             margin-left: 4rpx;
             color: #e74612;
-            // &.low {
-            //   color: #4dba2d;
-            // }
-            // &.middle {
-            //   color: #ff9500;
-            // }
-            // &.hight {
-            //   color: #ff6a59;
-            // }
           }
         }
       }

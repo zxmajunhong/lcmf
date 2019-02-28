@@ -35,21 +35,21 @@
           <p class="value">{{userInfo.annualIncome}}</p>
           <p class="key">预期年化收益</p>
           <p class="other">
-            亏损厌恶度:<span class="txt low">{{userInfo.detest}}</span>
+            亏损厌恶度:<span class="txt">{{userInfo.detest}}</span>
           </p>
         </div>
         <div class="item">
           <p class="value">{{userInfo.maxLost}}</p>
           <p class="key">最大回撤</p>
           <p class="other">
-            最大亏损:<span class="txt middle">{{userInfo.userMaxLost}}</span>
+            最大亏损:<span class="txt">{{userInfo.userMaxLost}}</span>
           </p>
         </div>
         <div class="item">
           <p class="value">{{userInfo.riskReturnRatio}}</p>
           <p class="key">收益风险比</p>
           <p class="other">
-            交易频率:<span class="txt hight">{{userInfo.dealRate}}</span>
+            交易频率:<span class="txt">{{userInfo.dealRate}}</span>
           </p>
         </div>
       </div>

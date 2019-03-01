@@ -3,7 +3,7 @@
     <div v-for="item in investRecord" :key="item">
       <div class="line">
         <div class="date">{{item.add_time}}</div>
-        <div class="value in"><span v-if="item.money >= 0">+</span><span v-else>-</span>{{item.money}}</div>
+        <div class="value in"><span v-if="item.money >= 0">+</span><span v-else></span>{{item.money}}</div>
       </div>
     </div>
   </div>

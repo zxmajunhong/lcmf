@@ -109,10 +109,8 @@
   </div>
 </template>
 <script>
-import Box from "@/components/box";
 
 export default {
-  components: { Box },
   data() {
     return {
       tabIndex: 0, // 第几个选项卡

@@ -46,17 +46,26 @@ export function getInvestRecord(page=1) {
     .then(res => res.data);
 }
 
+// 获取用户的投资数据
 export function getUserInvestMoney(){
   return http.post('/user/game/info')
-  .then(res.data);
+  .then(res => res.data);
 }
 
+// 检查组合是否能投资
 export function checkUserInvest(groupId){
   return http.post('/user/game/check', {groupId})
-  .then(res.data);
+  .then(res => res.data);
 }
 
-export function PostUserInvest(groupId, money){
-  return http.post('/user/game/do', {groupId, money})
+// 确认提交投资数据
+export function postUserInvest(groupId, money, type){
+  return http.post('/user/game/do', {groupId, money, type})
   .then(res => res.data);
+}
+
+// 获取用户资产明细数据
+export function getAssetsDetail() {
+  return http.get('/user/detail')
+    .then(res => res.data);
 }

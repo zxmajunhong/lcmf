@@ -10,31 +10,33 @@
       <div class="oper-line">
         <div class="mpvue-picker">
           <div class="value" @click="showPicker">{{pickerValue.label}}</div>
-          <mpvue-picker ref="mpvuePicker" mode="selector" :pickerValueDefault="pickerValue" @onConfirm="onConfirm" :pickerValueArray="pickerValueArray"></mpvue-picker>
+          <mpvue-picker ref="mpvuePicker" mode="selector"  @onConfirm="onConfirm" :pickerValueArray="pickerValueArray"></mpvue-picker>
         </div>
         <div class="input-area">
-          <input type="text" class="invest-value">
+          <input type="text" class="invest-value" v-model="changeMoney">
           <span class="unit">元</span>
         </div>
-        <div class="invest-submit">确定</div>
+        <div class="invest-submit" @click="checkInvest">确定</div>
       </div>
     </div>
-    <div class="record-redirect">
+    <navigator :url="'/pages/invest-record/main'" :hover-class="none" class="record-redirect">
       <span class="title">出入金记录</span>
       <span class="arrow">></span>
-    </div>
+    </navigator>
   </div>
 </template>
 <script>
 import mpvuePicker from 'mpvue-picker';
-import {getUserInvestMoney} from '@/utils/model';
+import {getUserInvestMoney, checkUserInvest, postUserInvest} from '@/utils/model';
 export default {
   components: {
     mpvuePicker,
   },
   data() {
     return {
+      initMoney: 0,
       money: 0,
+      changeMoney: '',
       pickerValue: {label: '入金', value: 1},
       pickerValueArray: [
         {label: '入金', value: 1},
@@ -43,20 +45,81 @@ export default {
     }
   },
   methods: {
+    // 选择出入金的确定
     onConfirm(e) {
+      console.log('confirm', e);
       this.pickerValue.label = e.label;
       this.pickerValue.value = e.value[0];
-      console.log(e);
+
     },
+    // 显示选择框
     showPicker() {
       this.$refs.mpvuePicker.show();
     },
+    checkInvest() {
+      checkUserInvest(this.$root.$mp.query.groupId)
+        .then((res) => {
+          if (res.code === 10001) {
+            this.showModal('您还未做风险测评，现在去做吗？', () => {
+              wx.reLaunch('/pages/risk-assessment/main');
+            });
+          } else {
+            this.showModal(res.msg, () => {
+              postUserInvest(this.$root.$mp.query.groupId, this.changeMoney, this.pickerValue.value)
+                .then((postRes) => {
+                  wx.showToast({
+                    title: postRes.msg,
+                    icon: 'none',
+                    mask: true,
+                  })
+                })
+            })
+          }
+        })
+    },
+    // 显示对话框
+    showModal(content, sFun) {
+      wx.showModal({
+        title: '提示',
+        content,
+        success(res) {
+          if (res.confirm) {
+            sFun();
+          }
+        }
+      })
+    }
   },
-  onLoad() {
-    // getFbRecord().then(res => {
-    //   //console.log(res);
-    //   this.money = res.money;
-    // })
+  watch: {
+    changeMoney(val) {
+      const changeMoney = Number(this.changeMoney);
+      if (!changeMoney) {
+        this.changeMoney = 0;
+      }
+      if (this.pickerValue.value == 1) {
+        this.money = Number(this.initMoney) + changeMoney;
+      } else {
+        this.money = Number(this.initMoney) - changeMoney;
+      }
+    },
+    pickerValue: {
+      deep: true,
+      handler(val) {
+        const changeMoney = Number(this.changeMoney) || 0;
+        if (val.value == 1) {
+          this.money = Number(this.initMoney) + changeMoney;
+        } else {
+          this.money = Number(this.initMoney) - changeMoney;
+        }
+      }
+    }
+  },
+  onShow() {
+    console.log('this.$root.$mp.query', this.$root.$mp.query);
+    getUserInvestMoney().then(res => {
+      this.money = res.money;
+      this.initMoney = res.money;
+    })
   }
 }
 </script>
@@ -123,7 +186,7 @@ export default {
           border-radius: 8rpx;
           text-align: right;
           font-size: 28rpx;
-          color: #999999;
+          color: #333;
           margin-right: 10rpx;
         }
 

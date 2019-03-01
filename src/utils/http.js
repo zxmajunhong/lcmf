@@ -7,7 +7,7 @@ const fly = new Fly();
 
 const loginFly = new Fly(); // 登录使用的请求实例
 
-const ajaxServer = 'http://flzt.czstep.com';
+const ajaxServer = 'https://flzt.czstep.com';
 // const ajaxServer = 'http://192.168.11.155:92/index.php';
 
 
@@ -22,20 +22,25 @@ fly.config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
 // 请求拦截器
 fly.interceptors.request.use(request => {
   // 请求加上登录token
-  // let x_token = wx.getStorageSync('x_token');
-  // if (!x_token) {
-  //   // 没有拿到token，请求后台重新获取
-  //   // 锁定当天实例，后续请求会在拦截器外排队
-  //   fly.lock();
-  //   return login().then(t => {
-  //     request.headers.token = t;
-  //     return request;
-  //   }).finally(() => {
-  //     fly.unlock();
-  //   });
-  // } else {
-  //   request.headers.token = x_token;
-  // }
+  console.log('request', request);
+  if (request.url === '/index/game' || request.url === '/wechat/login') {
+    // 请求首页数据的时候直接放行 和登录接口的时候直接放行
+    return request;
+  }
+  let x_token = wx.getStorageSync('x_token');
+  if (!x_token) {
+    // 没有拿到token，请求后台重新获取
+    // 锁定当天实例，后续请求会在拦截器外排队
+    fly.lock();
+    return login().then(t => {
+      request.headers.token = t;
+      return request;
+    }).finally(() => {
+      fly.unlock();
+    });
+  } else {
+    request.headers.token = x_token;
+  }
 
 });
 
@@ -72,42 +77,52 @@ fly.interceptors.request.use(request => {
 // 定义登录方法
 const login = () => {
   return new Promise((resolve, reject) => {
-    wx.login({
-      success: res => {
-        console.log('wxlogin', res);
-        // 获取用户信息(已经授权的前提)
-        // wx.getUserInfo({
-        //   withCredentials: true,
-        //   success: userData => {
-        //     // 调用登录方法
-        //     userData.bid = bid;
-        //     userData.code = res.code;
-        //     loginFly.post('/wechat/min/login', userData, {headers: {'content-type': 'application/x-www-form-urlencoded'}})
-        //     .then(r => {
-        //       console.log('请求登录', r);
-        //       wx.setStorageSync('x_token', r.data.token);
-        //       wx.setStorageSync('uid', r.data.uid);
-        //       resolve(r.data.token);
-        //     })
-        //     .catch(e => {
-        //       console.error('请求登录失败', e);
-        //       reject(e.data);
-        //     })
-        //   },
-        //   fail: () => {
-        //     console.error('获取用户信息失败');
-        //     // 跳转到登录授权页面
-        //     wx.reLaunch({
-        //       url: '/pages/login/main',
-        //     });
-        //   }
-        // });
-      },
-      fail: res => {
-        // 微信的登录失败提示
-        console.error(res.errMsg);
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting['scope.userInfo']) {
+          wx.getUserInfo({
+            withCredentials: true,
+            success: (userData) => {
+              wx.login({
+                success: (wxlogin) => {
+                  loginFly.post('/wechat/login', {
+                    code: wxlogin.code,
+                    userInfo: userData.userInfo,
+                    signature: userData.signature,
+                    rawData: userData.rawData,
+                    iv: userData.iv,
+                    encryptedData: userData.encryptedData,
+                  }).then((r) => {
+                    if (r.code === 10000) {
+                      wx.setStorageSync('x_token', r.data.token);
+                      wx.setStorageSync('uid', r.data.uid);
+                      resolve(r.data.token);
+                    } else {
+                      console.log('获取token失败', r);
+                    }
+                  })
+                },
+                fail: (loginErr) => {
+                  console.log('微信登录失败', loginErr);
+                }
+              })
+            },
+            fail: (err) => {
+              console.log('获取用户信息失败', err);
+              // 跳转到首页
+              wx.switchTab({
+                url: '/pages/index/main'
+              });
+            }
+          })
+        } else {
+          // 没有授权跳转到首页
+          wx.switchTab({
+            url: '/pages/index/main'
+          });
+        }
       }
-    })
+    });
   })
 }
 

@@ -10,7 +10,8 @@
     "pages/feature/main",
     "pages/find/main",
     "pages/compose-list/main",
-    "pages/invest-add/main"
+    "pages/invest-add/main",
+    "pages/assets-detail/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

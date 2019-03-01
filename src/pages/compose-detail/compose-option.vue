@@ -99,7 +99,6 @@ export default {
   onLoad() {
     // 组织图表所需要的数据
     const srcData = this.data;
-    console.log('srcData', srcData);
     const keys = Object.keys(srcData);
     const legendData = [];
     const seriesData = [];
@@ -121,7 +120,6 @@ export default {
     this.legendData = legendData;
     this.seriesData = seriesData;
     this.tblData = tblData;
-    console.log('配置数据', this.data);
   }
 }
 </script>

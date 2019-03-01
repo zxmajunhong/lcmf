@@ -6,7 +6,7 @@
         <span class="money">{{userInfo.totalMoney}}</span>
         <span class="txt">投资金额 (￥)</span>
       </navigator>
-      <div class="my-earnigns">
+      <navigator class="my-earnigns" :url="'/pages/assets-detail/main'" :hover-class="none">
         <div class="each">
           <span class="key">累计收益(￥)</span>
           <span class="value">{{userInfo.addUpIncome}}</span>
@@ -23,7 +23,7 @@
           <span class="key">最新回撤(￥)</span>
           <span class="value blue">{{userInfo.newBack}}</span>
         </div>
-      </div>
+      </navigator>
     </div>
     <div class="my-compose product box" >
       <div class="box-title">

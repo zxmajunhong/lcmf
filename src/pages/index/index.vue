@@ -123,6 +123,8 @@ export default {
             .then((res) => {
               console.log('登陆成功', res);
               vthis.login = false;
+              wx.setStorageSync('x_token', res.token);
+              wx.setStorageSync('uid', res.uid);
             })
             .catch(err => {
               vthis.login = false;
@@ -181,16 +183,21 @@ export default {
         if (res.authSetting['scope.userInfo']) {
           // 调用登陆方法
           console.log('已经授权');
-          wx.getUserInfo({
-            withCredentials: true,
-            success: function (res) {
-              console.log('获取用户信息', res);
-              vthis.loginPost(res.userInfo, res.signature, res.rawData, res.iv, res.encryptedData);
-            },
-            fail: function (err) {
-              console.log('获取用户信息失败', err);
-            }
-          })
+          // 判断token是否存在
+          const x_token = wx.getStorageSync('x_token');
+          if (!x_token) {
+            // 如果token不存在重新请求登录方法
+            wx.getUserInfo({
+              withCredentials: true,
+              success: function (res) {
+                console.log('获取用户信息', res);
+                vthis.loginPost(res.userInfo, res.signature, res.rawData, res.iv, res.encryptedData);
+              },
+              fail: function (err) {
+                console.log('获取用户信息失败', err);
+              }
+            });
+          }
         } else {
           vthis.login = true;
         }

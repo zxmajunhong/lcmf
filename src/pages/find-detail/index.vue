@@ -23,7 +23,7 @@ import { setTimeout } from 'timers';
 export default {
   data() {
     return {
-      notice: {}
+      notice: {},
     }
   },
   methods: {
@@ -88,6 +88,38 @@ export default {
   font-size: 28rpx;
   color: #333333;
   padding: 20rpx 22rpx;
+}
+.tab-area {
+  width: 100%;
+  height: 90rpx;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .tab {
+    font-size: 28rpx;
+    color: #999999;
+    padding: 0 30rpx;
+    position: relative;
+    &.cur {
+      color: #4768f3;
+    }
+    &.cur:after {
+      content: '';
+      display: block;
+      width: 50rpx;
+      height: 4rpx;
+      border-radius: 2rpx;
+      background-color: #95a7f2;
+      position: absolute;
+      top: 48rpx;
+      left: 50%;
+      margin-left: -25rpx;
+    }
+  }
+  .tab + .tab {
+    border-left: 1rpx solid #999;
+  }
 }
 </style>
 

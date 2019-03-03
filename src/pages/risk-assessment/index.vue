@@ -16,7 +16,7 @@
         </div>
         <div class="content">
           <div class="slider-area">
-            <slider min="1" max="7" step="1" activeColor="#4768f3" block-color="#ff6a59" :value="q1_value" @change="q1Change"/>
+            <slider min="4" max="10" step="1" activeColor="#4768f3" block-color="#ff6a59" :value="q1_value" @change="q1Change"/>
             <div class="value-line">
               <span class="v">4%</span>
               <span class="v">5%</span>
@@ -95,7 +95,7 @@ export default {
   components: { Box },
   data() {
     return {
-      q1_value: 1,
+      q1_value: 4,
       q2_value: 2,
       q3_value: 1,
       showFc: false,
@@ -104,6 +104,7 @@ export default {
   methods: {
     // 问题一的答案选择
     q1Change(e) {
+      console.log(e);
       this.q1_value = e.mp.detail.value;
     },
     // 问题二的答案选择

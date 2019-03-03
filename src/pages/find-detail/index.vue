@@ -1,5 +1,11 @@
 <template>
   <div class="container">
+     <div class="tab-area">
+      <div class="tab"  @click="redirectFind(1)">组合配置</div>
+      <div class="tab"  @click="redirectFind(2)">理财报告</div>
+      <div class="tab"  @click="redirectFind(3)">新手指引</div>
+      <div class="tab"  @click="redirectFind(4)">常见问题</div>
+    </div>
     <div class="common-box product">
       <div class="box-title">
         <span class="title">{{notice.title}}</span>
@@ -17,8 +23,17 @@ import { setTimeout } from 'timers';
 export default {
   data() {
     return {
-      notice: {}
+      notice: {},
     }
+  },
+  methods: {
+      // 跳转到发现中
+    redirectFind(i) {
+      this.globalData.findTabIndex = i;
+      wx.switchTab({
+        url: '/pages/find/main'
+      });
+    },
   },
   onShow() {
     console.log('this.$root.$mp.query', this.$root.$mp.query);
@@ -58,6 +73,38 @@ export default {
   font-size: 28rpx;
   color: #333333;
   padding: 20rpx 22rpx;
+}
+.tab-area {
+  width: 100%;
+  height: 90rpx;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .tab {
+    font-size: 28rpx;
+    color: #999999;
+    padding: 0 30rpx;
+    position: relative;
+    &.cur {
+      color: #4768f3;
+    }
+    &.cur:after {
+      content: '';
+      display: block;
+      width: 50rpx;
+      height: 4rpx;
+      border-radius: 2rpx;
+      background-color: #95a7f2;
+      position: absolute;
+      top: 48rpx;
+      left: 50%;
+      margin-left: -25rpx;
+    }
+  }
+  .tab + .tab {
+    border-left: 1rpx solid #999;
+  }
 }
 </style>
 

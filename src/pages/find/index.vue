@@ -8,123 +8,108 @@
       <a href="" class="cancel"></a>
     </div> -->
     <div class="tab-area">
-      <div class="tab" :class="{'cur': tabIndex == 0}" @click="tabIndex = 0">组合配置</div>
-      <div class="tab" :class="{'cur': tabIndex == 1}" @click="tabIndex = 1">理财报告</div>
-      <div class="tab" :class="{'cur': tabIndex == 2}" @click="tabIndex = 2">新手指引</div>
-      <div class="tab" :class="{'cur': tabIndex == 3}" @click="tabIndex = 3">常见问题</div>
+      <div class="tab" :class="{'cur': tabIndex == 1}" @click="tabSelect(1)">组合配置</div>
+      <div class="tab" :class="{'cur': tabIndex == 2}" @click="tabSelect(2)">理财报告</div>
+      <div class="tab" :class="{'cur': tabIndex == 3}" @click="tabSelect(3)">新手指引</div>
+      <div class="tab" :class="{'cur': tabIndex == 4}" @click="tabSelect(4)">常见问题</div>
     </div>
     <div class="tab-content">
       <!-- 组合配置 -->
-      <div class="info-list" v-show="tabIndex == 0">
-        <div class="item">
+      <div class="info-list" v-show="tabIndex == 1">
+        <navigator :url="'/pages/find-detail/main?id=' + item.id" class="item" v-for="item in data1" :key="item">
           <div class="left">
             <div class="title">
-              如何用积木智能轻松实现财富稳健增长<span class="tag">推荐</span>
+              {{item.title}}
             </div>
             <div class="date">
-              2018-10-28
+              {{item.add_time}}
             </div>
           </div>
           <div class="icon"></div>
-        </div>
-        <div class="item">
-          <div class="left">
-            <div class="title">
-              有积木智投，轻松跨越股市牛熊
-            </div>
-            <div class="date">
-              2018-10-28
-            </div>
-          </div>
-          <div class="icon"></div>
-        </div>
+        </navigator>
       </div>
       <!-- 理财报告 -->
-      <div class="info-list" v-show="tabIndex == 1">
-        <div class="item">
+      <div class="info-list" v-show="tabIndex == 2">
+        <navigator :url="'/pages/find-detail/main?id=' + item.id" class="item" v-for="item in data2" :key="item">
           <div class="left">
             <div class="title">
-              本周市场观点(20181028)
+              {{item.title}}
             </div>
             <div class="date">
-              2018-10-28
+              {{item.add_time}}
             </div>
           </div>
           <div class="icon"></div>
-        </div>
-        <div class="item">
-          <div class="left">
-            <div class="title">
-              本周市场观点(20181021)
-            </div>
-            <div class="date">
-              2018-10-28
-            </div>
-          </div>
-          <div class="icon"></div>
-        </div>
-        <div class="item">
-          <div class="left">
-            <div class="title">
-              积木智投9月投资报告
-            </div>
-            <div class="date">
-              2018-10-28
-            </div>
-          </div>
-          <div class="icon"></div>
-        </div>
-        <div class="item">
-          <div class="left">
-            <div class="title">
-              积木智投8月投资报告
-            </div>
-            <div class="date">
-              2018-10-28
-            </div>
-          </div>
-          <div class="icon"></div>
-        </div>
-
+        </navigator>
       </div>
       <!-- 新手引导 -->
-      <div class="new-guide" v-show="tabIndex == 2">
-        <div class="common-box product">
-          <div class="box-title"><span class="title">新手指引</span></div>
-          <div class="new-guide-txt">新手指引内容</div>
-        </div>
+      <div class="info-list" v-show="tabIndex == 3">
+        <navigator :url="'/pages/find-detail/main?id=' + item.id" class="item" v-for="item in data3" :key="item">
+          <div class="left">
+            <div class="title">
+              {{item.title}}
+            </div>
+            <div class="date">
+              {{item.add_time}}
+            </div>
+          </div>
+          <div class="icon"></div>
+        </navigator>
       </div>
       <!-- 常见问题 -->
-      <div class="question-list" v-show="tabIndex == 3">
-        <div class="item">
-          <span class="title">常见问题1</span>
+      <div class="info-list" v-show="tabIndex == 4">
+        <navigator :url="'/pages/find-detail/main?id=' + item.id" class="item" v-for="item in data4" :key="item">
+          <div class="left">
+            <div class="title">
+              {{item.title}}
+            </div>
+            <div class="date">
+              {{item.add_time}}
+            </div>
+          </div>
           <div class="icon"></div>
-        </div>
-        <div class="item">
-          <span class="title">常见问题2</span>
-          <div class="icon"></div>
-        </div>
+        </navigator>
       </div>
     </div>
   </div>
 </template>
 <script>
-
+import {getNotice} from '@/utils/model.js';
 export default {
   data() {
     return {
-      tabIndex: 0, // 第几个选项卡
+      tabIndex: 1, // 第几个选项卡
+      data1: [], // 组合配置的列表数据
+      data2: [], // 理财报告的列表数据
+      data3: [], // 新手指引的列表数据
+      data4: [], // 常见问题的列表数据
     }
   },
   methods: {
+    getList(p) {
+      p = p || 1; // 默认第一页数据
+      getNotice(this.tabIndex, p)
+       .then((res) => {
+         if (res.code == 10000) {
+           this[`data${this.tabIndex}`] = res.list;
+         }
+       });
+    },
+    tabSelect(i) {
+      this.tabIndex = i;
+      if (this[`data${this.tabIndex}`].length == 0) {
+        this.getList(1);
+      }
+    }
   },
   onShow() {
-    const tabIndex = this.globalData.findTabIndex || 0;
+    const tabIndex = this.globalData.findTabIndex || 1;
     this.tabIndex = tabIndex;
     // 请求咨询数据
+  this.getList(1);
   },
   onHide() {
-    this.globalData.findTabIndex = 0;
+    this.globalData.findTabIndex = this.tabIndex;
   }
 }
 </script>

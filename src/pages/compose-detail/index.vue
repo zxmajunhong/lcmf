@@ -5,17 +5,26 @@
         <div class="item">
           <p class="value">{{composeInfo.annual_income}}</p>
           <p class="key">预期年化收益</p>
+          <p class="other">
+            亏损厌恶度:<span class="v">{{composeInfo.detest}}</span>
+          </p>
         </div>
         <div class="item">
           <p class="value">{{composeInfo.max_lost}}</p>
           <p class="key">最大可能亏损</p>
+          <p class="other">
+            最大亏损:<span class="v">{{composeInfo.max_lose}}</span>
+          </p>
         </div>
         <div class="item">
           <p class="value">{{composeInfo.risk_return_ratio}}</p>
           <p class="key">收益风险比</p>
+          <p class="other">
+            交易频率:<span class="v">{{composeInfo.deal_rate}}</span>
+          </p>
         </div>
       </div>
-      <div class="review-result">
+      <!-- <div class="review-result">
         <div class="title">
           <span class="txt">用户测评结果</span>
           <div class="review-again">重新测评</div>
@@ -38,7 +47,7 @@
             <span class="value">高</span>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="main">
       <div class="tab-area">
@@ -109,6 +118,7 @@ export default {
 .top-area {
   width: 100%;
   padding-top: 20rpx;
+  padding-bottom: 20rpx;
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -117,7 +127,7 @@ export default {
   margin-bottom: 20rpx;
   .attr-box {
     width: 690rpx;
-    height: 144rpx;
+    height: 188rpx;
     box-shadow: 0 0 40rpx #ebebeb;
     display: flex;
     align-items: center;
@@ -135,6 +145,14 @@ export default {
       .key {
         font-size: 26rpx;
         color: #333333;
+        margin-bottom: 10rpx;
+      }
+      .other {
+        font-size: 26rpx;
+        color: #333;
+        .v {
+          color: #e74612;
+        }
       }
     }
   }

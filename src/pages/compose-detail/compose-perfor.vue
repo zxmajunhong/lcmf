@@ -4,7 +4,7 @@
     <div class="year-select">
       <!-- <div class="item" @click="change(0)" :class="{'cur': sTab == 0}">过去1年</div>
       <div class="item" @click="change(1)" :class="{'cur': sTab == 1}">过去3年</div> -->
-      <div class="item" @click="change(2)" :class="{'cur': sTab == 2}">过去5年</div>
+      <div class="item" :class="{'cur': sTab == 2}">过去5年</div>
     </div>
     <div class="tab-content">
       <div class="chart-area">
@@ -90,7 +90,7 @@ export default {
           type: 'value',
           axisLabel: {
             show: true,
-            formatter: '{value}%'
+            formatter: '{value}'
           }
         },
         series: [
@@ -107,7 +107,7 @@ export default {
         ]
       },
       chartData: [],
-      sTab: 0, // 子选项卡的选择 过去一年、过去三年、过去五年
+      sTab: 2, // 子选项卡的选择 过去一年、过去三年、过去五年
     }
   },
   mounted() {
@@ -174,9 +174,9 @@ export default {
     });
     console.log('chartData', chartData);
     this.chartData = chartData;
-    const nowData = this.chartData[0];
+    const nowData = this.chartData[2];
     console.log('init', nowData);
-    this.option.xAxis.data = ['1月', '2月', '3月', '4月', '5月', '6月','7月', '8月', '9月','10月', '11月', '12月'];
+    this.option.xAxis.data = nowData.timeArr;
     this.option.series[0].data = nowData.data;
     this.option.series[1].data = nowData.compareData;
     console.log('options', this.option);

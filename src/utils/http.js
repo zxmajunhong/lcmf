@@ -93,13 +93,9 @@ const login = () => {
                     iv: userData.iv,
                     encryptedData: userData.encryptedData,
                   }).then((r) => {
-                    if (r.code === 10000) {
-                      wx.setStorageSync('x_token', r.data.token);
-                      wx.setStorageSync('uid', r.data.uid);
-                      resolve(r.data.token);
-                    } else {
-                      console.log('获取token失败', r);
-                    }
+                    wx.setStorageSync('x_token', r.data.token);
+                    wx.setStorageSync('uid', r.data.uid);
+                    resolve(r.data.token);
                   })
                 },
                 fail: (loginErr) => {

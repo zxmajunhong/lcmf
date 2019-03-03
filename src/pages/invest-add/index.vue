@@ -115,7 +115,6 @@ export default {
     }
   },
   onShow() {
-    console.log('this.$root.$mp.query', this.$root.$mp.query);
     getUserInvestMoney().then(res => {
       this.money = res.money;
       this.initMoney = res.money;

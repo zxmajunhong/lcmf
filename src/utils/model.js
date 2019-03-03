@@ -24,8 +24,14 @@ export function postLogin(code, userInfo, signature, rawData, iv, encryptedData)
   return http.post('/wechat/login', {code, userInfo, signature, rawData, iv, encryptedData}).then(res => res.data);
 }
 
+// 获取咨询列表数据
 export function getNotice(type, page=1) {
   return http.get(`/notice/info/${type}/${page}`).then(res => res.data);
+}
+
+// 获取咨询详情数据
+export function getNoticeDetail(id) {
+  return http.get(`/notice/info/${id}`).then(res => res.data);
 }
 
 export function postRisk(maxLost, detest, dealRate) {

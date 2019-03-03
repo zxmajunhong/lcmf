@@ -202,8 +202,8 @@ export default {
             center: ['50%', '60%'],
             indicator : [
               { text: `股票(${stock})`, max: assetsMax},
-              { text: `货币(${bond})`, max: assetsMax},
-              { text: `债券(${cash})`, max: assetsMax}
+              { text: `货币(${cash})`, max: assetsMax},
+              { text: `债券(${bond})`, max: assetsMax}
             ]
           }
         ],
@@ -212,7 +212,7 @@ export default {
             type: 'radar',
             data : [
               {
-                value : [stock, bond, cash],
+                value : [stock, cash, bond],
                 name : '资产结构'
               }
             ]

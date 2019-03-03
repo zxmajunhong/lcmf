@@ -17,11 +17,11 @@
           <i class="icon icon2"></i>
           <span class="txt">产品特点</span>
         </navigator>
-        <div class="item" @click="redirectFind(2)">
+        <div class="item" @click="redirectFind(3)">
           <i class="icon icon3"></i>
           <span class="txt">新手指引</span>
         </div>
-        <div class="item"  @click="redirectFind(3)">
+        <div class="item"  @click="redirectFind(4)">
           <i class="icon icon4"></i>
           <span class="txt">常见问题</span>
         </div>

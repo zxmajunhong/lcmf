@@ -2,6 +2,7 @@
   <div class="container">
     <div class="my-money-box">
       <div class="bottom-bg"></div>
+      <navigator class="invest-add" :url="'/pages/invest-add/main'">追加投资</navigator>
       <navigator :url="'/pages/invest-record/main'" :hover-class="none" class="my-money">
         <span class="money">{{userInfo.totalMoney}}</span>
         <span class="txt">投资金额 (￥)</span>
@@ -95,7 +96,7 @@ export default {
       userInfo: {},
     }
   },
-  onLoad() {
+  onShow() {
     getUserInfo().then(res => {
       this.userInfo = res;
     })
@@ -113,6 +114,19 @@ export default {
   margin-top: 40rpx;
   position: relative;
   margin-bottom: 20rpx;
+  .invest-add {
+    height: 50rpx;
+    width: 150rpx;
+    line-height: 50rpx;
+    text-align: center;
+    font-size: 26rpx;
+    color: #fff;
+    background-color:#4768f3;
+    border-radius:25rpx;
+    position: absolute;
+    top: 10rpx;
+    right: 30rpx;
+  }
   .bottom-bg {
     width: 690rpx;
     height: 51rpx;

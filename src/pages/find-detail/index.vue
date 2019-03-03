@@ -1,5 +1,11 @@
 <template>
   <div class="container">
+    <div class="tab-area">
+      <div class="tab" @click="tabSelect(1)">组合配置</div>
+      <div class="tab" @click="tabSelect(2)">理财报告</div>
+      <div class="tab" @click="tabSelect(3)">新手指引</div>
+      <div class="tab" @click="tabSelect(4)">常见问题</div>
+    </div>
     <div class="common-box product">
       <div class="box-title">
         <span class="title">{{notice.title}}</span>
@@ -18,6 +24,14 @@ export default {
   data() {
     return {
       notice: {}
+    }
+  },
+  methods: {
+    tabSelect(i) {
+      this.globalData.findTabIndex = i;
+      wx.switchTab({
+        url: '/pages/find/main',
+      });
     }
   },
   onShow() {
@@ -51,7 +65,23 @@ export default {
 <style lang="less" scoped>
 .container {
   background-color: #fff;
-  padding-top: 20rpx;
+}
+.tab-area {
+  width: 100%;
+  height: 90rpx;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .tab {
+    font-size: 28rpx;
+    color: #999;
+    padding: 0 30rpx;
+    position: relative;
+  }
+  .tab + .tab {
+    border-left: 1rpx solid #999;
+  }
 }
 .box-content {
   min-height: 550rpx;

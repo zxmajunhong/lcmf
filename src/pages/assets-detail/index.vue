@@ -287,7 +287,6 @@ export default {
         data: seriesData,
       }];
       this.opt.opt4 = opt;
-      console.log('opt4', opt);
       this.$refs.c4.init();
     },
     // 第五个图表的配置设置
@@ -314,7 +313,6 @@ export default {
         }
       }];
       this.opt.opt5 = opt;
-      console.log('opt5', opt);
       this.$refs.c5.init();
     },
   },

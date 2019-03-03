@@ -38,7 +38,7 @@
     </div>
     <div class="each-area">
       <span class="sub-title">
-        最新回测率：<span class="value">{{assetsData.newBack}}</span>
+        最新回撤率：<span class="value">{{assetsData.newBack}}</span>
       </span>
       <div class="content chart-wrap">
         <mpvue-echarts :echarts="echarts" :onInit="initChart5" :lazyLoad="true" :canvasId="'c5'" ref="c5" />
@@ -202,8 +202,8 @@ export default {
             center: ['50%', '60%'],
             indicator : [
               { text: `股票(${stock})`, max: assetsMax},
-              { text: `货币(${bond})`, max: assetsMax},
-              { text: `债券(${cash})`, max: assetsMax}
+              { text: `货币(${cash})`, max: assetsMax},
+              { text: `债券(${bond})`, max: assetsMax}
             ]
           }
         ],

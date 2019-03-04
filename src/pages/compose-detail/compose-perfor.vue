@@ -17,7 +17,7 @@
             <div class="td">VS</div>
             <div class="td">比较基准</div>
           </div>
-          <div class="tr">
+          <!-- <div class="tr">
             <div class="td">{{composeInfo.total_income}}</div>
             <div class="td">总收益</div>
             <div class="td">{{composeInfo.compare_total_income}}</div>
@@ -41,7 +41,7 @@
             <div class="td">{{composeInfo.max_lost}}</div>
             <div class="td">最大撤回</div>
             <div class="td">{{composeInfo.compare_max_lost}}</div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

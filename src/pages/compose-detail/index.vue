@@ -11,7 +11,7 @@
         </div>
         <div class="item">
           <p class="value">{{composeInfo.max_lost}}</p>
-          <p class="key">最大可能亏损</p>
+          <p class="key">最大回撤</p>
           <p class="other">
             最大亏损:<span class="v">{{composeInfo.max_lose}}</span>
           </p>

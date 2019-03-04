@@ -2,8 +2,8 @@
   <div class="container">
     <div class="my-money-box">
       <div class="bottom-bg"></div>
-      <navigator class="invest-add" :url="'/pages/invest-add/main'">追加投资</navigator>
-      <navigator :url="'/pages/invest-record/main'" :hover-class="none" class="my-money">
+      <!-- <navigator class="invest-add" :url="'/pages/invest-add/main'">追加投资</navigator> -->
+      <navigator :url="'/pages/assets-detail/main'" :hover-class="none" class="my-money">
         <span class="money">{{userInfo.totalMoney}}</span>
         <span class="txt">投资金额 (￥)</span>
       </navigator>

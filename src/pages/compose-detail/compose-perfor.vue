@@ -4,13 +4,13 @@
     <div class="year-select">
       <!-- <div class="item" @click="change(0)" :class="{'cur': sTab == 0}">过去1年</div>
       <div class="item" @click="change(1)" :class="{'cur': sTab == 1}">过去3年</div> -->
-      <div class="item" :class="{'cur': sTab == 2}">过去5年</div>
+      <div class="item" :class="{'cur': sTab == 0}" style="display:none;">过去5年</div>
     </div>
     <div class="tab-content">
       <div class="chart-area">
         <mpvue-echarts :echarts="echarts" :onInit="initChart" :canvasId="'secondCanvas'" />
       </div>
-      <div class="table-area" style="display: none">
+      <div class="table-area">
         <div class="table">
           <div class="tr title">
             <div class="td">组合</div>
@@ -18,29 +18,29 @@
             <div class="td">比较基准</div>
           </div>
           <div class="tr">
-            <div class="td">55.0%</div>
+            <div class="td">{{composeInfo.total_income}}</div>
             <div class="td">总收益</div>
-            <div class="td">35.0%</div>
+            <div class="td">{{composeInfo.compare_total_income}}</div>
           </div>
           <div class="tr">
-            <div class="td">18.3%</div>
+            <div class="td">{{composeInfo.annual_income}}</div>
             <div class="td">年化收益</div>
-            <div class="td">11.7%</div>
+            <div class="td">{{composeInfo.compare_annual_income}}</div>
           </div>
           <div class="tr">
-            <div class="td">15%</div>
+            <div class="td">{{composeInfo.volatility_ratio}}</div>
             <div class="td">波动率</div>
-            <div class="td">20%</div>
+            <div class="td">{{composeInfo.compare_volatility_ratio}}</div>
           </div>
           <div class="tr">
-            <div class="td">1.2%</div>
+            <div class="td">{{composeInfo.sharpe_ratio}}</div>
             <div class="td">夏普比率</div>
-            <div class="td">0.59%</div>
+            <div class="td">{{composeInfo.compare_sharpe_ratio}}</div>
           </div>
           <div class="tr">
-            <div class="td">-1.3%</div>
+            <div class="td">{{composeInfo.max_lost}}</div>
             <div class="td">最大撤回</div>
-            <div class="td">-48%</div>
+            <div class="td">{{composeInfo.compare_max_lost}}</div>
           </div>
         </div>
       </div>
@@ -157,6 +157,7 @@ export default {
   onLoad() {
     // 获取到的数据
     const srcData = this.data;
+    // console.log('src', srcData);
     // 组织成表格所需要的数据
     const chartData = srcData.map(it => {
       const data = [];
@@ -172,14 +173,14 @@ export default {
       }
       return obj;
     });
-    console.log('chartData', chartData);
+    // console.log('chartData', chartData);
     this.chartData = chartData;
     const nowData = this.chartData[2];
-    console.log('init', nowData);
+    // console.log('init', nowData);
     this.option.xAxis.data = nowData.timeArr;
     this.option.series[0].data = nowData.data;
     this.option.series[1].data = nowData.compareData;
-    console.log('options', this.option);
+    // console.log('options', this.option);
   }
 }
 </script>

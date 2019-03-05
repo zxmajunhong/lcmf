@@ -67,6 +67,9 @@ export default {
             this.showModal(res.msg, () => {
               postUserInvest(this.$root.$mp.query.groupId, this.changeMoney, this.pickerValue.value)
                 .then((postRes) => {
+                  if (postRes.code == 10000) {
+                    this.changeMoney = '';
+                  }
                   wx.showToast({
                     title: postRes.msg,
                     icon: 'none',
@@ -92,6 +95,9 @@ export default {
   },
   watch: {
     changeMoney(val) {
+      if (val == '') {
+        return;
+      }
       const changeMoney = Number(this.changeMoney);
       if (!changeMoney) {
         this.changeMoney = 0;
@@ -115,7 +121,6 @@ export default {
     }
   },
   onShow() {
-    console.log('this.$root.$mp.query', this.$root.$mp.query);
     getUserInvestMoney().then(res => {
       this.money = res.money;
       this.initMoney = res.money;

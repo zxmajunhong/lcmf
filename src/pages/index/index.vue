@@ -17,11 +17,11 @@
           <i class="icon icon2"></i>
           <span class="txt">产品特点</span>
         </navigator>
-        <div class="item" @click="redirectFind(2)">
+        <div class="item" @click="redirectFind(3)">
           <i class="icon icon3"></i>
           <span class="txt">新手指引</span>
         </div>
-        <div class="item"  @click="redirectFind(3)">
+        <div class="item"  @click="redirectFind(4)">
           <i class="icon icon4"></i>
           <span class="txt">常见问题</span>
         </div>
@@ -51,7 +51,7 @@
               <p class="value">{{item.max_lost}}</p>
               <p class="key">最大可能亏损</p>
               <p class="other">
-                最大亏损:<span class="icon middle">{{item.max_lose}}</span>
+                最大回撤:<span class="icon middle">{{item.max_lost}}</span>
               </p>
             </div>
             <div class="item">
@@ -65,7 +65,7 @@
         </div>
       </navigator>
     </div>
-    <div class="bottom-float">
+    <div class="bottom-float" style="display:none;">
       <div class="check" @click="redirectPersonal">查看我的投资</div>
     </div>
     <div class="bg-cover" v-if="login || review">

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <p class="tips">
-      注意：请您务必认真回答下列问题，我们将根据您的回答结果，为您量身定制最适合您，同时又高风险收益比的投资组合，并持续为您提供智能调仓建议。
+      注意：请您务必认真回答下列问题，我们将根据您的回答结果，为您量身定制最适合您，同时又高收益风险比的投资组合，并持续为您提供智能调仓建议。
     </p>
     <div class="question-list">
       <div class="item">
@@ -16,7 +16,7 @@
         </div>
         <div class="content">
           <div class="slider-area">
-            <slider min="1" max="7" step="1" activeColor="#4768f3" block-color="#ff6a59" :value="q1_value" @change="q1Change"/>
+            <slider min="4" max="10" step="1" activeColor="#4768f3" block-color="#ff6a59" :value="q1_value" @change="q1Change"/>
             <div class="value-line">
               <span class="v">4%</span>
               <span class="v">5%</span>
@@ -51,7 +51,7 @@
       <div class="item">
         <div class="title">
           <p class="title-txt">2.您认为平均每两个星期买卖一次的交易频率是否较高？</p>
-          <p class="title-tips">(注:亏损厌恶程度越高，我们对您本金亏损的控制越严格)</p>
+          <p class="title-tips">(注：交易频率越高，您的组合动态调仓效率越高)</p>
         </div>
         <div class="content">
           <radio-group class="radio-group" @change="q3Change">
@@ -80,7 +80,7 @@
             所谓回撤比率，是指您当前总资产从历史最高点开始回落的百分比例，而最大回撤比率是指您可能经历的最大回撤比率，用来描述您开始投资后可能面临的最糟糕的情况。
           </p>
           <p class="explain-txt">
-            我们的最大回撤控制技术的作用在于：在投资初期，确保您的本金亏损比例不会超过您设定的最大回撤比例；在投资后期，确定您的盈利回吐不会。
+            我们的最大回撤控制技术的作用在于：在投资初期，确保您的本金亏损比例不会超过您设定的最大回撤比例；在投资后期，确定您的盈利回吐不会太多。
           </p>
         </div>
       </box>
@@ -95,7 +95,7 @@ export default {
   components: { Box },
   data() {
     return {
-      q1_value: 1,
+      q1_value: 4,
       q2_value: 2,
       q3_value: 1,
       showFc: false,
@@ -104,6 +104,7 @@ export default {
   methods: {
     // 问题一的答案选择
     q1Change(e) {
+      console.log(e);
       this.q1_value = e.mp.detail.value;
     },
     // 问题二的答案选择
@@ -115,13 +116,17 @@ export default {
       this.q3_value = e.mp.detail.value;
     },
     submit() {
-      console.log(this.q1_value, this.q2_value, this.q3_value);
       postRisk(this.q1_value, this.q2_value, this.q3_value).then(res => {
-        if (res.code == 0) {
+        if (res.code == 10000) {
           wx.showToast({
             title: '提交成功',
             icon: 'success',
           });
+        } else {
+          wx.showToast({
+            title: res.msg,
+            icon: 'none',
+          })
         }
       })
     }

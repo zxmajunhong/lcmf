@@ -6,8 +6,8 @@
     </div>
     <div class="opts-detail">
       <div class="detail-title">
-        <span class="txt">假设投资金额为: <span class="money">100000</span>元,配置如下:</span>
-        <div class="modify-money">修改金额</div>
+        <span class="txt">按投资金额<span class="money">10万元</span>配置如下:(数据更新时间:2019-02-19 16:00:00):</span>
+        <div class="modify-money" style="display:none;">修改金额</div>
       </div>
       <div class="each-item" v-for="(item, i1) in tblData" :key="i1">
         <div class="line thead">

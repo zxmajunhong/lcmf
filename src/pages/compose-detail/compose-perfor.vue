@@ -4,13 +4,13 @@
     <div class="year-select">
       <!-- <div class="item" @click="change(0)" :class="{'cur': sTab == 0}">过去1年</div>
       <div class="item" @click="change(1)" :class="{'cur': sTab == 1}">过去3年</div> -->
-      <div class="item" @click="change(2)" :class="{'cur': sTab == 2}">过去5年</div>
+      <div class="item" :class="{'cur': sTab == 0}" style="display:none;">过去5年</div>
     </div>
     <div class="tab-content">
       <div class="chart-area">
         <mpvue-echarts :echarts="echarts" :onInit="initChart" :canvasId="'secondCanvas'" />
       </div>
-      <div class="table-area" style="display: none">
+      <div class="table-area">
         <div class="table">
           <div class="tr title">
             <div class="td">组合</div>
@@ -90,7 +90,7 @@ export default {
           type: 'value',
           axisLabel: {
             show: true,
-            formatter: '{value}%'
+            formatter: '{value}'
           }
         },
         series: [
@@ -137,6 +137,8 @@ export default {
     this.compareData = this.$parent.composeInfo;
     // 获取到的数据
     const srcData = this.data;
+
+    console.log('src', srcData);
     // 组织成表格所需要的数据
     const data = [];
     const compareData = [];

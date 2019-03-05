@@ -69,9 +69,9 @@
         <compose-adjust />
       </div>
     </div>
-    <div class="bottom-float">
-      <navigator :url="'/pages/invest-add/main?groupId='+ composeInfo.id" :hover-class="'none'" class="start">开始投资</navigator>
-    </div>
+    <navigator :url="'/pages/invest-add/main?groupId='+ composeInfo.id" :hover-class="'none'" class="bottom-float">
+      开始投资
+    </navigator>
   </div>
 </template>
 
@@ -266,21 +266,12 @@ export default {
 .bottom-float {
   width: 750rpx;
   height: 80rpx;
-  background-color: #383b4a;
+  background-color: #4768f3;
+  font-size: 30rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: #fff;
   position: fixed;
   bottom: 0;
-  .start {
-    width: 205rpx;
-    height: 46rpx;
-    line-height: 46rpx;
-    text-align: center;
-    font-size: 26rpx;
-    color: #ffffff;
-    background-color: #4768f3;
-    border-radius: 23rpx;
-    position: absolute;
-    top: 17rpx;
-    right: 30rpx;
-  }
 }
 </style>

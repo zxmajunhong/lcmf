@@ -5,7 +5,7 @@
       <p class="title">最大回撤走势图</p>
       <mpvue-echarts :echarts="echarts" :onInit="initChart" :canvasId="'thirdCanvas'" />
     </div>
-    <div class="control-method">
+    <div class="control-method" style="display: none">
       <div class="explain">
         风险控制方法：
       </div>

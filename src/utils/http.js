@@ -45,34 +45,34 @@ fly.interceptors.request.use(request => {
 });
 
 // 响应拦截器
-// fly.interceptors.response.use(
-//   (response) => {
-//     const data = response.data || {};
-//     if (data.code == 20000) {
-//       // 未登录
-//       console.warn('登录失效或未登录，重新获取登录token');
-//       // 不弹出登录失效对话框，直接获取登录状态
-//       // 清除本地缓存的用户信息相关数据
-//       wx.clearStorageSync();
-//       const currentPages = getCurrentPages(); /* eslint-disable-line */
-//       currentPages[currentPages.length - 1].onLoad();
-//       // wx.showModal({showCancel:false,title:'错误提示',content:'登录失效',success(){
-//       //   // 先清除本地存储的token值等
-//       //   wx.removeStorageSync('x_token');
-//       //   const currentPages = getCurrentPages(); /* eslint-disable-line */
-//       //   currentPages[currentPages.length - 1].onLoad();
-//       // }})
-//     } else {
-//       return response;
-//     }
-//   }
-//   ,
-//   (err) => {
-//     console.log(err);
-//     // 发生网络错误后会走到这里
-//     // return Promise.resolve("ssss")
-//   },
-// );
+fly.interceptors.response.use(
+  (response) => {
+    const data = response.data || {};
+    if (data.code == 20000) {
+      // 未登录
+      console.warn('登录失效或未登录，重新获取登录token');
+      // 不弹出登录失效对话框，直接获取登录状态
+      // 清除本地缓存的用户信息相关数据
+      wx.clearStorageSync();
+      const currentPages = getCurrentPages(); /* eslint-disable-line */
+      currentPages[currentPages.length - 1].onLoad();
+      // wx.showModal({showCancel:false,title:'错误提示',content:'登录失效',success(){
+      //   // 先清除本地存储的token值等
+      //   wx.removeStorageSync('x_token');
+      //   const currentPages = getCurrentPages(); /* eslint-disable-line */
+      //   currentPages[currentPages.length - 1].onLoad();
+      // }})
+    } else {
+      return response;
+    }
+  }
+  ,
+  (err) => {
+    console.log(err);
+    // 发生网络错误后会走到这里
+    // return Promise.resolve("ssss")
+  },
+);
 
 // 定义登录方法
 const login = () => {

@@ -103,11 +103,23 @@ export default {
     const id = o.id;
     // 获取详情页数据
     getComposeDetail(id).then(res => {
-      this.composeInfo = res.info;
-      this.composeOptions = res.list;
-      this.composePerfor= res.fiveYearData;
-      this.composeRisk = res.listData;
-      this.tabIndex = 0;
+
+      
+      if(res.code == 20001){
+
+        wx.showModal({showCancel:false, title:'还未评测，请先评测', content:res.msg, success(){
+          wx.redirectTo({
+               url: '../../pages/risk-assessment/main'
+          })
+        }})
+      }else{
+        this.composeInfo = res.info;
+        this.composeOptions = res.list;
+        this.composePerfor= res.fiveYearData;
+        this.composeRisk = res.listData;
+        this.tabIndex = 0;
+      }
+      
     });
   }
 }

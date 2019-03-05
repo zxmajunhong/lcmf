@@ -62,7 +62,7 @@ fly.interceptors.response.use(
       //   const currentPages = getCurrentPages(); /* eslint-disable-line */
       //   currentPages[currentPages.length - 1].onLoad();
       // }})
-    } else {
+    }else {
       return response;
     }
   }

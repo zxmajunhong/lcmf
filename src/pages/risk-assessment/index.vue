@@ -118,10 +118,15 @@ export default {
     submit() {
       postRisk(this.q1_value, this.q2_value, this.q3_value).then(res => {
         if (res.code == 10000) {
-          wx.showToast({
-            title: '提交成功',
-            icon: 'success',
-          });
+          // wx.showToast({
+          //   title: '提交成功',
+          //   icon: 'success',
+          // });
+          wx.showModal({showCancel:false,title:'评测结果',content:res.msg, success(){
+            wx.redirectTo({
+              url: '../../pages/compose-detail/main?id='+ res.investGroupID
+            })
+          }})
         } else {
           wx.showToast({
             title: res.msg,

@@ -18,29 +18,29 @@
             <div class="td">比较基准</div>
           </div>
           <div class="tr">
-            <div class="td">55.0%</div>
+            <div class="td">{{compareData.total_income}}</div>
             <div class="td">总收益</div>
-            <div class="td">35.0%</div>
+            <div class="td">{{compareData.compare_total_income}}</div>
           </div>
           <div class="tr">
-            <div class="td">18.3%</div>
+            <div class="td">{{compareData.annual_income}}</div>
             <div class="td">年化收益</div>
-            <div class="td">11.7%</div>
+            <div class="td">{{compareData.compare_annual_income}}</div>
           </div>
           <div class="tr">
-            <div class="td">15%</div>
+            <div class="td">{{compareData.volatility_ratio}}</div>
             <div class="td">波动率</div>
-            <div class="td">20%</div>
+            <div class="td">{{compareData.compare_volatility_ratio}}</div>
           </div>
           <div class="tr">
-            <div class="td">1.2%</div>
+            <div class="td">{{compareData.sharpe_ratio}}</div>
             <div class="td">夏普比率</div>
-            <div class="td">0.59%</div>
+            <div class="td">{{compareData.compare_sharpe_ratio}}</div>
           </div>
           <div class="tr">
-            <div class="td">-1.3%</div>
+            <div class="td">{{compareData.max_lost}}</div>
             <div class="td">最大撤回</div>
-            <div class="td">-48%</div>
+            <div class="td">{{compareData.compare_max_lost}}</div>
           </div>
         </div>
       </div>
@@ -106,31 +106,10 @@ export default {
           }
         ]
       },
-      chartData: [],
+      chartData: {},
       sTab: 0, // 子选项卡的选择 过去一年、过去三年、过去五年
+      compareData: {}, // 比较数据
     }
-  },
-  mounted() {
-    // TODO 通过接口获取方法
-    const data = [[
-      {name: '总收益', compose: 55.0, compare: 35},
-      {name: '年化收益', compose: 18.3, compare: 11.7},
-      {name: '波动率', compose: 15, compare: 20},
-      {name: '夏普比率', compose: 1.2, compare: 0.59},
-      {name: '最大撤回', compose: -1.3, compare: 48}
-    ],[
-      {name: '总收益', compose: 45.0, compare: 25},
-      {name: '年化收益', compose: 8.3, compare: 1.7},
-      {name: '波动率', compose: 5, compare: 10},
-      {name: '夏普比率', compose: -8.8, compare: -9.41},
-      {name: '最大撤回', compose: -11.3, compare: 38}
-    ],[
-      {name: '总收益', compose: 35.0, compare: 25},
-      {name: '年化收益', compose: 8.3, compare: 5.7},
-      {name: '波动率', compose: 5, compare: 30},
-      {name: '夏普比率', compose: -6.8, compare: -34.41},
-      {name: '最大撤回', compose: -17.3, compare: 38}
-    ]];
   },
   methods: {
     // 初始化表格
@@ -155,30 +134,19 @@ export default {
     }
   },
   onLoad() {
+    this.compareData = this.$parent.composeInfo;
     // 获取到的数据
     const srcData = this.data;
     // 组织成表格所需要的数据
-    const chartData = srcData.map(it => {
-      const data = [];
-      const compareData = [];
-      it.valueArr.forEach(v => {
-        data.push(v.data || 0);
-        compareData.push(v.compareData || 0);
-      })
-      const obj = {
-        timeArr: it.timeArr,
-        data,
-        compareData,
-      }
-      return obj;
+    const data = [];
+    const compareData = [];
+    srcData.valueArr.forEach(v => {
+      data.push(v.data || 0);
+      compareData.push(v.compareData || 0);
     });
-    console.log('chartData', chartData);
-    this.chartData = chartData;
-    const nowData = this.chartData[0];
-    console.log('init', nowData);
-    this.option.xAxis.data = ['1月', '2月', '3月', '4月', '5月', '6月','7月', '8月', '9月','10月', '11月', '12月'];
-    this.option.series[0].data = nowData.data;
-    this.option.series[1].data = nowData.compareData;
+    this.option.xAxis.data = srcData.timeArr;
+    this.option.series[0].data = data;
+    this.option.series[1].data = compareData;
     console.log('options', this.option);
   }
 }

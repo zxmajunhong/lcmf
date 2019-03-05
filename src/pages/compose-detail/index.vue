@@ -96,9 +96,8 @@ export default {
     getComposeDetail(id).then(res => {
       this.composeInfo = res.info;
       this.composeOptions = res.list;
-      this.composePerfor= [res.oneYearData,res.threeYearData,res.fiveYearData];
+      this.composePerfor= res.fiveYearData;
       this.composeRisk = res.listData;
-      console.log(res);
       this.tabIndex = 0;
     });
   }

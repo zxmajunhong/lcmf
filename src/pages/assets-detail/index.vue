@@ -287,7 +287,6 @@ export default {
         data: seriesData,
       }];
       this.opt.opt4 = opt;
-      console.log('opt4', opt);
       this.$refs.c4.init();
     },
     // 第五个图表的配置设置
@@ -314,17 +313,14 @@ export default {
         }
       }];
       this.opt.opt5 = opt;
-      console.log('opt5', opt);
       this.$refs.c5.init();
     },
   },
   onShow() {
-    console.log(1);
     // 获取资产明细数据
     getAssetsDetail()
       .then(assetsData => {
         this.assetsData = assetsData;
-        console.log(2);
         this.setOption1();
         this.setOption2();
         this.setOption3();

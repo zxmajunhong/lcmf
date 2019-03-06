@@ -31,6 +31,7 @@
         <span class="title">我的组合</span>
         <navigator :url="'/pages/risk-assessment/main'" :hover-class="none" class="button">用户测评</navigator>
       </div>
+      <navigator :url="'/pages/compose-detail/main?id='+ userInfo.investGroupID" :hover-class="none">
       <div class="box-body">
         <div class="item">
           <p class="value">{{userInfo.annualIncome}}</p>
@@ -54,6 +55,7 @@
           </p>
         </div>
       </div>
+      </navigator>
     </div>
     <div class="pod-box">
       <div class="pod-info">

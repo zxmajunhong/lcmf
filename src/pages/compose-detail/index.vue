@@ -99,12 +99,12 @@ export default {
       composeRisk: {}, // 风险控制数据
     }
   },
-  onLoad(o) {
+  onShow(o) {
     const id = o.id;
     // 获取详情页数据
     getComposeDetail(id).then(res => {
 
-      
+
       if(res.code == 20001){
 
         wx.showModal({showCancel:false, title:'还未评测，请先评测', content:res.msg, success(){
@@ -119,7 +119,7 @@ export default {
         this.composeRisk = res.listData;
         this.tabIndex = 0;
       }
-      
+
     });
   }
 }

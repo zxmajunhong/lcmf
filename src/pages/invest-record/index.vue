@@ -16,7 +16,7 @@ export default {
       investRecord: [],
     }
   },
-  onLoad() {
+  onShow() {
     getInvestRecord().then(res => {
       console.log('获取投资记录', res);
       this.investRecord = res.list;

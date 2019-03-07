@@ -55,7 +55,7 @@ fly.interceptors.response.use(
       // 清除本地缓存的用户信息相关数据
       wx.clearStorageSync();
       const currentPages = getCurrentPages(); /* eslint-disable-line */
-      currentPages[currentPages.length - 1].onLoad();
+      currentPages[currentPages.length - 1].onShow();
       // wx.showModal({showCancel:false,title:'错误提示',content:'登录失效',success(){
       //   // 先清除本地存储的token值等
       //   wx.removeStorageSync('x_token');

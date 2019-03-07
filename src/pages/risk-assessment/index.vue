@@ -104,7 +104,6 @@ export default {
   methods: {
     // 问题一的答案选择
     q1Change(e) {
-      console.log(e);
       this.q1_value = e.mp.detail.value;
     },
     // 问题二的答案选择

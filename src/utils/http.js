@@ -22,7 +22,6 @@ fly.config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
 // 请求拦截器
 fly.interceptors.request.use(request => {
   // 请求加上登录token
-  console.log('request', request);
   if (request.url === '/index/game' || request.url === '/wechat/login') {
     // 请求首页数据的时候直接放行 和登录接口的时候直接放行
     return request;

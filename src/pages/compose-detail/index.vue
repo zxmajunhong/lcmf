@@ -99,20 +99,18 @@ export default {
       composeRisk: {}, // 风险控制数据
     }
   },
-  onShow(o) {
-    const id = o.id;
+  onShow() {
+    const id = this.$root.$mp.query.id || 0;
     // 获取详情页数据
     getComposeDetail(id).then(res => {
-
-
       if(res.code == 20001){
-
         wx.showModal({showCancel:false, title:'还未评测，请先评测', content:res.msg, success(){
           wx.redirectTo({
                url: '../../pages/risk-assessment/main'
           })
         }})
-      }else{
+      }else if (res.code == 10000) {
+        console.log('res', res);
         this.composeInfo = res.info;
         this.composeOptions = res.list;
         this.composePerfor= res.fiveYearData;

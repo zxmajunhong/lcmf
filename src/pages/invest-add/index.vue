@@ -70,11 +70,16 @@ export default {
                   if (postRes.code == 10000) {
                     this.changeMoney = '';
                   }
-                  wx.showToast({
-                    title: postRes.msg,
-                    icon: 'none',
-                    mask: true,
-                  })
+                  // wx.showToast({
+                  //   title: postRes.msg,
+                  //   icon: 'none',
+                  //   mask: true,
+                  // })
+                  this.showModal(postRes.msg, () => {
+                    wx.switchTab({
+                      url: '/pages/my/main'
+                    });
+                  });
                 })
             })
           }

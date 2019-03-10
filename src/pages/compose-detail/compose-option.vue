@@ -6,7 +6,7 @@
     </div>
     <div class="opts-detail">
       <div class="detail-title">
-        <span class="txt">按投资金额<span class="money">10万元</span>配置如下:(数据更新时间:2019-02-19 16:00:00):</span>
+        <span class="txt">按投资金额<span class="money">{{money}}元</span>配置如下:(数据更新时间:{{updateTime}}):</span>
         <div class="modify-money" style="display:none;">修改金额</div>
       </div>
       <div class="each-item" v-for="(item, i1) in tblData" :key="i1">
@@ -43,6 +43,14 @@ export default {
   props: {
     data: {
       type: Object,
+    },
+    money: {
+      type: Number,
+      default: 0,
+    },
+    updateTime: {
+      type: Number,
+      default: 0,
     }
   },
   data() {

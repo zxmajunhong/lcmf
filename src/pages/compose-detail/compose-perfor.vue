@@ -66,7 +66,7 @@ export default {
     },
     data: {
       type: Object,
-    }
+    },
   },
   data() {
     return {

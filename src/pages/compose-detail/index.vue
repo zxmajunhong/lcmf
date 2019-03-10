@@ -57,10 +57,10 @@
         <div class="tab"  :class="{'cur': tabIndex == 3}" @click="tabIndex = 3">资产配置</div>
       </div>
       <div class="each-content" v-if="tabIndex == 0">
-        <compose-option :data="composeOptions" />
+        <compose-option :data="composeOptions" :money="perforExtendsData.userMoney" :updateTime="perforExtendsData.lastUpdateTime"/>
       </div>
       <div class="each-content" v-if="tabIndex == 1">
-        <compose-perfor :data="composePerfor" />
+        <compose-perfor :data="composePerfor"/>
       </div>
       <div class="each-content" v-if="tabIndex == 2">
         <compose-risk :data="composeRisk" />
@@ -96,6 +96,7 @@ export default {
       composeInfo: {}, // 组合信息
       composeOptions: {}, // 组合配置信息
       composePerfor: {}, // 业绩表现数据
+      perforExtendsData: {}, // 业绩表现数据额外传一些数据
       composeRisk: {}, // 风险控制数据
     }
   },
@@ -116,6 +117,10 @@ export default {
         this.composePerfor= res.fiveYearData;
         this.composeRisk = res.listData;
         this.tabIndex = 0;
+        this.perforExtendsData = {
+          lastUpdateTime: res.lastUpdateTime,
+          userMoney: res.userMoney,
+        }
       }
 
     });

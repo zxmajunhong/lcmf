@@ -121,7 +121,7 @@ export default {
           // console.log('res', res);
           if (res.status == true) {
             wx.showModal({showCancel:true, title:'评测结果', content:res.msg, success(){
-              postRisk(this.q1_value, this.q2_value, this.q3_value).then(res => {
+              postRisk(tmp.q1_value, tmp.q2_value, tmp.q3_value).then(res => {
                 if (res.code == 10000) {
                   // wx.showToast({
                   //   title: '提交成功',

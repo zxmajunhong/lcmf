@@ -68,7 +68,7 @@
         </div>
       </div>
     </div>
-    <div class="submit" @click="submit">提交</div>
+    <div class="risk-submit" @click="riskSubmit">提交</div>
     <div class="explain-fc" v-show="showFc">
       <box :class-name="'explain-box'">
         <div class="box-title">
@@ -91,6 +91,7 @@
 <script>
 import Box from "@/components/box";
 import {postRisk} from '@/utils/model';
+import {checkUserRisk} from '@/utils/model';
 export default {
   components: { Box },
   data() {
@@ -114,25 +115,56 @@ export default {
     q3Change(e) {
       this.q3_value = e.mp.detail.value;
     },
-    submit() {
-      postRisk(this.q1_value, this.q2_value, this.q3_value).then(res => {
-        if (res.code == 10000) {
-          // wx.showToast({
-          //   title: '提交成功',
-          //   icon: 'success',
-          // });
-          wx.showModal({showCancel:false,title:'评测结果',content:res.msg, success(){
-            wx.redirectTo({
-              url: '../../pages/compose-detail/main?id='+ res.investGroupID
-            })
-          }})
-        } else {
-          wx.showToast({
-            title: res.msg,
-            icon: 'none',
-          })
+    riskSubmit() {
+      var tmp = this;
+      checkUserRisk(this.q1_value, this.q2_value, this.q3_value).then(res => {
+          // console.log('res', res);
+          if (res.status == true) {
+            wx.showModal({showCancel:true, title:'评测结果', content:res.msg, success(){
+              postRisk(this.q1_value, this.q2_value, this.q3_value).then(res => {
+                if (res.code == 10000) {
+                  // wx.showToast({
+                  //   title: '提交成功',
+                  //   icon: 'success',
+                  // });
+                  wx.showModal({showCancel:false,title:'评测结果',content:res.msg, success(){
+                    wx.redirectTo({
+                      url: '../../pages/compose-detail/main?id='+ res.investGroupID
+                    })
+                  }})
+                } else {
+                  wx.showToast({
+                    title: res.msg,
+                    icon: 'none',
+                  })
+                }
+              })
+            }})
+          } else {
+            
+            wx.showModal({showCancel:true, title:'评测结果', content:res.msg, success(){
+              postRisk(tmp.q1_value, tmp.q2_value, tmp.q3_value).then(res => {
+                if (res.code == 10000) {
+                  // wx.showToast({
+                  //   title: '提交成功',
+                  //   icon: 'success',
+                  // });
+                  wx.showModal({showCancel:false,title:'评测结果',content:res.msg, success(){
+                    wx.redirectTo({
+                      url: '../../pages/compose-detail/main?id='+ res.investGroupID
+                    })
+                  }})
+                } else {
+                  wx.showToast({
+                    title: res.msg,
+                    icon: 'none',
+                  })
+                }
+              })
+            }})
+          }
         }
-      })
+      )
     }
   }
 }
@@ -201,7 +233,7 @@ export default {
     }
   }
 }
-.submit {
+.risk-submit {
   width: 100%;
   height: 80rpx;
   line-height: 80rpx;

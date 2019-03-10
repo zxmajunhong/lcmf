@@ -4,7 +4,7 @@
       <div class="common-box product">
         <div class="box-title">
           <span class="title">{{item.name}}</span>
-          <span class="tag">推荐</span>
+          <span class="tag" v-if="item.is_sample == 1">推荐</span>
         </div>
         <div class="box-body">
           <div class="item">

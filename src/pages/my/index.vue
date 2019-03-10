@@ -100,6 +100,13 @@ export default {
   },
   onShow() {
     getUserInfo().then(res => {
+      if(res.code == 20001){
+        wx.showModal({showCancel:false, title:'还未评测，请先评测', content:res.msg, success(){
+          wx.redirectTo({
+               url: '../../pages/risk-assessment/main'
+          })
+        }})
+      }
       this.userInfo = res;
     })
   }

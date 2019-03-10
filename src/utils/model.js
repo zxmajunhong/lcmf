@@ -34,6 +34,12 @@ export function getNoticeDetail(id) {
   return http.get(`/notice/info/${id}`).then(res => res.data);
 }
 
+export function checkUserRisk(maxLost, detest, dealRate){
+  return http.post('/risk/check/user', {maxLost, detest, dealRate})
+  .then(res => res.data);
+}
+
+
 export function postRisk(maxLost, detest, dealRate) {
   return http.post('/risk/do', {
     maxLost,

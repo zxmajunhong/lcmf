@@ -54,7 +54,7 @@ export default {
         legend: {
           show: true,
           top: 'bottom',
-          data: ['组合', '比较基准']
+          data: ['组合', '比较基准(沪深300指数)']
         },
         xAxis: {
           type: 'category',
@@ -65,7 +65,7 @@ export default {
           type: 'value',
           axisLabel: {
             show: true,
-            formatter: '{value}%'
+            formatter: '{value}'
           }
         },
         series: [
@@ -75,7 +75,7 @@ export default {
             data: vthis.series0Data,
           },
           {
-            name: '比较基准',
+            name: '比较基准(沪深300指数)',
             type: 'line',
             data: vthis.series1Data,
           }

@@ -52,7 +52,7 @@
     <div class="main">
       <div class="tab-area">
         <div class="tab" :class="{'cur': tabIndex == 0}" @click="tabIndex = 0">组合配置</div>
-        <div class="tab" :class="{'cur': tabIndex == 1}" @click="tabIndex = 1">净值走势图</div>
+        <div class="tab" :class="{'cur': tabIndex == 1}" @click="tabIndex = 1">业绩表现</div>
         <div class="tab" :class="{'cur': tabIndex == 2}" @click="tabIndex = 2">风险控制</div>
         <div class="tab"  :class="{'cur': tabIndex == 3}" @click="tabIndex = 3">资产配置</div>
       </div>

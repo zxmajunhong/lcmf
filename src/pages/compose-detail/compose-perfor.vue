@@ -4,7 +4,7 @@
     <div class="year-select">
       <!-- <div class="item" @click="change(0)" :class="{'cur': sTab == 0}">过去1年</div>
       <div class="item" @click="change(1)" :class="{'cur': sTab == 1}">过去3年</div> -->
-      <div class="item" :class="{'cur': sTab == 0}" style="display:none;">过去5年</div>
+      <div class="item" :class="{'cur': sTab == 0}" >净值走势图</div>
     </div>
     <div class="tab-content">
       <div class="chart-area">
@@ -79,7 +79,7 @@ export default {
         legend: {
           show: true,
           top: 'bottom',
-          data: ['组合', '比较基准']
+          data: ['组合', '比较基准(沪深300指数)']
         },
         xAxis: {
           type: 'category',
@@ -100,7 +100,7 @@ export default {
             data:[-1.3, 1.2, 15, 18.3, 55.0]
           },
           {
-            name: '比较基准',
+            name: '比较基准(沪深300指数)',
             type: 'line',
             data:[-48, 5.9, 30, 11.7, 35]
           }

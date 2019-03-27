@@ -12,7 +12,8 @@
     "pages/find-detail/main",
     "pages/compose-list/main",
     "pages/invest-add/main",
-    "pages/assets-detail/main"
+    "pages/assets-detail/main",
+    "pages/invest-change/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

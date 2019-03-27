@@ -102,8 +102,10 @@ export default {
   },
   onShow() {
     const id = this.$root.$mp.query.id || 0;
+    const flag = this.$root.$mp.query.flag || 0;
+
     // 获取详情页数据
-    getComposeDetail(id).then(res => {
+    getComposeDetail(id, flag).then(res => {
       // if(res.code == 20001){
       //   wx.showModal({showCancel:false, title:'还未评测，请先评测', content:res.msg, success(){
       //     wx.redirectTo({

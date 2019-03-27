@@ -31,7 +31,7 @@
         <span class="title">我的组合</span>
         <navigator :url="'/pages/risk-assessment/main'" :hover-class="none" class="button">用户测评</navigator>
       </div>
-      <navigator :url="'/pages/compose-detail/main?id='+ userInfo.investGroupID" :hover-class="none">
+      <navigator :url="'/pages/compose-detail/main?id='+ userInfo.investGroupID+ '&flag=1'" :hover-class="none">
       <div class="box-body">
         <div class="item">
           <p class="value">{{userInfo.annualIncome}}</p>
@@ -58,10 +58,14 @@
       </navigator>
     </div>
     <div class="pod-box">
+      <navigator :url="'/pages/invest-change/main'" :hover-class="none">
       <div class="pod-info">
         <p class="txt">最新调仓：<span v-if="userInfo.newChange != 0">{{userInfo.newChange}}></span><span v-else>暂无</span></p>
-        <p class="tips"  v-if="userInfo.newChange != 0">您当期的调仓还未完成，点击去完成</p>
+        <p class="tips"  v-if="userInfo.newChange != 0">
+            您当期的调仓还未完成，点击去完成
+        </p>
       </div>
+      </navigator>
       <span class="arrow">></span>
     </div>
     <div class="fb-box">
@@ -69,7 +73,7 @@
         <div class="balance">
           F币余额：<span class="value">{{userInfo.userF}}</span>
         </div>
-        <a href="" class="recharge">充值</a>
+        <span class="recharge" @click="recharge">充值</span>
       </div>
       <p class="tips">我的组合每天需消耗1个F币当前余额可用至<span class="date">{{userInfo.lastDate}}</span></p>
     </div>
@@ -92,6 +96,7 @@
 
 <script>
 import {getUserInfo} from '@/utils/model';
+import {getWxPayArgs} from '@/utils/model';
 export default {
   data() {
     return {
@@ -109,6 +114,34 @@ export default {
       }
       this.userInfo = res;
     })
+  },
+  methods:{
+      recharge(){
+        wx.showModal({showCancel:true, title:'确认充值', success(){
+              getWxPayArgs(5).then(res => {
+                if (res.code == 10000) {
+                  wx.requestPayment({
+                    timeStamp: res.data.timeStamp,
+                    nonceStr: res.data.nonceStr,
+                    package: res.data.package,
+                    signType: res.data.signType,
+                    paySign: res.data.paySign,
+                    'success': function (res) {
+                      that.afterPaySuccess(ret.data.orderID);
+                    },
+                    'fail': function (res) {
+                      console.log(res);
+                    }
+                  })  
+                } else {
+                  wx.showToast({
+                    title: res.msg,
+                    icon: 'none',
+                  })
+                }
+              })
+            }})
+      }
   }
 }
 </script>

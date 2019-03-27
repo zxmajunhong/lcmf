@@ -12,8 +12,8 @@ export function getComposeList() {
   return http.get('/index/games').then(res => res.data);
 }
 
-export function getComposeDetail(id) {
-  return http.get(`/index/games/${id}`).then(res => res.data);
+export function getComposeDetail(id, flag) {
+  return http.get(`/index/games/${id}/${flag}`).then(res => res.data);
 }
 
 export function getUserInfo() {
@@ -80,4 +80,15 @@ export function postUserInvest(groupId, money, type){
 export function getAssetsDetail() {
   return http.get('/user/detail')
     .then(res => res.data);
+}
+
+//获取调仓记录
+export function getInvestChangeLog(id, flag) {
+  return http.get(`/user/change/log`).then(res => res.data);
+}
+
+
+//获取支付参数
+export function getWxPayArgs($money) {
+  return http.get(`order/url`).then(res => res.data);
 }

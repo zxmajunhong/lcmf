@@ -73,7 +73,8 @@
         <div class="balance">
           F币余额：<span class="value">{{userInfo.userF}}</span>
         </div>
-        <span class="recharge" @click="recharge">充值</span>
+        <!-- <span class="recharge" @click="recharge">充值</span> -->
+        <navigator :url="'/pages/recharge/main'" :hover-class="none" class="button recharge">充值</navigator>
       </div>
       <p class="tips">我的组合每天需消耗1个F币当前余额可用至<span class="date">{{userInfo.lastDate}}</span></p>
     </div>
@@ -96,7 +97,6 @@
 
 <script>
 import {getUserInfo} from '@/utils/model';
-import {getWxPayArgs} from '@/utils/model';
 export default {
   data() {
     return {
@@ -116,32 +116,6 @@ export default {
     })
   },
   methods:{
-      recharge(){
-        wx.showModal({showCancel:true, title:'确认充值', success(){
-              getWxPayArgs(5).then(res => {
-                if (res.code == 10000) {
-                  wx.requestPayment({
-                    timeStamp: res.data.timeStamp,
-                    nonceStr: res.data.nonceStr,
-                    package: res.data.package,
-                    signType: res.data.signType,
-                    paySign: res.data.paySign,
-                    'success': function (res) {
-                      that.afterPaySuccess(ret.data.orderID);
-                    },
-                    'fail': function (res) {
-                      console.log(res);
-                    }
-                  })  
-                } else {
-                  wx.showToast({
-                    title: res.msg,
-                    icon: 'none',
-                  })
-                }
-              })
-            }})
-      }
   }
 }
 </script>

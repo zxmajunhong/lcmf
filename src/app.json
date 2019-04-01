@@ -13,7 +13,9 @@
     "pages/compose-list/main",
     "pages/invest-add/main",
     "pages/assets-detail/main",
-    "pages/invest-change/main"
+    "pages/invest-change/main",
+    "pages/recharge/main",
+    "pages/change-detail/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -89,6 +89,10 @@ export function getInvestChangeLog(id, flag) {
 
 
 //获取支付参数
-export function getWxPayArgs($money) {
-  return http.get(`order/url`).then(res => res.data);
+export function getWxPayArgs(money) {
+  return http.post(`order/url`, {money}).then(res => res.data);
+}
+
+export function getChangeDetail(date) {
+    return http.post(`user/change/detail`, {date}).then(res => res.data);
 }

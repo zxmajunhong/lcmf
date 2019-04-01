@@ -4,7 +4,9 @@
       <div class="banner-area">
         <swiper :autoplay="true" :indicator-dots="true" :indicator-color="'#7f7f7f'" :indicator-active-color="'#fff'">
           <swiper-item v-for="item in bannerList" :key="item">
-            <image :src="item" class="slide-image" />
+            <navigator :url="'/pages/find-detail/main?id='+ item.id" :hover-class="'none'" class="item">
+            <image :src="item.img" class="slide-image" />
+            </navigator>
           </swiper-item>
         </swiper>
       </div>

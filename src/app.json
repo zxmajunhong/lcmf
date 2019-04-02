@@ -15,7 +15,9 @@
     "pages/assets-detail/main",
     "pages/invest-change/main",
     "pages/recharge/main",
-    "pages/change-detail/main"
+    "pages/change-detail/main",
+    "pages/invest/main"
+
   ],
   "window": {
     "backgroundTextStyle": "light",

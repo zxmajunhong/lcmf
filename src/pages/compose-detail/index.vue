@@ -69,7 +69,7 @@
         <compose-adjust />
       </div>
     </div>
-    <navigator :url="'/pages/invest-add/main?groupId='+ composeInfo.id" :hover-class="'none'" class="bottom-float">
+    <navigator :url="'/pages/invest/main?groupId='+ composeInfo.id" :hover-class="'none'" class="bottom-float">
       开始投资
     </navigator>
   </div>

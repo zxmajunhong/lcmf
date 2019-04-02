@@ -2,6 +2,7 @@
 <div class="container">
     <div class="invest-box">
       <div class="total-line">
+        我的金币：{{money}}
       </div>
       <div class="explain-line">
       </div>
@@ -18,6 +19,14 @@
 <script>
 import {getWxPayArgs} from '@/utils/model';
 export default {
+
+  data() {
+    return {
+      composeInfo: [],
+      money: 0,
+    }
+  },
+  
   methods: {
     checkRechage(){
         var money = this.changeMoney;

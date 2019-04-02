@@ -93,6 +93,12 @@ export function getWxPayArgs(money) {
   return http.post(`order/url`, {money}).then(res => res.data);
 }
 
+//获取调仓详细信息
 export function getChangeDetail(date) {
     return http.post(`user/change/detail`, {date}).then(res => res.data);
+}
+
+//获取投资时的投资组合信息
+export function getInvestGroupInfo(groupId) {
+  return http.post(`invest/info`, {groupId}).then(res => res.data);
 }

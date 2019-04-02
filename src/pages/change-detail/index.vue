@@ -51,7 +51,6 @@ export default {
     }
   },
   onShow() {
-    console.log('a', 1);
     const date = this.$root.$mp.query.date || 0;
     getChangeDetail(date).then(res => {
       this.buyList = res.buyList;

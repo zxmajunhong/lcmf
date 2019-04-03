@@ -40,19 +40,24 @@
         我们将按该金额为您配置智能组合。
       </div>
       <div class="explain-line">
-        操作步骤：
+        <span class="oper-font">操作步骤：</span>
       </div>
 
       <div class="explain-line">
-        (1)投资过程由您在您自己的股票账户中完成，交易对象为
+        <span class="detail-font">(1)投资过程由您在您自己的股票账户中完成，交易对象为
       指数ETF。(建议您使用华泰证券账户进行交易，我们已
       为您争取到行业最低的交易手续费，点击查看如何开户)
+        </span>
       </div>
       <div class="explain-line">
-        (2)我们将在每个交易日15:00股市收盘后，为您推送智能
+        <span class="detail-font">(2)我们将在每个交易日15:00股市收盘后，为您推送智能
       调仓建议(如果当期需要调仓)，您可在下一个交易日开
       盘时，按照我们推送的调仓指令完成交易。
+       </span>
       </div>
+     <div class="explain-line">
+     </div>
+      
     </div>
     
   </div>
@@ -65,7 +70,7 @@ export default {
   data() {
     return {
       composeInfo: [],
-      money: 0,
+      money: '',
     }
   },
   methods: {
@@ -123,6 +128,13 @@ export default {
 
 
 <style lang="less" scoped>
+.oper-font{
+ font-size: 48rpx;
+}
+
+.detai-font{
+ font-size: 46rpx;
+}
 .top-area {
   width: 100%;
   padding-top: 20rpx;
@@ -247,6 +259,7 @@ export default {
       }
     }
     .explain-line {
+      margin-top: 10px;
       font-size: 28rpx;
     }
     .oper-line {

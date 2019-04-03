@@ -68,11 +68,24 @@ export default {
                   package: res.data.package,
                   signType: res.data.signType,
                   paySign: res.data.paySign,
-                  'success': function (res) {
-                    that.afterPaySuccess(ret.data.orderID);
+                  success: function (res) {
+                    wx.showToast({
+                      title: '支付成功',
+                      icon: 'success',
+                      success: () => {
+                        setTimeout(() => {
+                          wx.navigateBack({
+                            delta: 1,
+                          });
+                        }, 1600);
+                      }
+                    });
                   },
-                  'fail': function (res) {
-                    console.log(res);
+                  fail: function (res) {
+                    wx.showToast({
+                      title: res.msg,
+                      icon: 'none',
+                    })
                   }
                 })
               } else {

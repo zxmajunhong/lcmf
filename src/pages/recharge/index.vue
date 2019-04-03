@@ -5,6 +5,30 @@
         我的金币：{{money}}
       </div>
       <div class="explain-line">
+        <div>
+          10金币
+          <div>售价：10.0元</div>
+        </div>  
+        <div>
+          30金币
+          <div>售价：30.0元</div>
+        </div> 
+        <div>
+          50金币
+          <div>售价：50.0元</div>
+        </div> 
+        <div>
+          100金币
+          <div>售价：100.0元</div>
+        </div> 
+        <div>
+          200金币
+          <div>售价：200.0元</div>
+        </div> 
+        <div>
+          500金币
+          <div>售价：500.0元</div>
+        </div> 
       </div>
       <div class="oper-line">
         <div class="input-area">
@@ -17,16 +41,15 @@
   </div>
 </template>
 <script>
-import {getWxPayArgs} from '@/utils/model';
+import {getUserMoney} from '@/utils/model';
 export default {
 
   data() {
     return {
-      composeInfo: [],
       money: 0,
     }
   },
-  
+
   methods: {
     checkRechage(){
         var money = this.changeMoney;
@@ -55,6 +78,11 @@ export default {
               })
             }})
     }
+  },
+  onShow() {
+    getUserMoney().then(res => {
+      this.money = res.money;
+    })
   }
 }
 </script>

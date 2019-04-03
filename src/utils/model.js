@@ -102,3 +102,8 @@ export function getChangeDetail(date) {
 export function getInvestGroupInfo(groupId) {
   return http.post(`invest/info`, {groupId}).then(res => res.data);
 }
+
+//获取用户当前的金额
+export function getUserMoney() {
+  return http.get(`user/money`).then(res => res.data);
+}

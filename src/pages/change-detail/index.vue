@@ -1,5 +1,11 @@
 <template>
   <div class="container">
+    <div class="total-line">
+        {{showDate}}调仓指令（最新）
+        <div class="adjust">
+          (建议在{{nextDate}}开盘时完成交易)
+        </div>
+    </div>
     <div class="table-area">
       <div class="tr">
         <div class="col1 first">
@@ -16,7 +22,7 @@
       </div>
       <div class="tr" v-if="buyList && buyList.length > 0">
         <div class="col1 sel">卖出</div>
-        <div class="col2">
+        <div class="col2 sells">
           <div class="line" v-for="item in buyList" :key="item.id">
             <div class="item">{{item.code}}</div>
             <div class="item">{{item.etfName}}</div>
@@ -28,7 +34,7 @@
       </div>
       <div class="tr" v-if="selList && selList.length > 0">
         <div class="col1 buy">买入</div>
-        <div class="col2">
+        <div class="col2 buys">
           <div class="line" v-for="item in sellList" :key="item.id">
             <div class="item">{{item.code}}</div>
             <div class="item">{{item.etfName}}</div>
@@ -46,22 +52,57 @@ import {getChangeDetail} from '@/utils/model';
 export default {
   data() {
     return {
+      showDate: '',
+      nextDate: '',
       buyList: [],
       sellList: []
     }
   },
   onShow() {
     const date = this.$root.$mp.query.date || 0;
+    var tmpDate = new Date(date);
+    tmpDate.setDate(tmpDate.getDate());
+    var month = tmpDate.getMonth() + 1;
+    var day = tmpDate.getDate();
+    this.showDate = tmpDate.getFullYear() + '-' + getFormatDate(month) + '-' + getFormatDate(day);
+
+
+    tmpDate = new Date(date);
+    tmpDate.setDate(tmpDate.getDate() + 1);
+    var month = tmpDate.getMonth() + 1;
+    var day = tmpDate.getDate();
+    this.nextDate = tmpDate.getFullYear() + '-' + getFormatDate(month) + '-' + getFormatDate(day);
     getChangeDetail(date).then(res => {
       this.buyList = res.buyList;
       this.sellList = res.sellList;
     })
   }
 }
+function getFormatDate(arg) {
+            if (arg == undefined || arg == '') {
+                return '';
+            }
+
+            var re = arg + '';
+            if (re.length < 2) {
+                re = '0' + re;
+            }
+
+            return re;
+        }
 </script>
 
 
 <style lang="less" scoped>
+.total-line{
+  margin: auto;
+}
+.adjust{
+  margin-top:10px;
+  margin-bottom: 10px;  
+  color: gray;
+  font-size: 26rpx;
+}
 .table-area {
   width: 100%;
   background-color: #fff;
@@ -114,6 +155,14 @@ export default {
            border-top: 1rpx solid #dfdfdf;
          }
         }
+      }
+      &.buys {
+        background-color:rgb(243, 119, 119);
+        border-top: 0;
+      }
+      &.sells {
+        background-color:rgb(189, 238, 170);
+        border-top: 0;
       }
     }
   }

@@ -113,6 +113,7 @@ export default {
       //     })
       //   }})
       // }else 
+      console.log('a', 1);
       if (res.code == 10000) {
         console.log('res', res);
         this.composeInfo = res.info;

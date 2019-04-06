@@ -14,32 +14,33 @@
           <div class="line title">
             <div class="item"><span>证券代码</span></div>
             <div class="item">证券名称</div>
-            <div class="item" style="line-height: inherit;">持仓数量(调仓前)</div>
+            <div class="item" style="line-height: inherit;">持仓数量<span class="adjust">(调仓前)</span></div>
             <div class="item">交易</div>
-            <div class="item" style="line-height: inherit;">持仓数量(调仓后)</div>
+            <div class="item" style="line-height: inherit;">持仓数量<span class="adjust">(调仓后)</span></div>
           </div>
         </div>
       </div>
-      <div class="tr" v-if="buyList && buyList.length > 0">
+      
+      <div class="tr" v-if="selList && selList.length > 0">
         <div class="col1 sel">卖出</div>
         <div class="col2 sells">
-          <div class="line" v-for="item in buyList" :key="item.id">
-            <div class="item">{{item.code}}</div>
-            <div class="item">{{item.etfName}}</div>
-            <div class="item">{{item.before}}</div>
-            <div class="item">{{item.deal}}</div>
-            <div class="item">{{item.after}}</div>
-          </div>
-        </div>
-      </div>
-      <div class="tr" v-if="selList && selList.length > 0">
-        <div class="col1 buy">买入</div>
-        <div class="col2 buys">
           <div class="line" v-for="item in sellList" :key="item.id">
             <div class="item">{{item.code}}</div>
             <div class="item">{{item.etfName}}</div>
             <div class="item">{{item.before}}</div>
-            <div class="item">{{item.deal}}</div>
+            <div class="item"><span class="sell-font">-{{item.deal}}</span></div>
+            <div class="item">{{item.after}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="tr" v-if="buyList && buyList.length > 0">
+        <div class="col1 buy">买入</div>
+        <div class="col2 buys">
+          <div class="line" v-for="item in buyList" :key="item.id">
+            <div class="item">{{item.code}}</div>
+            <div class="item">{{item.etfName}}</div>
+            <div class="item">{{item.before}}</div>
+            <div class="item"><span class="buy-font">+{{item.deal}}</span></div>
             <div class="item">{{item.after}}</div>
           </div>
         </div>
@@ -96,6 +97,16 @@ function getFormatDate(arg) {
 <style lang="less" scoped>
 .total-line{
   margin: auto;
+}
+.buy-font{
+  font-size: 30rpx;
+  color:rgb(192, 32, 32);
+  font-weight: bold;
+}
+.sell-font{
+  font-size: 30rpx;
+  color:rgb(36, 97, 12); 
+  font-weight: bold;
 }
 .adjust{
   margin-top:10px;
@@ -157,7 +168,7 @@ function getFormatDate(arg) {
         }
       }
       &.buys {
-        background-color:rgb(243, 119, 119);
+        background-color:rgb(241, 217, 217);
         border-top: 0;
       }
       &.sells {

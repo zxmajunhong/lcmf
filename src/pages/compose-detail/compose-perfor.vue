@@ -18,28 +18,28 @@
             <div class="td">比较基准</div>
           </div>
           <div class="tr">
-            <div class="td">{{compareData.total_income}}</div>
+            <div class="td">{{compareData.user_total_income}}</div>
             <div class="td">总收益</div>
             <div class="td">{{compareData.compare_total_income}}</div>
           </div>
           <div class="tr">
-            <div class="td">{{compareData.annual_income}}</div>
+            <div class="td">{{compareData.user_annual_income}}</div>
             <div class="td">年化收益</div>
             <div class="td">{{compareData.compare_annual_income}}</div>
           </div>
           <div class="tr">
-            <div class="td">{{compareData.volatility_ratio}}</div>
+            <div class="td">{{compareData.user_volatility_ratio}}</div>
             <div class="td">波动率</div>
             <div class="td">{{compareData.compare_volatility_ratio}}</div>
           </div>
           <div class="tr">
-            <div class="td">{{compareData.sharpe_ratio}}</div>
+            <div class="td">{{compareData.user_sharpe_ratio}}</div>
             <div class="td">夏普比率</div>
             <div class="td">{{compareData.compare_sharpe_ratio}}</div>
           </div>
           <div class="tr">
-            <div class="td">{{compareData.max_lost}}</div>
-            <div class="td">最大撤回</div>
+            <div class="td">{{compareData.user_max_lost}}</div>
+            <div class="td">最大回撤</div>
             <div class="td">{{compareData.compare_max_lost}}</div>
           </div>
         </div>

@@ -29,13 +29,13 @@
       <div class="total-line">
         确定投资金额：
       </div>
-      <div class="oper-line">
+      <!-- <div class="oper-line">
         <div class="input-area">
           <input type="text" class="invest-value" v-model="money">
           <span class="unit">元</span>
         </div>
         <div class="invest-submit" @click="checkInvest">确定</div>
-      </div>
+      </div> -->
       <div class="explain-line">
         我们将按该金额为您配置智能组合。
       </div>

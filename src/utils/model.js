@@ -107,3 +107,9 @@ export function getInvestGroupInfo(groupId) {
 export function getUserMoney() {
   return http.get(`user/money`).then(res => res.data);
 }
+
+
+//用户更新投资组合
+export function userChangeGroup() {
+  return http.get(`invest/change/group`).then(res => res.data);
+}

@@ -29,13 +29,16 @@
       <div class="total-line">
         确定投资金额：
       </div>
-      <!-- <div class="oper-line">
+      <div class="oper-line" v-if="flag">
         <div class="input-area">
           <input type="text" class="invest-value" v-model="money">
           <span class="unit">元</span>
         </div>
         <div class="invest-submit" @click="checkInvest">确定</div>
-      </div> -->
+      </div>
+       <div class="explain-line" v-if="userInvestMoney > 0">
+        您当前的投资金额为<span class="money-font">{{userInvestMoney}}</span>
+      </div>
       <div class="explain-line">
         我们将按该金额为您配置智能组合。
       </div>
@@ -59,11 +62,13 @@
      </div>
       
     </div>
-    
+    <div class="bottom-float" v-if="flag == false" @click="checkInvestTwo">
+      立即投资
+    </div>
   </div>
 </template>
 <script>
-import {getInvestGroupInfo, checkUserInvest, postUserInvest} from '@/utils/model';
+import {getInvestGroupInfo, checkUserInvest, postUserInvest, userChangeGroup} from '@/utils/model';
 export default {
   components: {
   },
@@ -71,6 +76,9 @@ export default {
     return {
       composeInfo: [],
       money: '',
+      userInvestMoney: '',
+      //用户是否是这个组合false 不是
+      flag: false,
     }
   },
   methods: {
@@ -85,6 +93,35 @@ export default {
             const money = this.money;
             this.showModal(res.msg, () => {
               postUserInvest(this.$root.$mp.query.groupId, money, 1)
+                .then((postRes) => {
+                  if (postRes.code == 10000) {
+                    this.changeMoney = '';
+                  }
+                  // wx.showToast({
+                  //   title: postRes.msg,
+                  //   icon: 'none',
+                  //   mask: true,
+                  // })
+                  this.showModal(postRes.msg, () => {
+                    wx.switchTab({
+                      url: '/pages/my/main'
+                    });
+                  });
+                })
+            })
+          }
+        })
+    },
+    checkInvestTwo() {
+      checkUserInvest(this.$root.$mp.query.groupId)
+        .then((res) => {
+          if (res.code === 10001) {
+            this.showModal('您还未做风险测评，现在去做吗？', () => {
+              wx.reLaunch('/pages/risk-assessment/main');
+            });
+          } else {
+            this.showModal(res.msg, () => {
+              userChangeGroup(this.$root.$mp.query.groupId)
                 .then((postRes) => {
                   if (postRes.code == 10000) {
                     this.changeMoney = '';
@@ -121,6 +158,8 @@ export default {
     const groupId = this.$root.$mp.query.groupId || 0;
     getInvestGroupInfo(groupId).then(res => {
       this.composeInfo = res.info;
+      this.userInvestMoney = res.userInvestMoney;
+      this.flag = res.flag;
     })
   }
 }
@@ -131,7 +170,13 @@ export default {
 .oper-font{
  font-size: 48rpx;
 }
-
+.money-font{
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 30rpx;
+  color: #e74612;
+  padding-left: 30rpx;
+}
 .detai-font{
  font-size: 46rpx;
 }
@@ -340,4 +385,16 @@ export default {
       margin-right: 40rpx;
     }
   }
+
+  .bottom-float {
+      width: 750rpx;
+      height: 80rpx;
+      background-color: #4768f3;
+      font-size: 30rpx;
+      line-height: 80rpx;
+      text-align: center;
+      color: #fff;
+      position: fixed;
+      bottom: 0;
+    }
 </style>

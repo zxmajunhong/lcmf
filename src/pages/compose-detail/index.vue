@@ -57,7 +57,7 @@
         <div class="tab"  :class="{'cur': tabIndex == 3}" @click="tabIndex = 3">资产配置</div>
       </div>
       <div class="each-content" v-if="tabIndex == 0">
-        <compose-option :data="composeOptions" :money="perforExtendsData.userMoney" :updateTime="perforExtendsData.lastUpdateTime"/>
+        <compose-option :data="composeOptions" :money="perforExtendsData.userMoney" :updateTime="perforExtendsData.lastUpdateTime" :flag="flag"/>
       </div>
       <div class="each-content" v-if="tabIndex == 1">
         <compose-perfor :data="composePerfor"/>
@@ -69,8 +69,11 @@
         <compose-adjust />
       </div>
     </div>
-    <navigator :url="'/pages/invest/main?groupId='+ composeInfo.id" :hover-class="'none'" class="bottom-float">
+    <navigator :url="'/pages/invest/main?groupId='+ composeInfo.id" :hover-class="'none'" class="bottom-float" v-if="flag">
       开始投资
+    </navigator>
+    <navigator :hover-class="'none'" class="bottom-float-none" v-else>
+      我的组合
     </navigator>
   </div>
 </template>
@@ -98,6 +101,7 @@ export default {
       composePerfor: {}, // 业绩表现数据
       perforExtendsData: {}, // 业绩表现数据额外传一些数据
       composeRisk: {}, // 风险控制数据
+      flag: true, //是否立即投资按钮可点击
     }
   },
   onShow() {
@@ -113,7 +117,6 @@ export default {
       //     })
       //   }})
       // }else 
-      console.log('a', 1);
       if (res.code == 10000) {
         console.log('res', res);
         this.composeInfo = res.info;
@@ -125,6 +128,7 @@ export default {
           lastUpdateTime: res.lastUpdateTime,
           userMoney: res.userMoney,
         }
+        this.flag = res.flag;
       }
 
     });
@@ -286,6 +290,17 @@ export default {
   width: 750rpx;
   height: 80rpx;
   background-color: #4768f3;
+  font-size: 30rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+}
+.bottom-float-none {
+  width: 750rpx;
+  height: 80rpx;
+  background-color:gray;
   font-size: 30rpx;
   line-height: 80rpx;
   text-align: center;

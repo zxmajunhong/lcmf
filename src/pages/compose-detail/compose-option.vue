@@ -4,7 +4,30 @@
     <div class="chart-wrap">
       <mpvue-echarts :echarts="echarts" :onInit="initChart" :canvasId="'firstCanvas'" />
     </div>
-    <div class="opts-detail">
+    <div class="opts-detail" v-if="flag">
+      <div class="detail-title">
+        <span class="txt">按投资金额<span class="money">{{money}}元</span>配置如下:(数据更新时间:{{updateTime}}):</span>
+        <div class="modify-money" style="display:none;">修改金额</div>
+      </div>
+      <div class="each-item" v-for="(item, i1) in tblData" :key="i1">
+        <div class="line-two thead">
+          <span class="td">{{item.name}}</span>
+          <span class="td">{{item.money}}元</span>
+          <span class="td">{{item.ratio}}%</span>
+        </div>
+        <div class="line-two tr" v-for="line in item.list" :key="line">
+          <span class="td">
+            <span class="name">{{line.bond_name}}</span>
+            <span class="nums">{{line.bond_code}}</span>
+          </span>
+          <span class="td">{{line.money}}元</span>
+          <span class="td">{{line.ratio}}</span>
+          <span class="arrow"></span>
+        </div>
+      </div>
+
+    </div>
+    <div class="opts-detail" v-else>
       <div class="detail-title">
         <span class="txt">按投资金额<span class="money">{{money}}元</span>配置如下:(数据更新时间:{{updateTime}}):</span>
         <div class="modify-money" style="display:none;">修改金额</div>
@@ -20,6 +43,8 @@
             <span class="name">{{line.bond_name}}</span>
             <span class="nums">{{line.bond_code}}</span>
           </span>
+          <span class="td">{{line.price}}</span>
+          <span class="td">{{line.number}}</span>
           <span class="td">{{line.money}}元</span>
           <span class="td">{{line.ratio}}</span>
           <span class="arrow"></span>
@@ -51,6 +76,10 @@ export default {
     updateTime: {
       type: Number,
       default: 0,
+    },
+    flag:{
+      type: Boolean,
+      default: true,
     }
   },
   data() {
@@ -164,6 +193,65 @@ export default {
     }
     .each-item {
       .line {
+        display: flex;
+        align-items: center;
+        .td {
+          flex-grow: 0;
+          flex-shrink: 0;
+          text-align: center;
+          &:nth-child(1) {
+            flex-basis: 250rpx;
+          }
+          &:nth-child(2) {
+            flex-basis: 80rpx;
+          }
+          &:nth-child(3) {
+            flex-basis: 45rpx;
+            padding-right: 20rpx;
+          }
+          &:nth-child(4) {
+            flex-basis: 150rpx;
+            padding-right: 20rpx;
+          }
+          &:nth-child(5) {
+            flex-basis: 125rpx;
+            padding-right: 20rpx;
+          }
+        }
+        &.thead {
+          .td {
+            flex-basis: 220rpx;
+            font-size: 26rpx;
+            color: #fff;
+            height: 60rpx;
+            line-height: 60rpx;
+          }
+        }
+        &.tr {
+          position: relative;
+          .td {
+            font-size: 28rpx;
+            color: #333333;
+            background-color: #fff;
+            height: 100rpx;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+          }
+          .arrow {
+            display: block;
+            width: 14rpx;
+            height: 25rpx;
+            background: url(../find/img/arrow.png) no-repeat 0 0;
+            background-size: cover;
+            position: absolute;
+            top: 34rpx;
+            right: 30rpx;
+          }
+        }
+      }
+      .line-two{
         display: flex;
         align-items: center;
         .td {

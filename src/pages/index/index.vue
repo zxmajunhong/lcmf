@@ -11,14 +11,14 @@
         </swiper>
       </div>
       <div class="explain-area">
-        <navigator url="/pages/description/main" :hover-class="'none'" class="item">
+        <div class="item" @click="redirectFind(3)">
           <i class="icon icon1"></i>
           <span class="txt">产品介绍</span>
-        </navigator>
-        <navigator url="/pages/feature/main" :hover-class="'none'" class="item">
+         </div>
+       <div class="item" @click="redirectFind(3)">
           <i class="icon icon2"></i>
           <span class="txt">产品特点</span>
-        </navigator>
+         </div>
         <div class="item" @click="redirectFind(3)">
           <i class="icon icon3"></i>
           <span class="txt">新手指引</span>

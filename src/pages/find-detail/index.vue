@@ -11,7 +11,7 @@
         <span class="title">{{notice.title}}</span>
       </div>
       <div class="box-content">
-        {{notice.content}}
+        <rich-text :nodes="notice.content"></rich-text>
       </div>
     </div>
   </div>
@@ -25,6 +25,9 @@ export default {
     return {
       notice: {},
       tabIndex: 0,
+      nodes: [{
+        name: 'div',
+      }]
     }
   },
   methods: {
@@ -44,6 +47,7 @@ export default {
       getNoticeDetail(detailId).then(res => {
         console.log('noticedetail', res);
         this.notice = res.info;
+        this.notice.content = this.notice.content.replace(/\<img/gi, '<img style="max-width:100%;height:auto" ');
       })
     } else {
       wx.showToast({

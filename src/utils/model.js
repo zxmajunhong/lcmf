@@ -110,6 +110,6 @@ export function getUserMoney() {
 
 
 //用户更新投资组合
-export function userChangeGroup() {
-  return http.get(`invest/change/group`).then(res => res.data);
+export function userChangeGroup(groupId) {
+  return http.post(`invest/change/group`, {groupId}).then(res => res.data);
 }

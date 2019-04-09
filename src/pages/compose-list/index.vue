@@ -23,7 +23,7 @@
           </div>
           <div class="item">
             <p class="value">{{item.risk_return_ratio}}</p>
-            <p class="key">预期年化收益</p>
+            <p class="key">风险收益比</p>
             <p class="other">
               交易频率:<span class="icon hight">高</span>
             </p>

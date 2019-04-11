@@ -89,6 +89,7 @@ export default {
       legendData: [],
       seriesData: [],
       tblData: [],
+      data: [],
     }
   },
   methods: {
@@ -136,6 +137,7 @@ export default {
   onLoad() {
     // 组织图表所需要的数据
     const srcData = this.data;
+    console.log('data', srcData);
     const keys = Object.keys(srcData);
     const legendData = [];
     const seriesData = [];

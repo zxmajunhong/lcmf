@@ -107,13 +107,13 @@ export default {
     getUserInfo().then(res => {
       if(res.code == 20001){
         wx.showModal({showCancel:false, title:'还未评测，请先评测', content:res.msg, success(){
-          wx.redirectTo({
+          wx.navigateTo({
                url: '/pages/risk-assessment/main'
           })
         }})
       }else if(res.code == 10011){
         wx.showModal({showCancel:false, title:'您还未投资', content:res.msg, success(){
-          wx.redirectTo({
+          wx.navigateTo({
                url: '/pages/invest-add/main'
           })
         }})

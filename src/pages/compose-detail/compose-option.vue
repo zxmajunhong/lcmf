@@ -148,7 +148,7 @@ export default {
   onLoad() {
     // 组织图表所需要的数据
     const srcData = this.data;
-    console.log('data', srcData);
+    console.log('srcData');
     const keys = Object.keys(srcData);
     const legendData = [];
     const seriesData = [];
@@ -219,7 +219,7 @@ export default {
             flex-basis: 120rpx;
           }
           &:nth-child(3) {
-            flex-basis: 120rpx;
+            flex-basis: 140rpx;
           }
           &:nth-child(4) {
             flex-basis: 160rpx;
@@ -230,7 +230,7 @@ export default {
         }
         &.thead {
           .td {
-            flex-basis: 140rpx;
+            flex-basis: 145rpx;
             font-size: 26rpx;
             color: #fff;
             height: 60rpx;

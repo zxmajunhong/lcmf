@@ -60,7 +60,7 @@
     <div class="pod-box">
       <navigator :url="'/pages/invest-change/main'" :hover-class="none">
       <div class="pod-info">
-        <p class="txt">最新调仓：<span v-if="userInfo.newChange != 0">{{userInfo.newChange}}></span><span v-else>暂无</span></p>
+        <p class="txt">最新调仓：<span v-if="userInfo.newChange != 0 && userInfo.userF > 0">{{userInfo.newChange}}></span><span v-else-if="userInfo.userF < 1">您的金币余额不足，咱不能接受我们的调仓指令，请先去充值</span><span v-else>暂无</span></p>
         <p class="tips"  v-if="userInfo.newChange != 0">
             您当期的调仓还未完成，点击去完成
         </p>

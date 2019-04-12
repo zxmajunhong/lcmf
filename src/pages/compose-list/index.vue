@@ -16,9 +16,9 @@
           </div>
           <div class="item">
             <p class="value">{{item.max_lost}}</p>
-            <p class="key">最大可能亏损</p>
+            <p class="key">最大回撤</p>
             <p class="other">
-              最大回撤:<span class="icon middle">{{item.max_lost}}</span>
+              最大亏损:<span class="icon middle">{{item.max_lose}}</span>
             </p>
           </div>
           <div class="item">

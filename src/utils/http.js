@@ -31,7 +31,7 @@ fly.interceptors.request.use(request => {
     // 没有拿到token，请求后台重新获取
     // 锁定当天实例，后续请求会在拦截器外排队
     fly.lock();
-    return login().then(t => {
+    return login(fly).then(t => {
       request.headers.token = t;
       return request;
     }).finally(() => {
@@ -74,7 +74,7 @@ fly.interceptors.response.use(
 );
 
 // 定义登录方法
-const login = () => {
+const login = (fly) => {
   return new Promise((resolve, reject) => {
     wx.getSetting({
       success(res) {
@@ -104,6 +104,7 @@ const login = () => {
             },
             fail: (err) => {
               console.log('获取用户信息失败', err);
+              fly.unlock();
               // 跳转到首页
               wx.switchTab({
                 url: '/pages/index/main'
@@ -111,6 +112,7 @@ const login = () => {
             }
           })
         } else {
+          fly.unlock();
           // 没有授权跳转到首页
           wx.switchTab({
             url: '/pages/index/main'

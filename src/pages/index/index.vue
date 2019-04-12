@@ -116,11 +116,13 @@ export default {
       console.log('clickHandle:', msg, ev)
     },
     loginPost(userInfo, signature, rawData, iv, encryptedData) {
+      console.log('loginpost');
       const vthis = this;
       wx.login({
         success(res) {
           if (res.code) {
             // 发起网络请求
+            console.log('发起请求', postLogin);
             postLogin(res.code, userInfo, signature, rawData, iv, encryptedData)
             .then((res) => {
               console.log('登陆成功', res);
@@ -135,6 +137,7 @@ export default {
           } else {
             console.log('登录失败！' + res.errMsg)
           }
+          vthis.login = false;
         },
         fail() {
           console.log('接口调用失败');
@@ -177,6 +180,14 @@ export default {
   },
   onLoad() {
 
+    getHomeData().then(res => {
+      if (res.bannerList.length > 0) {
+        this.bannerList = res.bannerList;
+      }
+      this.investList = res.investList;
+    });
+  },
+  onShow() {
     // 判断用户是否授权，没有授权弹出登陆提示框，授权直接请求登陆
     const vthis = this;
     wx.getSetting({
@@ -204,13 +215,6 @@ export default {
           vthis.login = true;
         }
       }
-    });
-
-    getHomeData().then(res => {
-      if (res.bannerList.length > 0) {
-        this.bannerList = res.bannerList;
-      }
-      this.investList = res.investList;
     });
   }
 }

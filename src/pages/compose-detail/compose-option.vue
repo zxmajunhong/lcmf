@@ -32,9 +32,20 @@
         <span class="txt">按投资金额<span class="money">{{money}}元</span>配置如下:(数据更新时间:{{updateTime}}):</span>
         <div class="modify-money" style="display:none;">修改金额</div>
       </div>
+      <div class="each-item">
+        <div class="line thead">
+          <span class="td">名称</span>
+          <span class="td">单价</span>
+          <span class="td">持仓</span>
+          <span class="td">市值</span>
+          <span class="td">权重</span>
+        </div>
+      </div>  
       <div class="each-item" v-for="(item, i1) in tblData" :key="i1">
         <div class="line thead">
           <span class="td">{{item.name}}</span>
+          <span class="td"></span>
+          <span class="td"></span>
           <span class="td">{{item.money}}元</span>
           <span class="td">{{item.ratio}}%</span>
         </div>
@@ -200,27 +211,24 @@ export default {
           flex-shrink: 0;
           text-align: center;
           &:nth-child(1) {
-            flex-basis: 250rpx;
+            flex-basis: 160rpx;
           }
           &:nth-child(2) {
-            flex-basis: 80rpx;
+            flex-basis: 120rpx;
           }
           &:nth-child(3) {
-            flex-basis: 45rpx;
-            padding-right: 20rpx;
+            flex-basis: 120rpx;
           }
           &:nth-child(4) {
-            flex-basis: 150rpx;
-            padding-right: 20rpx;
+            flex-basis: 160rpx;
           }
           &:nth-child(5) {
-            flex-basis: 125rpx;
-            padding-right: 20rpx;
+            flex-basis: 140rpx;
           }
         }
         &.thead {
           .td {
-            flex-basis: 220rpx;
+            flex-basis: 140rpx;
             font-size: 26rpx;
             color: #fff;
             height: 60rpx;

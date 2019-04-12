@@ -11,7 +11,7 @@
             <p class="value">{{item.annual_income}}</p>
             <p class="key">预期年化收益</p>
             <p class="other">
-              亏损厌恶度:<span class="icon middle">中</span>
+              亏损厌恶度:<span class="icon middle">{{item.detest}}</span>
             </p>
           </div>
           <div class="item">
@@ -25,7 +25,7 @@
             <p class="value">{{item.risk_return_ratio}}</p>
             <p class="key">风险收益比</p>
             <p class="other">
-              交易频率:<span class="icon hight">高</span>
+              交易频率:<span class="icon hight">{{item.deal_rate}}</span>
             </p>
           </div>
         </div>

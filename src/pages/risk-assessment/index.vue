@@ -128,8 +128,8 @@ export default {
                   //   icon: 'success',
                   // });
                   wx.showModal({showCancel:false,title:'评测结果',content:res.msg, success(){
-                    wx.redirectTo({
-                      url: '../../pages/compose-detail/main?id='+ res.investGroupID
+                    wx.navigateTo({
+                      url: '/pages/compose-detail/main?id='+ res.investGroupID
                     })
                   }})
                 } else {
@@ -150,8 +150,8 @@ export default {
                   //   icon: 'success',
                   // });
                   wx.showModal({showCancel:false,title:'评测结果',content:res.msg, success(){
-                    wx.redirectTo({
-                      url: '../../pages/compose-detail/main?id='+ res.investGroupID
+                    wx.navigateTo({
+                      url: '/pages/compose-detail/main?id='+ res.investGroupID
                     })
                   }})
                 } else {

@@ -72,6 +72,9 @@
     <navigator :url="'/pages/invest/main?groupId='+ composeInfo.id" :hover-class="'none'" class="bottom-float" v-if="flag">
       开始投资
     </navigator>
+    <navigator :url="'/pages/invest/main?groupId='+ composeInfo.id" :hover-class="'none'" class="bottom-float" v-else-if="flag == false && perforExtendsData.userMoney == 0">
+      开始投资
+    </navigator>
     <navigator :hover-class="'none'" class="bottom-float-none" v-else>
       我的组合
     </navigator>
@@ -132,7 +135,15 @@ export default {
       }
 
     });
-  }
+  },
+  onUnload() {
+    this.tabIndex = -1;
+    this.composeInfo = {};
+    this.composeOptions = {};
+    this.composePerfor = {};
+    this.perforExtendsData = {};
+    this.composeRisk = {};
+  },
 }
 </script>
 

@@ -2,12 +2,12 @@
   <div class="container">
     <div class="balance-box">
       <div class="balance">
-        F币余额：<span class="value">{{userF}}</span>
+        金币余额：<span class="value">{{userF}}</span>
       </div>
       <div class="echarge">充值</div>
     </div>
     <div class="title-area">
-      <span class="title">F币交易记录：</span>
+      <span class="title">金币交易记录：</span>
     </div>
     <div class="record-box" v-for="item in recordList" :key="item">
       <div class="line">

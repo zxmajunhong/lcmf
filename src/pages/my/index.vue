@@ -60,9 +60,13 @@
     <div class="pod-box">
       <navigator :url="'/pages/invest-change/main'" :hover-class="none">
       <div class="pod-info">
-        <p class="txt">最新调仓：<span v-if="userInfo.newChange != 0 && userInfo.userF > 0">{{userInfo.newChange}}></span><span v-else-if="userInfo.userF < 1">您的金币余额不足，咱不能接受我们的调仓指令，请先去充值</span><span v-else>暂无</span></p>
-        <p class="tips"  v-if="userInfo.newChange != 0">
+        <p class="txt">最新调仓：<span v-if="userInfo.changeFinish == 0 && userInfo.userF > 0">{{userInfo.newChange}}></span><span v-else-if="userInfo.userF < 1">您的金币余额不足，咱不能接受我们的调仓指令，请先去充值</span>
+        <span v-else>{{userInfo.newChange}}</span></p>
+        <p class="tips"  v-if="userInfo.changeFinish == 0">
             您当期的调仓还未完成，点击去完成
+        </p>
+        <p class="tips"  v-else>
+            您的调仓已完成
         </p>
       </div>
       </navigator>
@@ -71,17 +75,17 @@
     <div class="fb-box">
       <div class="fb-info">
         <div class="balance">
-          F币余额：<span class="value">{{userInfo.userF}}</span>
+          金币余额：<span class="value">{{userInfo.userF}}</span>
         </div>
         <!-- <span class="recharge" @click="recharge">充值</span> -->
         <navigator :url="'/pages/recharge/main'" :hover-class="none" class="button recharge">充值</navigator>
       </div>
-      <p class="tips">我的组合每天需消耗1个F币当前余额可用至<span class="date">{{userInfo.lastDate}}</span></p>
+      <p class="tips">我的组合每天需消耗1个金币当前余额可用至<span class="date">{{userInfo.lastDate}}</span></p>
     </div>
     <div class="other-fun">
       <navigator :url="'/pages/f-bag/main'" :hover-class="none" class="each">
         <i class="icon fb"></i>
-        <span class="txt">F币钱包</span>
+        <span class="txt">金币钱包</span>
       </navigator>
       <div class="each middle">
         <i class="icon remind"></i>

@@ -6,6 +6,14 @@
           (建议在{{nextDate}}开盘时完成交易)
         </div>
     </div>
+
+    <div class="total-line">
+        关注公众号获取第一手调仓信息
+        <div class="adjust">
+          <img src="http://img-flzt.czstep.com/banner/wechat.jpg" class="img"/>
+        </div>
+    </div>
+
     <div class="table-area">
       <div class="tr">
         <div class="col1 first">
@@ -95,6 +103,10 @@ function getFormatDate(arg) {
 
 
 <style lang="less" scoped>
+.img{
+  width: 300rpx;
+  height: 300rpx;
+}
 .total-line{
   margin: auto;
 }

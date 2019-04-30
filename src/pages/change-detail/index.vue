@@ -7,13 +7,7 @@
         </div>
     </div>
 
-    <div class="total-line">
-        关注公众号获取第一手调仓信息
-        <div class="adjust">
-          <img src="http://img-flzt.czstep.com/banner/wechat.jpg" class="img"/>
-        </div>
-    </div>
-
+  
     <div class="table-area">
       <div class="tr">
         <div class="col1 first">
@@ -54,7 +48,21 @@
         </div>
       </div>
     </div>
+    <div class="total-line content">
+        <div class=".buy-font">关注公众号获取第一手调仓信息</div>
+        <div >
+          <img src="http://img-flzt.czstep.com/banner/wechat.jpg" class="img"/>
+        </div>
+        <div class="">
+           <span>扫描方法：截图并发送给自己的微信号，再长按识别图中二维码（开户过程中遇到任何问题，请联系微信号：flyinvest33）</span>
+        </div>
+        <div class="">
+          <span>搜索公众号：<span class="buy-font">复来智投</span>也可以哦！</span>
+        </div>
+    </div>
+
   </div>
+  
 </template>
 <script>
 import {getChangeDetail} from '@/utils/model';
@@ -69,12 +77,16 @@ export default {
   },
   onShow() {
     const date = this.$root.$mp.query.date || 0;
+    console.log("date", date);
+
     var tmpDate = new Date(date);
+    console.log("tmpDate", tmpDate);
+    
     tmpDate.setDate(tmpDate.getDate());
     var month = tmpDate.getMonth() + 1;
     var day = tmpDate.getDate();
     this.showDate = tmpDate.getFullYear() + '-' + getFormatDate(month) + '-' + getFormatDate(day);
-
+    console.log("showDate", showDate);
 
     tmpDate = new Date(date);
     tmpDate.setDate(tmpDate.getDate() + 1);
@@ -109,6 +121,7 @@ function getFormatDate(arg) {
 }
 .total-line{
   margin: auto;
+  align-content: center;
 }
 .buy-font{
   font-size: 30rpx;
@@ -189,6 +202,11 @@ function getFormatDate(arg) {
       }
     }
   }
+}
+.content{
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: bold;
 }
 
 </style>

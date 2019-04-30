@@ -29,7 +29,7 @@
         </div>
       </div>
       
-      <div class="tr" v-if="selList && selList.length > 0">
+      <div class="tr" v-if="sellList && sellList.length > 0">
         <div class="col1 sel">卖出</div>
         <div class="col2 sells">
           <div class="line" v-for="item in sellList" :key="item.id">

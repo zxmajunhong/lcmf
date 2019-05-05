@@ -54,7 +54,7 @@
           <img src="http://img-flzt.czstep.com/banner/wechat.jpg" class="img"/>
         </div>
         <div class="">
-           <span>扫描方法：截图并发送给自己的微信号，再长按识别图中二维码（开户过程中遇到任何问题，请联系微信号：flyinvest33）</span>
+           <span>扫描方法：截图并发送给自己的微信号，再长按识别图中二维码（产品使用过程中遇到任何问题，请联系微信号：flyinvest33）</span>
         </div>
         <div class="">
           <span>搜索公众号：<span class="buy-font">复来智投</span>也可以哦！</span>
@@ -78,17 +78,18 @@ export default {
   onShow() {
     const date = this.$root.$mp.query.date || 0;
     console.log("date", date);
+    var arr = date.split(/[- : \/]/);
 
-    var tmpDate = new Date(date);
+    var tmpDate = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);
     console.log("tmpDate", tmpDate);
     
     tmpDate.setDate(tmpDate.getDate());
     var month = tmpDate.getMonth() + 1;
     var day = tmpDate.getDate();
     this.showDate = tmpDate.getFullYear() + '-' + getFormatDate(month) + '-' + getFormatDate(day);
-    console.log("showDate", showDate);
+    console.log("showDate", this.showDate);
 
-    tmpDate = new Date(date);
+    tmpDate = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);
     tmpDate.setDate(tmpDate.getDate() + 1);
     var month = tmpDate.getMonth() + 1;
     var day = tmpDate.getDate();

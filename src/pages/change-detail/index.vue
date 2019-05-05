@@ -60,19 +60,23 @@
           <span>搜索公众号：<span class="buy-font">复来智投</span>也可以哦！</span>
         </div>
     </div>
-
+    <div class="bottom-float" v-if="confirmFlag == true" @click="conChange">
+      确认调仓
+    </div>
   </div>
   
 </template>
 <script>
 import {getChangeDetail} from '@/utils/model';
+import {conUserChange} from '@/utils/model';
 export default {
   data() {
     return {
       showDate: '',
       nextDate: '',
       buyList: [],
-      sellList: []
+      sellList: [],
+      confirmFlag: false
     }
   },
   onShow() {
@@ -97,7 +101,37 @@ export default {
     getChangeDetail(date).then(res => {
       this.buyList = res.buyList;
       this.sellList = res.sellList;
+      this.confirmFlag = res.confirmFlag;
     })
+  },
+  methods:{
+    conChange() {
+      conUserChange()
+        .then((res) => {
+          this.showModal(res.msg, () => {
+            if (res.code === 10000) {
+              wx.switchTab({
+                url: '/pages/my/main'
+              });
+            }else{
+              this.showModal('确认失败', () => {
+              });
+            }
+          });
+        })
+    },
+     // 显示对话框
+    showModal(content, sFun) {
+      wx.showModal({
+        title: '提示',
+        content,
+        success(res) {
+          if (res.confirm) {
+            sFun();
+          }
+        }
+      })
+    }
   }
 }
 function getFormatDate(arg) {
@@ -116,6 +150,17 @@ function getFormatDate(arg) {
 
 
 <style lang="less" scoped>
+.bottom-float {
+  width: 750rpx;
+  height: 80rpx;
+  background-color: #4768f3;
+  font-size: 30rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+}
 .img{
   width: 300rpx;
   height: 300rpx;

@@ -113,3 +113,10 @@ export function getUserMoney() {
 export function userChangeGroup(groupId) {
   return http.post(`invest/change/group`, {groupId}).then(res => res.data);
 }
+
+//确认投资
+export function conUserChange() {
+  return http.get(`user/change/confirm`).then(res => res.data);
+}
+
+

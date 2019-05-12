@@ -5,7 +5,7 @@
       <navigator class="invest-add" :url="'/pages/invest-add/main'">追加投资</navigator>
       <div  class="my-money">
         <span class="money">{{userInfo.totalMoney}}</span>
-        <span class="txt">投资金额 (￥)</span>
+        <span class="txt">总资产 (￥)</span>
       </div>
       <div class="my-earnigns">
         <div class="each">

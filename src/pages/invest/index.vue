@@ -37,7 +37,7 @@
         <div class="invest-submit" @click="checkInvest">确定</div>
       </div>
        <div class="explain-line" v-if="userInvestMoney > 0">
-        您当前的投资金额为<span class="money-font">{{userInvestMoney}}</span>
+        您当前的总资产为<span class="money-font">{{userInvestMoney}}</span>
       </div>
       <div class="explain-line">
         我们将按该金额为您配置智能组合。

@@ -18,7 +18,7 @@
         </div>
         <div class="each">
           <span class="key">最新净值(￥)</span>
-          <span class="value blue">{{userInfo.newValue}}</span>
+          <span class="value blue">{{userInfo.eq}}</span>
         </div>
         <div class="each">
           <span class="key">最新回撤(￥)</span>
@@ -56,7 +56,7 @@
     </div>
     <div class="each-area">
       <span class="sub-title">
-        最新净值：<span class="value">￥{{assetsData.newIncome}}</span>
+        最新净值：<span class="value">￥{{assetsData.newValue}}</span>
       </span>
       <div class="content chart-wrap">
         <mpvue-echarts :echarts="echarts" :onInit="initChart4" :lazyLoad="true" :canvasId="'c4'" ref="c4" />

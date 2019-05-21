@@ -5,7 +5,7 @@
       <!-- <navigator class="invest-add" :url="'/pages/invest-add/main'">追加投资</navigator> -->
       <navigator :url="'/pages/assets-detail/main'" :hover-class="none" class="my-money">
         <span class="money">{{userInfo.totalMoney}}</span>
-        <span class="txt">投资金额 (￥)</span>
+        <span class="txt">总资产 (￥)</span>
       </navigator>
       <navigator class="my-earnigns" :url="'/pages/assets-detail/main'" :hover-class="none">
         <div class="each">

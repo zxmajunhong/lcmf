@@ -6,7 +6,7 @@
     </div>
     <div class="opts-detail" v-if="flag">
       <div class="detail-title">
-        <span class="txt">按总资产<span class="money">{{money}}元</span>配置如下:(数据更新时间:{{updateTime}}):</span>
+        <span class="txt">按我的总资产<span class="money">{{money}}元</span>配置如下:(数据更新时间:{{updateTime}}):</span>
         <div class="modify-money" style="display:none;">修改金额</div>
       </div>
       <div class="each-item" v-for="(item, i1) in tblData" :key="i1">

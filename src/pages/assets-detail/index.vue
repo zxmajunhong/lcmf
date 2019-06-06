@@ -18,7 +18,7 @@
         </div>
         <div class="each">
           <span class="key">最新净值(￥)</span>
-          <span class="value blue">{{userInfo.eq}}</span>
+          <span class="value blue">{{userInfo.newValue}}</span>
         </div>
         <div class="each">
           <span class="key">最新回撤(￥)</span>

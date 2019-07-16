@@ -69,17 +69,23 @@ export default {
                 .then((postRes) => {
                   if (postRes.code == 10000) {
                     this.changeMoney = '';
+
+                    this.showModal(postRes.msg, () => {
+                      wx.switchTab({
+                        url: '/pages/my/main'
+                      });
+                    });
+                  }else if(postRes.code == 0){
+                    this.showModal(postRes.msg, () => {
+
+                    });
                   }
                   // wx.showToast({
                   //   title: postRes.msg,
                   //   icon: 'none',
                   //   mask: true,
                   // })
-                  this.showModal(postRes.msg, () => {
-                    wx.switchTab({
-                      url: '/pages/my/main'
-                    });
-                  });
+                  
                 })
             })
           }

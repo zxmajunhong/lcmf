@@ -2,13 +2,13 @@
   <div class="container">
     <div class="top-area">
       <div class="attr-box">
-        <div class="item">
+        <!-- <div class="item">
           <p class="value">{{composeInfo.annual_income}}</p>
           <p class="key">预期年化收益</p>
           <p class="other">
             亏损厌恶度:<span class="v">{{composeInfo.detest}}</span>
           </p>
-        </div>
+        </div> -->
         <div class="item">
           <p class="value">{{composeInfo.max_lost}}</p>
           <p class="key">最大回撤</p>

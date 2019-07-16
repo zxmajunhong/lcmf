@@ -120,3 +120,7 @@ export function conUserChange() {
 }
 
 
+//重置数据
+export function resetData() {
+  return http.get(`user/reset/data`).then(res => res.data);
+}

@@ -30,6 +30,7 @@
       <div class="box-title">
         <span class="title">我的组合</span>
         <navigator :url="'/pages/risk-assessment/main'" :hover-class="none" class="button">用户测评</navigator>
+        <navigator :hover-class="none" class="button" @click="resetData">数据重置</navigator>
       </div>
       <navigator :url="'/pages/compose-detail/main?id='+ userInfo.investGroupID+ '&flag=1'" :hover-class="none">
       <div class="box-body">
@@ -101,6 +102,7 @@
 
 <script>
 import {getUserInfo} from '@/utils/model';
+import {resetData} from '@/utils/model';
 export default {
   data() {
     return {
@@ -126,6 +128,16 @@ export default {
     })
   },
   methods:{
+    resetData(){
+      wx.showModal({showCancel:true,title:'数据重置', content:'确定重置数据吗，重置将删除评测，投资等所有数据', success(){
+        resetData().then(res => {
+          wx.showToast({
+            title: res.msg,
+            icon: 'none',
+          })
+        })
+      }})
+    }
   }
 }
 </script>

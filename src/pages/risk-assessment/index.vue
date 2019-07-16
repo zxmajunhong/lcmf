@@ -29,7 +29,20 @@
           </div>
         </div>
       </div>
+      <div class="question-list">
       <div class="item">
+        <div class="title">
+          <p class="title-txt">
+            什么是最大回撤比率？
+          </p>
+          <p class="title-tips">
+             所谓回撤比率，是指您当前总资产从历史最高点开始回落的百分比例，而最大回撤比率是指您可能经历的最大回撤比率，用来描述您开始投资后可能面临的最糟糕的情况。
+              我们的最大回撤控制技术的作用在于：在投资初期，确保您的本金亏损比例不会超过您设定的最大回撤比例；在投资后期，确定您的盈利回吐不会太多。
+          </p>
+        </div>
+      </div>
+      </div>
+      <!-- <div class="item">
         <div class="title">
           <p class="title-txt">2.您对本金遭受亏损的厌恶程度？</p>
           <p class="title-tips">(注:亏损厌恶程度越高，我们对您本金亏损的控制越严格)</p>
@@ -66,7 +79,7 @@
             </label>
           </radio-group>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="risk-submit" @click="riskSubmit">提交</div>
     <div class="explain-fc" v-show="showFc">
@@ -92,6 +105,7 @@
 import Box from "@/components/box";
 import {postRisk} from '@/utils/model';
 import {checkUserRisk} from '@/utils/model';
+
 export default {
   components: { Box },
   data() {

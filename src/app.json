@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/fixed-investment/main",
     "pages/index/main",
     "pages/my/main",
     "pages/invest-record/main",
@@ -17,7 +16,8 @@
     "pages/invest-change/main",
     "pages/recharge/main",
     "pages/change-detail/main",
-    "pages/invest/main"
+    "pages/invest/main",
+    "pages/fixed-investment/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

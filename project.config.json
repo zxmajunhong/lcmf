@@ -11,6 +11,8 @@
 	"compileType": "miniprogram",
 	"appid": "wx7162b9b9a0c18563",
 	"projectname": "flzt",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

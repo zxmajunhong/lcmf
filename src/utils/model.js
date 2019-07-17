@@ -124,3 +124,11 @@ export function conUserChange() {
 export function resetData() {
   return http.get(`user/reset/data`).then(res => res.data);
 }
+
+export function getUserFixedInfo() {
+  return http.get('/user/game/fixed').then(res => res.data);
+}
+
+export function updateUserFixedInfo(params) {
+  return http.get('/user/game/update/fixed', params).then(res => res.data);
+}

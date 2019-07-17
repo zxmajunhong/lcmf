@@ -29,8 +29,8 @@
     <div class="my-compose product box" >
       <div class="box-title">
         <span class="title">我的组合</span>
-        <navigator :url="'/pages/risk-assessment/main'" :hover-class="none" class="button">用户测评</navigator>
-        <navigator :hover-class="none" class="button" @click="resetData">数据重置</navigator>
+        <!-- <navigator :url="'/pages/risk-assessment/main'" :hover-class="none" class="button">用户测评</navigator>
+        <navigator :hover-class="none" class="button" @click="resetData">数据重置</navigator> -->
       </div>
       <navigator :url="'/pages/compose-detail/main?id='+ userInfo.investGroupID+ '&flag=1'" :hover-class="none">
       <div class="box-body">
@@ -88,13 +88,13 @@
         <i class="icon fb"></i>
         <span class="txt">金币钱包</span>
       </navigator>
-      <div class="each middle">
+      <navigator :url="'/pages/fixed-investment/main'" :hover-class="none" class="each">
         <i class="icon remind"></i>
         <span class="txt">定投提醒</span>
-      </div>
+       </navigator>
       <div class="each">
         <i class="icon invite"></i>
-        <span class="txt">邀请好友</span>
+        <span class="txt" @click="resetData">数据重置</span>
       </div>
     </div>
   </div>
